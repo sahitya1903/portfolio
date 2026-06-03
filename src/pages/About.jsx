@@ -255,17 +255,20 @@ const About = () => (
               style={{ animation: 'float 7s ease-in-out infinite' }}
             >
               <GlowCard sx={{ p: 4, textAlign: 'center' }} glowIntensity={0.7}>
-                {/* Initials avatar */}
+                {/* Profile Photo */}
                 <Box sx={{
                   width: 120, height: 120, borderRadius: '24px', mx: 'auto', mb: 3,
-                  background: `linear-gradient(135deg, ${VIOLET}, #5B21B6, #06B6D4)`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
                   boxShadow: `0 0 40px ${alpha(VIOLET, 0.5)}, 0 0 80px ${alpha(VIOLET, 0.15)}`,
                   position: 'relative',
+                  overflow: 'hidden',
+                  background: `linear-gradient(135deg, ${VIOLET}, #5B21B6, #06B6D4)`, // fallback while loading
                 }}>
-                  <Typography sx={{ fontSize: '2.8rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.04em', fontFamily: '"Inter", sans-serif' }}>
-                    SK
-                  </Typography>
+                  <Box
+                    component="img"
+                    src="/profile.jpg"
+                    alt="Sahitya Kushwaha"
+                    sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                   {/* Online dot */}
                   <Box sx={{
                     position: 'absolute', bottom: 8, right: 8,
@@ -273,6 +276,7 @@ const About = () => (
                     background: '#10B981',
                     border: '2px solid rgba(5,5,8,1)',
                     boxShadow: '0 0 8px #10B981',
+                    zIndex: 2,
                   }} />
                 </Box>
 
