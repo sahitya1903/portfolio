@@ -30,24 +30,18 @@ const NAV_LINKS = [
 const Logo = () => (
   <RouterLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
     <Box
+      component="img"
+      src="/logo.png"
+      alt="SK Logo"
       sx={{
         width: 32,
         height: 32,
         borderRadius: '8px',
-        background: `linear-gradient(135deg, ${VIOLET}, #5B21B6)`,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '0.8rem',
-        fontWeight: 800,
-        color: '#fff',
-        fontFamily: '"Inter", sans-serif',
-        boxShadow: `0 0 16px ${alpha(VIOLET, 0.5)}`,
+        boxShadow: `0 0 16px ${alpha(VIOLET, 0.3)}`,
         flexShrink: 0,
+        objectFit: 'cover'
       }}
-    >
-      SK
-    </Box>
+    />
     <Box>
       <Typography
         sx={{
