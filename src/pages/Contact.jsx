@@ -96,12 +96,17 @@ const Contact = () => {
     }
     setStatus('sending');
     try {
+      console.log('EmailJS Config being used:', {
+        SERVICE_ID: SERVICE_ID ? 'Loaded' : 'Missing',
+        TEMPLATE_ID: TEMPLATE_ID ? 'Loaded' : 'Missing',
+        PUBLIC_KEY: PUBLIC_KEY ? `Loaded (${PUBLIC_KEY.length} chars)` : 'Missing'
+      });
       await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY);
       setStatus('success');
       setFields({ from_name: '', from_email: '', subject: '', message: '' });
     } catch (err) {
       console.error('EmailJS error:', err);
-      setStatus('error');
+      setStatus(err?.text || err?.message || 'Unknown error occurred');
     }
   };
 
@@ -188,7 +193,7 @@ const Contact = () => {
 
                   {/* Note */}
                   <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.68rem', color: '#334155', textAlign: 'center', pt: 1 }}>
-                    sahitya.codes · Class of 2026
+                    sahitya.codes · Class of 2027
                   </Typography>
                 </Box>
               </FadeIn>
@@ -232,12 +237,12 @@ const Contact = () => {
                         Fill in the details below and I'll get back to you soon.
                       </Typography>
 
-                      {status === 'error' && (
+                      {status !== 'idle' && status !== 'sending' && status !== 'success' && (
                         <Alert
                           severity="error"
                           sx={{ mb: 3, background: alpha('#EF4444', 0.08), border: `1px solid ${alpha('#EF4444', 0.3)}`, color: '#FCA5A5', borderRadius: '8px' }}
                         >
-                          Something went wrong. Please try emailing me directly at sahitya7985@gmail.com
+                          Error: {status}. Please try emailing me directly at sahitya7985@gmail.com
                         </Alert>
                       )}
 
