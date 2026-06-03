@@ -42,109 +42,115 @@ const PROJECTS = [
   {
     id: 'roomify',
     title: 'Roomify',
-    desc: 'A full-stack room-booking and rental platform. Enables landlords to list properties and tenants to discover, filter, and book rooms — with real-time availability, auth, and an admin dashboard.',
+    desc: 'A full-stack hotel booking and rental platform. Enables landlords to list properties and tenants to discover, filter, and book rooms — with real-time availability, JWT auth, and an admin dashboard.',
     tags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'MUI'],
     accent: VIOLET,
     accentLight: VIOLET_LIGHT,
     flag: 'Flagship',
     github: 'https://github.com/sahityakushwaha/roomify',
-    live: '#',
+    live: 'https://roomify.onrender.com',
     stats: [{ label: 'Status', value: 'Active' }, { label: 'Type', value: 'Full-Stack' }, { label: 'DB', value: 'MongoDB' }],
   },
   {
-    id: 'project-2',
-    title: 'Dev Portfolio V1',
-    desc: 'First iteration of my personal portfolio. Built with vanilla HTML/CSS/JS — pixel-perfect responsive layout with dark mode and smooth scroll sections.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    accent: '#06B6D4',
-    accentLight: '#38BDF8',
-    flag: null,
-    github: '#',
-    live: '#',
-    stats: [{ label: 'Status', value: 'Shipped' }, { label: 'Type', value: 'Frontend' }, { label: 'Stack', value: 'Vanilla' }],
+    id: 'drowsiness-detection',
+    title: 'Driver Drowsiness Detection',
+    desc: 'Real-time drowsiness detection system using computer vision and deep learning. Monitors eye aspect ratio and facial landmarks to trigger audio alerts and prevent accidents.',
+    tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
+    accent: '#F59E0B',
+    accentLight: '#FCD34D',
+    flag: 'AI / ML',
+    github: 'https://github.com/sahityakushwaha/driver-drowsiness-detection',
+    live: 'https://driver-drowsiness-detection.streamlit.app',
+    stats: [{ label: 'Status', value: 'Deployed' }, { label: 'Type', value: 'AI / ML' }, { label: 'Model', value: 'CNN' }],
   },
   {
-    id: 'project-3',
-    title: 'REST API Boilerplate',
-    desc: 'Production-ready Express.js + MongoDB boilerplate with JWT authentication, role-based access control, input validation, and comprehensive error handling.',
-    tags: ['Node.js', 'Express.js', 'MongoDB', 'JWT'],
+    id: 'animal-detection',
+    title: 'Animal Detection & Alert',
+    desc: 'Real-time animal detection using YOLOv5 and OpenCV. Detects animals in video streams and fires automated alerts — designed for wildlife monitoring and farm perimeter security.',
+    tags: ['Python', 'YOLO', 'OpenCV'],
     accent: '#10B981',
     accentLight: '#34D399',
     flag: null,
-    github: '#',
+    github: 'https://github.com/sahityakushwaha/animal-detection-alert',
     live: null,
-    stats: [{ label: 'Status', value: 'Open Source' }, { label: 'Type', value: 'Backend' }, { label: 'Auth', value: 'JWT' }],
+    stats: [{ label: 'Status', value: 'Complete' }, { label: 'Type', value: 'Computer Vision' }, { label: 'Model', value: 'YOLOv5' }],
   },
 ];
 
 const SKILLS = [
-  { category: 'Frontend', icon: <BrushIcon />, color: '#06B6D4', items: [
-    { name: 'React', level: 90 },
-    { name: 'Material UI', level: 88 },
-    { name: 'JavaScript (ES6+)', level: 85 },
-    { name: 'HTML & CSS', level: 92 },
-    { name: 'Framer Motion', level: 75 },
-  ]},
-  { category: 'Backend', icon: <StorageIcon />, color: '#10B981', items: [
-    { name: 'Node.js', level: 82 },
-    { name: 'Express.js', level: 80 },
-    { name: 'REST APIs', level: 85 },
-    { name: 'MongoDB', level: 78 },
-    { name: 'MySQL', level: 72 },
-  ]},
-  { category: 'Dev Tools', icon: <CodeIcon />, color: VIOLET_LIGHT, items: [
-    { name: 'Git & GitHub', level: 88 },
-    { name: 'Vite', level: 82 },
-    { name: 'VS Code', level: 95 },
-    { name: 'Postman', level: 80 },
-    { name: 'Vercel / Netlify', level: 78 },
-  ]},
+  {
+    category: 'Frontend', icon: <BrushIcon />, color: '#06B6D4', items: [
+      { name: 'React', level: 90 },
+      { name: 'Material UI', level: 88 },
+      { name: 'JavaScript (ES6+)', level: 85 },
+      { name: 'HTML & CSS', level: 92 },
+      { name: 'Framer Motion', level: 75 },
+    ]
+  },
+  {
+    category: 'Backend', icon: <StorageIcon />, color: '#10B981', items: [
+      { name: 'Node.js', level: 82 },
+      { name: 'Express.js', level: 80 },
+      { name: 'REST APIs', level: 85 },
+      { name: 'MongoDB', level: 78 },
+      { name: 'MySQL', level: 72 },
+    ]
+  },
+  {
+    category: 'Dev Tools', icon: <CodeIcon />, color: VIOLET_LIGHT, items: [
+      { name: 'Git & GitHub', level: 88 },
+      { name: 'Vite', level: 82 },
+      { name: 'VS Code', level: 95 },
+      { name: 'Postman', level: 80 },
+      { name: 'Vercel / Netlify', level: 78 },
+    ]
+  },
 ];
 
 const EXPERIENCES = [
   {
     type: 'education',
     icon: <SchoolIcon />,
-    title: 'B.Tech in Computer Science',
-    org: 'University / College Name',
-    period: '2022 – 2026',
-    desc: 'Specialization in software engineering. Active member of the coding club.',
+    title: 'B.Tech in Electronics and Communication Engineering',
+    org: 'NIT Andhra Pradesh',
+    period: '2023 – 2027',
+    desc: 'Pursuing a Minor in Software Engineering, along with major degree in ECE. Active member of the open-source community.',
     color: '#06B6D4',
   },
   {
     type: 'achievement',
     icon: <EmojiEventsIcon />,
-    title: 'Hackathon Finalist',
-    org: 'Hack the Code 2024',
-    period: '2024',
-    desc: 'Top 5 finalist among 200+ teams. Built Roomify in 36 hours.',
+    title: 'Hacktoberfest Contributor',
+    org: 'Hacktoberfest',
+    period: '2025',
+    desc: 'Secured Top 10,000 rank globally, earned the Supercontributor badge and received official Hacktoberfest T-shirt',
     color: '#F59E0B',
   },
   {
     type: 'work',
     icon: <WorkIcon />,
-    title: 'Full-Stack Developer Intern',
+    title: 'Full-Stack Developer',
     org: 'Open Source / Freelance',
-    period: '2023 – Present',
-    desc: 'Built and shipped production web apps for clients. Contributed to open-source projects.',
+    period: '2024 – Present',
+    desc: 'Building and shipping production web apps — MERN stack, REST APIs, and cloud deployments.',
     color: VIOLET_LIGHT,
   },
   {
     type: 'achievement',
     icon: <StarIcon />,
-    title: '500+ GitHub Contributions',
-    org: 'github.com/sahityakushwaha',
-    period: '2023 – 2024',
-    desc: 'Consistent open-source contributor with a year-long activity streak.',
+    title: '600+ GitHub Contributions',
+    org: 'github.com/sahitya1903',
+    period: '2024 – Present',
+    desc: 'Consistent open-source contributor with an active streak spanning multiple projects — web, AI/ML, and tooling.',
     color: '#10B981',
   },
 ];
 
 const STATS = [
-  { value: '3+', label: 'Years Coding' },
-  { value: '15+', label: 'Projects Shipped' },
-  { value: '500+', label: 'GitHub Contributions' },
-  { value: '5+', label: 'Tech Stack Tools' },
+  { value: '2+', label: 'Years Coding' },
+  { value: '10+', label: 'Projects Shipped' },
+  { value: '600+', label: 'GitHub Contributions' },
+  { value: '6+', label: 'Tech Stack Tools' },
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -321,17 +327,6 @@ const Hero = () => (
               >
                 View Projects
               </Button>
-              <Button
-                id="hero-contact"
-                variant="outlined"
-                size="large"
-                component="a"
-                href="mailto:hi@sahitya.codes"
-                endIcon={<EmailOutlinedIcon />}
-                sx={{ px: 3, py: 1.4, fontSize: '0.95rem' }}
-              >
-                Say Hello
-              </Button>
             </Box>
           </motion.div>
 
@@ -343,7 +338,7 @@ const Hero = () => (
           >
             <Box sx={{ display: 'flex', gap: 2, mt: 4, alignItems: 'center' }}>
               {[
-                { icon: <GitHubIcon sx={{ fontSize: 20 }} />, href: 'https://github.com/sahityakushwaha', label: 'GitHub' },
+                { icon: <GitHubIcon sx={{ fontSize: 20 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub' },
                 { icon: <LinkedInIcon sx={{ fontSize: 20 }} />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn' },
               ].map(({ icon, href, label }) => (
                 <Box
@@ -795,12 +790,12 @@ const SkillsSection = () => (
    GITHUB ACTIVITY SECTION
 ───────────────────────────────────────────────────────────── */
 const GitHubSection = () => {
-  const GITHUB_USERNAME = 'sahityakushwaha';
+  const GITHUB_USERNAME = 'sahitya1903';
   const GITHUB_STATS = [
-    { label: 'Public Repos', value: '20+', color: VIOLET_LIGHT },
-    { label: 'Stars Earned', value: '50+', color: '#F59E0B' },
-    { label: 'Contributions', value: '500+', color: '#10B981' },
-    { label: 'Followers', value: '30+', color: '#06B6D4' },
+    { label: 'Public Repos', value: '10+', color: VIOLET_LIGHT },
+    { label: 'Stars Earned', value: '30+', color: '#F59E0B' },
+    { label: 'Contributions', value: '600+', color: '#10B981' },
+    { label: 'Followers', value: '20+', color: '#06B6D4' },
   ];
 
   return (
@@ -940,7 +935,7 @@ const ContactCTA = () => (
           >
             <Box sx={{ width: 8, height: 8, borderRadius: '50%', background: '#10B981', animation: 'pulse-glow 2s infinite' }} />
             <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.72rem', color: '#94A3B8' }}>
-              Available for work · Q3 2025
+              Open to opportunities · Class of 2027
             </Typography>
           </Box>
 
@@ -964,11 +959,11 @@ const ContactCTA = () => (
               variant="contained"
               size="large"
               component="a"
-              href="mailto:hi@sahitya.codes"
+              href="mailto:sahitya7985@gmail.com"
               endIcon={<EmailOutlinedIcon />}
               sx={{ px: 4, py: 1.5, fontSize: '1rem' }}
             >
-              hi@sahitya.codes
+              E-mail
             </Button>
             <Button
               id="cta-linkedin"

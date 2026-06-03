@@ -2,22 +2,19 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Box, Container, Typography, IconButton, Divider } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import EmailIcon from '@mui/icons-material/Email';
 import { alpha } from '@mui/material/styles';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 
 const SOCIAL_LINKS = [
-  { icon: <GitHubIcon fontSize="small" />, href: 'https://github.com/sahityakushwaha', label: 'GitHub' },
+  { icon: <GitHubIcon fontSize="small" />, href: 'https://github.com/sahitya1903', label: 'GitHub' },
   { icon: <LinkedInIcon fontSize="small" />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn' },
-  { icon: <TwitterIcon fontSize="small" />, href: 'https://twitter.com/sahityakushwaha', label: 'Twitter' },
-  { icon: <EmailIcon fontSize="small" />, href: 'mailto:hi@sahitya.codes', label: 'Email' },
+  { icon: <EmailIcon fontSize="small" />, href: 'mailto:sahitya7985@gmail.com', label: 'Email' },
 ];
 
 const FOOTER_LINKS = [
   { label: 'About', path: '/about' },
   { label: 'Projects', path: '/projects' },
-  { label: 'Blog', path: '/blog' },
   { label: 'Contact', path: '/contact' },
 ];
 

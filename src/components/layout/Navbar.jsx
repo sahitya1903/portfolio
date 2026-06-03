@@ -24,7 +24,6 @@ import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 const NAV_LINKS = [
   { label: 'About', path: '/about' },
   { label: 'Projects', path: '/projects' },
-  { label: 'Blog', path: '/blog' },
   { label: 'Contact', path: '/contact' },
 ];
 
@@ -167,7 +166,7 @@ const Navbar = () => {
                 size="small"
                 endIcon={<ArrowOutwardIcon sx={{ fontSize: '14px !important' }} />}
                 component="a"
-                href="mailto:hi@sahitya.codes"
+                href="mailto:sahitya7985@gmail.com"
                 sx={{
                   display: { xs: 'none', sm: 'inline-flex' },
                   fontSize: '0.8rem',
@@ -245,7 +244,7 @@ const Navbar = () => {
             variant="contained"
             endIcon={<ArrowOutwardIcon />}
             component="a"
-            href="mailto:hi@sahitya.codes"
+            href="mailto:sahitya7985@gmail.com"
           >
             Hire me
           </Button>

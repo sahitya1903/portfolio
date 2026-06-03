@@ -266,6 +266,50 @@ const theme = createTheme({
         },
       },
     },
+
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            borderRadius: 8,
+            backgroundColor: 'rgba(255,255,255,0.025)',
+            transition: 'background 0.2s ease',
+            '& fieldset': {
+              borderColor: BORDER,
+              transition: 'border-color 0.2s ease',
+            },
+            '&:hover fieldset': {
+              borderColor: alpha(VIOLET, 0.5),
+            },
+            '&.Mui-focused': {
+              backgroundColor: 'rgba(255,255,255,0.04)',
+              '& fieldset': {
+                borderColor: VIOLET,
+                boxShadow: `0 0 0 3px ${alpha(VIOLET, 0.12)}`,
+              },
+            },
+            '&.Mui-error fieldset': {
+              borderColor: '#EF4444',
+            },
+          },
+          '& .MuiInputLabel-root': {
+            color: '#64748B',
+            fontSize: '0.875rem',
+            '&.Mui-focused': { color: VIOLET_LIGHT },
+            '&.Mui-error': { color: '#EF4444' },
+          },
+          '& .MuiOutlinedInput-input': {
+            color: '#F8FAFC',
+            fontSize: '0.9rem',
+            '&::placeholder': { color: '#475569', opacity: 1 },
+          },
+          '& .MuiFormHelperText-root': {
+            fontSize: '0.75rem',
+            marginTop: '6px',
+          },
+        },
+      },
+    },
   },
 });
 
