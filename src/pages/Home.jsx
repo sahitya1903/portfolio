@@ -359,6 +359,27 @@ const Hero = () => (
                   <Typography sx={{ fontSize: '0.82rem', fontWeight: 500, color: 'inherit' }}>{label}</Typography>
                 </Box>
               ))}
+              {/* divider */}
+              <Box sx={{ width: '1px', height: 14, background: '#1E293B' }} />
+              {/* LeetCode */}
+              <Box
+                component="a"
+                href="https://leetcode.com/u/sahitya1903/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LeetCode"
+                sx={{
+                  display: 'flex', alignItems: 'center', gap: 0.75,
+                  color: '#475569', textDecoration: 'none', fontSize: '0.82rem',
+                  transition: 'color 0.2s',
+                  '&:hover': { color: '#FFA116' },
+                }}
+              >
+                <Box sx={{ width: 16, height: 16, borderRadius: '3px', background: '#FFA116', opacity: 0.85, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Box component="span" sx={{ fontSize: '8px', fontWeight: 900, color: '#fff', lineHeight: 1 }}>LC</Box>
+                </Box>
+                <Typography sx={{ fontSize: '0.82rem', fontWeight: 500, color: 'inherit' }}>LeetCode</Typography>
+              </Box>
             </Box>
           </motion.div>
         </Grid>

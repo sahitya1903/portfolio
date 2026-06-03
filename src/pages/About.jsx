@@ -1,6 +1,8 @@
 import { Box, Container, Typography, Button, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import DownloadIcon from '@mui/icons-material/Download';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import WorkIcon from '@mui/icons-material/Work';
@@ -73,13 +75,7 @@ const TIMELINE = [
   },
 ];
 
-const FUN_FACTS = [
-  { emoji: '🏗️', text: 'Full-Stack Dev' },
-  { emoji: '🤖', text: 'ML Enthusiast' },
-  { emoji: '🎓', text: 'NIT Andhra Pradesh' },
-  { emoji: '☕', text: 'Chai > Coffee' },
-  { emoji: '⚡', text: 'Speed Matters' },
-];
+
 
 /* ─────────────────────────────────────────────────────────────
    FADE-IN WRAPPER
@@ -201,6 +197,51 @@ const About = () => (
                 >
                   Say Hello
                 </Button>
+              </Box>
+
+              {/* Social + LeetCode links */}
+              <Box sx={{ display: 'flex', gap: 2.5, mt: 3, alignItems: 'center', flexWrap: 'wrap' }}>
+                {[
+                  { icon: <GitHubIcon sx={{ fontSize: 18 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub' },
+                  { icon: <LinkedInIcon sx={{ fontSize: 18 }} />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn' },
+                ].map((s) => (
+                  <Box
+                    key={s.label}
+                    component="a"
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{
+                      display: 'flex', alignItems: 'center', gap: 0.75,
+                      color: '#64748B', textDecoration: 'none',
+                      fontSize: '0.8rem',
+                      transition: 'color 0.2s ease',
+                      '&:hover': { color: '#94A3B8' },
+                    }}
+                  >
+                    {s.icon}
+                    {s.label}
+                  </Box>
+                ))}
+                <Box sx={{ width: '1px', height: 14, background: '#1E293B' }} />
+                <Box
+                  component="a"
+                  href="https://leetcode.com/u/sahitya1903/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    display: 'flex', alignItems: 'center', gap: 0.75,
+                    color: '#64748B', textDecoration: 'none',
+                    fontSize: '0.8rem',
+                    transition: 'color 0.2s ease',
+                    '&:hover': { color: '#FFA116' },
+                  }}
+                >
+                  <Box sx={{ width: 14, height: 14, borderRadius: '3px', background: '#FFA116', opacity: 0.8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Box component="span" sx={{ fontSize: '8px', fontWeight: 900, color: '#fff', lineHeight: 1 }}>LC</Box>
+                  </Box>
+                  LeetCode
+                </Box>
               </Box>
             </motion.div>
           </Grid>
@@ -347,24 +388,6 @@ const About = () => (
                     </Typography>
                   </Box>
                 </Box>
-              </GlowCard>
-            </FadeIn>
-          ))}
-        </Box>
-      </Container>
-    </Box>
-
-    {/* ── FUN FACTS ── */}
-    <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
-      <Container maxWidth="lg">
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
-          {FUN_FACTS.map((fact, i) => (
-            <FadeIn key={fact.text} delay={i * 0.07}>
-              <GlowCard sx={{ px: 3, py: 2, display: 'flex', alignItems: 'center', gap: 1.5, cursor: 'default' }} glowIntensity={0.4}>
-                <Typography sx={{ fontSize: '1.3rem' }}>{fact.emoji}</Typography>
-                <Typography sx={{ fontSize: '0.82rem', fontWeight: 500, color: '#94A3B8', whiteSpace: 'nowrap' }}>
-                  {fact.text}
-                </Typography>
               </GlowCard>
             </FadeIn>
           ))}

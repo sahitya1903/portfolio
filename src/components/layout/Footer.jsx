@@ -10,6 +10,7 @@ const SOCIAL_LINKS = [
   { icon: <GitHubIcon fontSize="small" />, href: 'https://github.com/sahitya1903', label: 'GitHub' },
   { icon: <LinkedInIcon fontSize="small" />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn' },
   { icon: <EmailIcon fontSize="small" />, href: 'mailto:sahitya7985@gmail.com', label: 'Email' },
+  { icon: null, href: 'https://leetcode.com/u/sahitya1903/', label: 'LeetCode' },
 ];
 
 const FOOTER_LINKS = [
@@ -81,7 +82,7 @@ const Footer = () => (
         </Box>
 
         {/* Social Icons */}
-        <Box sx={{ display: 'flex', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
           {SOCIAL_LINKS.map(({ icon, href, label }) => (
             <IconButton
               key={label}
@@ -95,13 +96,17 @@ const Footer = () => (
                 color: 'text.secondary',
                 transition: 'all 0.2s',
                 '&:hover': {
-                  color: VIOLET_LIGHT,
-                  background: alpha(VIOLET, 0.1),
+                  color: label === 'LeetCode' ? '#FFA116' : VIOLET_LIGHT,
+                  background: label === 'LeetCode' ? alpha('#FFA116', 0.1) : alpha(VIOLET, 0.1),
                   transform: 'translateY(-2px)',
                 },
               }}
             >
-              {icon}
+              {icon ?? (
+                <Box sx={{ width: 16, height: 16, borderRadius: '3px', background: '#FFA116', opacity: 0.75, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Box component="span" sx={{ fontSize: '7px', fontWeight: 900, color: '#fff', lineHeight: 1 }}>LC</Box>
+                </Box>
+              )}
             </IconButton>
           ))}
         </Box>
