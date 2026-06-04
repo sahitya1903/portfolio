@@ -62,19 +62,7 @@ const PROJECTS = [
     github: 'https://github.com/sahitya1903/drowsiness-detection',
     live: 'https://drowsiness-detection-0.streamlit.app',
     stats: [{ label: 'Status', value: 'Deployed' }, { label: 'Type', value: 'AI / ML' }, { label: 'Model', value: 'CNN' }],
-  },
-  {
-    id: 'animal-detection',
-    title: 'Animal Detection & Alert System',
-    desc: 'Real-time animal detection using YOLOv12 and OpenCV. Detects animals in video streams and fires automated alerts — designed for wildlife monitoring and farm perimeter security.',
-    tags: ['Python', 'YOLO', 'OpenCV'],
-    accent: '#10B981',
-    accentLight: '#34D399',
-    flag: null,
-    github: 'https://github.com/sahitya1903/animal-detection',
-    live: null,
-    stats: [{ label: 'Status', value: 'Complete' }, { label: 'Type', value: 'Computer Vision' }, { label: 'Model', value: 'YOLOv12' }],
-  },
+  }
 ];
 
 const SKILLS = [

@@ -187,16 +187,7 @@ const About = () => (
                 >
                   View Resume
                 </Button>
-                <Button
-                  id="about-contact"
-                  variant="outlined"
-                  size="large"
-                  component="a"
-                  href="mailto:sahitya7985@gmail.com"
-                  sx={{ px: 3, py: 1.4, fontSize: '0.95rem' }}
-                >
-                  Say Hello
-                </Button>
+
               </Box>
 
               {/* Social + LeetCode links */}
@@ -353,7 +344,7 @@ const About = () => (
     </Box>
 
     {/* ── TIMELINE ── */}
-    <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${BORDER}` }}>
+    <Box component="section" sx={{ py: { xs: 8, md: 12 } }}>
       <Container maxWidth="lg">
         <SectionHeader
           label="Journey"

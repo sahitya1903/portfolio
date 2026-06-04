@@ -26,11 +26,11 @@ const ALL_PROJECTS = [
     github: 'https://github.com/sahitya1903/roomify',
     live: 'https://roomify-1gzx.onrender.com',
     stats: [
-      { label: 'Type', value: 'Full-Stack' },
-      { label: 'Stack', value: 'EJS+ Node + MongoDB' },
+      { label: 'Type', value: 'Backend' },
+      { label: 'Stack', value: 'EJS + Node.js' },
       { label: 'Status', value: 'Live' },
     ],
-    category: ['Full-Stack', 'Node.js'],
+    category: ['Full-Stack', 'Node.js', 'Backend'],
   },
   {
     id: 'drowsiness-detection',
@@ -58,7 +58,7 @@ const ALL_PROJECTS = [
     tags: ['React', 'Vite', 'MUI', 'Framer Motion'],
     accent: '#06B6D4',
     accentLight: '#38BDF8',
-    flag: null,
+    flag: 'Frontend',
     github: 'https://github.com/sahitya1903/portfolio',
     live: 'https://sahitya.codes',
     stats: [
@@ -66,7 +66,7 @@ const ALL_PROJECTS = [
       { label: 'Stack', value: 'React + Vite' },
       { label: 'Status', value: 'Live' },
     ],
-    category: ['React', 'Full-Stack'],
+    category: ['React', 'Full-Stack', 'Frontend'],
   },
   {
     id: 'weather-app',
@@ -74,9 +74,9 @@ const ALL_PROJECTS = [
     subtitle: 'Real-time Weather Dashboard',
     desc: 'A clean weather application built with React and Material UI, powered by the OpenWeather API. Displays real-time weather data, forecasts, and location-based search with dynamic backgrounds and responsive design.',
     tags: ['React', 'Vite', 'MUI', 'OpenWeather API'],
-    accent: '#06B6D4',
-    accentLight: '#38BDF8',
-    flag: null,
+    accent: '#10B981',
+    accentLight: '#34D399',
+    flag: 'Frontend',
     github: 'https://github.com/sahitya1903/weather',
     live: 'https://weather-hi89.onrender.com',
     stats: [
@@ -84,7 +84,7 @@ const ALL_PROJECTS = [
       { label: 'Stack', value: 'React + Vite' },
       { label: 'Status', value: 'Live' },
     ],
-    category: ['React', 'Full-Stack'],
+    category: ['React', 'Full-Stack', 'Frontend'],
   },
   {
     id: 'animal-detection',
@@ -92,15 +92,15 @@ const ALL_PROJECTS = [
     subtitle: 'YOLO-based Security System',
     desc: 'Real-time animal detection system powered by YOLOv12 and OpenCV. Processes live video streams to detect animals and fire automated alerts — built for wildlife monitoring and farm perimeter security.',
     tags: ['Python', 'YOLO', 'OpenCV'],
-    accent: '#10B981',
-    accentLight: '#34D399',
-    flag: null,
+    accent: '#9333EA',
+    accentLight: '#C084FC',
+    flag: 'AI / ML',
     github: 'https://github.com/sahitya1903/animal-detection',
     live: null,
     stats: [
-      { label: 'Type', value: 'Computer Vision' },
+      { label: 'Type', value: 'AI / ML' },
       { label: 'Model', value: 'YOLOv12' },
-      { label: 'Status', value: 'Complete' },
+      { label: 'Status', value: 'Completed' },
     ],
     category: ['Python', 'AI / ML'],
   },
@@ -110,9 +110,9 @@ const ALL_PROJECTS = [
     subtitle: 'MERN stack experiments',
     desc: 'A curated collection of MERN stack experiments and practice projects. Covers REST API design, JWT auth patterns, state management, and component architecture — a living reference for full-stack patterns.',
     tags: ['MongoDB', 'Express.js', 'React', 'Node.js'],
-    accent: '#9333EA',
-    accentLight: '#C084FC',
-    flag: null,
+    accent: '#06B6D4',
+    accentLight: '#38BDF8',
+    flag: 'Full-Stack',
     github: 'https://github.com/sahitya1903/webdev-MERN',
     live: null,
     stats: [
@@ -120,11 +120,11 @@ const ALL_PROJECTS = [
       { label: 'Stack', value: 'MERN' },
       { label: 'Status', value: 'Ongoing' },
     ],
-    category: ['Full-Stack', 'Node.js', 'React'],
+    category: ['Full-Stack', 'Node.js', 'React', 'MongoDB', 'Express.js'],
   },
 ];
 
-const FILTERS = ['All', 'Full-Stack', 'React', 'Node.js', 'Python', 'AI / ML'];
+const FILTERS = ['All', 'Full-Stack', 'AI / ML', 'Frontend', 'Backend'];
 
 /* ─────────────────────────────────────────────────────────────
    PROJECT CARD
