@@ -47,8 +47,8 @@ const PROJECTS = [
     accent: VIOLET,
     accentLight: VIOLET_LIGHT,
     flag: 'Flagship',
-    github: 'https://github.com/sahityakushwaha/roomify',
-    live: 'https://roomify.onrender.com',
+    github: 'https://github.com/sahitya1903/roomify',
+    live: 'https://roomify-1gzx.onrender.com',
     stats: [{ label: 'Status', value: 'Active' }, { label: 'Type', value: 'Full-Stack' }, { label: 'DB', value: 'MongoDB' }],
   },
   {
@@ -59,21 +59,21 @@ const PROJECTS = [
     accent: '#F59E0B',
     accentLight: '#FCD34D',
     flag: 'AI / ML',
-    github: 'https://github.com/sahityakushwaha/driver-drowsiness-detection',
-    live: 'https://driver-drowsiness-detection.streamlit.app',
+    github: 'https://github.com/sahitya1903/drowsiness-detection',
+    live: 'https://drowsiness-detection-0.streamlit.app',
     stats: [{ label: 'Status', value: 'Deployed' }, { label: 'Type', value: 'AI / ML' }, { label: 'Model', value: 'CNN' }],
   },
   {
     id: 'animal-detection',
-    title: 'Animal Detection & Alert',
-    desc: 'Real-time animal detection using YOLOv5 and OpenCV. Detects animals in video streams and fires automated alerts — designed for wildlife monitoring and farm perimeter security.',
+    title: 'Animal Detection & Alert System',
+    desc: 'Real-time animal detection using YOLOv12 and OpenCV. Detects animals in video streams and fires automated alerts — designed for wildlife monitoring and farm perimeter security.',
     tags: ['Python', 'YOLO', 'OpenCV'],
     accent: '#10B981',
     accentLight: '#34D399',
     flag: null,
-    github: 'https://github.com/sahityakushwaha/animal-detection-alert',
+    github: 'https://github.com/sahitya1903/animal-detection',
     live: null,
-    stats: [{ label: 'Status', value: 'Complete' }, { label: 'Type', value: 'Computer Vision' }, { label: 'Model', value: 'YOLOv5' }],
+    stats: [{ label: 'Status', value: 'Complete' }, { label: 'Type', value: 'Computer Vision' }, { label: 'Model', value: 'YOLOv12' }],
   },
 ];
 
@@ -620,7 +620,7 @@ const ProjectsSection = () => (
 
               <Grid size={{ xs: 12, md: 4 }}>
                 <Box sx={{
-                  background: `rgba(255,255,255,0.02)`,
+                  background: 'rgba(255,255,255,0.02)',
                   border: `1px solid ${BORDER}`,
                   borderRadius: '10px',
                   p: 2.5,
@@ -666,10 +666,11 @@ const ExperienceSection = () => (
       subtitle="Education, work experience, and key achievements that shaped who I am as a developer."
     />
     <Box sx={{ position: 'relative' }}>
-      {/* Vertical timeline line */}
+      {/* Vertical timeline line — perfectly centred */}
       <Box sx={{
         position: 'absolute',
-        left: { xs: 20, md: '50%' },
+        left: '50%',
+        transform: 'translateX(-50%)',
         top: 0, bottom: 0,
         width: '1px',
         background: `linear-gradient(to bottom, transparent, ${alpha(VIOLET, 0.5)}, transparent)`,
@@ -678,64 +679,62 @@ const ExperienceSection = () => (
 
       {EXPERIENCES.map((exp, i) => {
         const isLeft = i % 2 === 0;
+        const card = (
+          <GlowCard sx={{ p: 3, width: '100%' }} glowIntensity={0.5}>
+            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+              <Box sx={{
+                width: 40, height: 40, borderRadius: '10px', flexShrink: 0,
+                background: alpha(exp.color, 0.15),
+                border: `1px solid ${alpha(exp.color, 0.3)}`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: exp.color,
+              }}>
+                {exp.icon}
+              </Box>
+              <Box>
+                <Typography sx={{ fontWeight: 700, fontSize: '0.95rem', color: 'text.primary', mb: 0.25 }}>
+                  {exp.title}
+                </Typography>
+                <Typography sx={{ fontSize: '0.78rem', color: exp.color, fontFamily: '"JetBrains Mono", monospace', mb: 0.5 }}>
+                  {exp.org} · {exp.period}
+                </Typography>
+                <Typography sx={{ fontSize: '0.83rem', color: '#64748B', lineHeight: 1.65 }}>
+                  {exp.desc}
+                </Typography>
+              </Box>
+            </Box>
+          </GlowCard>
+        );
+
         return (
           <FadeIn key={i} delay={i * 0.1}>
-            <Grid container sx={{ mb: 4 }} justifyContent="center">
-              <Grid size={{ xs: 12, md: 5 }} sx={{ order: { xs: 0, md: isLeft ? 0 : 2 } }}>
-                <GlowCard
-                  sx={{
-                    p: 3,
-                    mr: { md: isLeft ? 3 : 0 },
-                    ml: { md: isLeft ? 0 : 3 },
-                  }}
-                  glowIntensity={0.5}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                    <Box
-                      sx={{
-                        width: 40, height: 40, borderRadius: '10px', flexShrink: 0,
-                        background: alpha(exp.color, 0.15),
-                        border: `1px solid ${alpha(exp.color, 0.3)}`,
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        color: exp.color,
-                      }}
-                    >
-                      {exp.icon}
-                    </Box>
-                    <Box>
-                      <Typography sx={{ fontWeight: 700, fontSize: '0.95rem', color: 'text.primary', mb: 0.25 }}>
-                        {exp.title}
-                      </Typography>
-                      <Typography sx={{ fontSize: '0.78rem', color: exp.color, fontFamily: '"JetBrains Mono", monospace', mb: 0.5 }}>
-                        {exp.org} · {exp.period}
-                      </Typography>
-                      <Typography sx={{ fontSize: '0.83rem', color: '#64748B', lineHeight: 1.65 }}>
-                        {exp.desc}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </GlowCard>
-              </Grid>
+            {/* ── Desktop: two-column symmetric layout ── */}
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', mb: 4 }}>
+              {/* Left half — flex:1 ensures equal widths */}
+              <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', pr: 3 }}>
+                {isLeft ? card : null}
+              </Box>
 
-              {/* Center dot */}
-              <Grid
-                size={{ xs: 0, md: 0 }}
-                sx={{
-                  display: { xs: 'none', md: 'flex' },
-                  alignItems: 'center', justifyContent: 'center',
-                  order: 1, zIndex: 1,
-                }}
-              >
+              {/* Center dot — fixed 48px strip keeps line perfectly centred */}
+              <Box sx={{ width: 48, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
                 <Box sx={{
                   width: 12, height: 12, borderRadius: '50%',
                   background: exp.color,
-                  boxShadow: `0 0 12px ${alpha(exp.color, 0.7)}`,
+                  boxShadow: `0 0 14px ${alpha(exp.color, 0.75)}`,
                   border: '2px solid rgba(5,5,8,1)',
                 }} />
-              </Grid>
+              </Box>
 
-              <Grid size={{ xs: 12, md: 5 }} sx={{ order: { xs: 0, md: isLeft ? 2 : 0 } }} />
-            </Grid>
+              {/* Right half */}
+              <Box sx={{ flex: 1, pl: 3 }}>
+                {!isLeft ? card : null}
+              </Box>
+            </Box>
+
+            {/* ── Mobile: single-column stack ── */}
+            <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 3 }}>
+              {card}
+            </Box>
           </FadeIn>
         );
       })}
