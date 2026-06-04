@@ -49,7 +49,7 @@ const PROJECTS = [
     flag: 'Backend',
     github: 'https://github.com/sahitya1903/roomify',
     live: 'https://roomify-1gzx.onrender.com',
-    stats: [{ label: 'Status', value: 'Live' }, { label: 'Type', value: 'Full-Stack' }, { label: 'Stack', value: 'EJS + Node + MongoDB' }],
+    stats: [{ label: 'Status', value: 'Live' }, { label: 'Type', value: 'Backend' }, { label: 'Stack', value: 'EJS + Node.js' }],
   },
   {
     id: 'drowsiness-detection',
