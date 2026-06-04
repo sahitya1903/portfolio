@@ -27,10 +27,10 @@ const ALL_PROJECTS = [
     live: 'https://roomify-1gzx.onrender.com',
     stats: [
       { label: 'Type', value: 'Full-Stack' },
-      { label: 'DB', value: 'MongoDB' },
-      { label: 'Status', value: 'Active' },
+      { label: 'Stack', value: 'EJS+ Node + MongoDB' },
+      { label: 'Status', value: 'Live' },
     ],
-    category: ['Full-Stack', 'React', 'Node.js'],
+    category: ['Full-Stack', 'Node.js'],
   },
   {
     id: 'drowsiness-detection',
@@ -73,7 +73,7 @@ const ALL_PROJECTS = [
     title: 'Weather App',
     subtitle: 'Real-time Weather Dashboard',
     desc: 'A clean weather application built with React and Material UI, powered by the OpenWeather API. Displays real-time weather data, forecasts, and location-based search with dynamic backgrounds and responsive design.',
-    tags: ['React', 'MUI', 'OpenWeather API'],
+    tags: ['React', 'Vite', 'MUI', 'OpenWeather API'],
     accent: '#06B6D4',
     accentLight: '#38BDF8',
     flag: null,
@@ -81,7 +81,7 @@ const ALL_PROJECTS = [
     live: 'https://weather-hi89.onrender.com',
     stats: [
       { label: 'Type', value: 'Frontend' },
-      { label: 'Stack', value: 'React + MUI' },
+      { label: 'Stack', value: 'React + Vite' },
       { label: 'Status', value: 'Live' },
     ],
     category: ['React', 'Full-Stack'],
