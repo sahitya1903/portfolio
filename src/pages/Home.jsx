@@ -148,7 +148,7 @@ const EXPERIENCES = [
 
 const STATS = [
   { value: '2+', label: 'Years Coding' },
-  { value: '10+', label: 'Projects Shipped' },
+  { value: '5+', label: 'Projects Shipped' },
   { value: '600+', label: 'GitHub Contributions' },
   { value: '6+', label: 'Tech Stack Tools' },
 ];
