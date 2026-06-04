@@ -77,11 +77,11 @@ const SKILLS = [
   },
   {
     category: 'Backend', icon: <StorageIcon />, color: '#10B981', items: [
-      { name: 'Node.js', level: 82 },
-      { name: 'Express.js', level: 80 },
-      { name: 'REST APIs', level: 85 },
-      { name: 'MongoDB', level: 78 },
-      { name: 'MySQL', level: 72 },
+      { name: 'Node.js', level: 85 },
+      { name: 'Express.js', level: 85 },
+      { name: 'REST APIs', level: 90 },
+      { name: 'MongoDB', level: 85 },
+      { name: 'MySQL', level: 80 },
     ]
   },
   {
@@ -89,8 +89,8 @@ const SKILLS = [
       { name: 'Git & GitHub', level: 88 },
       { name: 'Vite', level: 82 },
       { name: 'VS Code', level: 95 },
-      { name: 'Postman', level: 80 },
-      { name: 'Vercel / Netlify', level: 78 },
+      { name: 'Postman', level: 85 },
+      { name: 'Render / Streamlit', level: 88 },
     ]
   },
 ];
@@ -101,8 +101,8 @@ const EXPERIENCES = [
     icon: <SchoolIcon />,
     title: 'B.Tech in Electronics and Communication Engineering',
     org: 'NIT Andhra Pradesh',
-    period: '2023 – 2027',
-    desc: 'Pursuing a Minor in Software Engineering, along with major degree in ECE. Active member of the open-source community.',
+    period: '2023 – Present',
+    desc: 'Final Year Student in ECE, Pursuing a Minor in Software Engineering & active member of open-source community.',
     color: '#06B6D4',
   },
   {

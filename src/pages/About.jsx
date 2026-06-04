@@ -45,8 +45,8 @@ const TIMELINE = [
     icon: <SchoolIcon />,
     title: 'B.Tech in Electronics and Communication Engineering',
     org: 'NIT Andhra Pradesh',
-    period: '2023 – 2027',
-    desc: 'Pursuing a minor in Software Engineering & Member of open-source community.',
+    period: '2023 – Present',
+    desc: 'Final Year Student in ECE pursuing a minor in Software Engineering & active member of open-source community.',
     color: '#06B6D4',
   },
   {
@@ -67,7 +67,7 @@ const TIMELINE = [
   },
   {
     icon: <StarIcon />,
-    title: '400+ GitHub Contributions',
+    title: '600+ GitHub Contributions',
     org: 'github.com/sahitya1903',
     period: '2024 – Present',
     desc: 'Consistent open-source activity across web, AI/ML, and tooling projects. Green squares are my love language.',
