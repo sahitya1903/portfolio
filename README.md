@@ -117,3 +117,10 @@ This portfolio is currently configured for developer **Sahitya Kushwaha** (`sahi
 The project is static-site friendly and ready for deployment to platforms like:
 - **Vercel:** Connect your GitHub repository to Vercel. Set the build command to `npm run build` and output directory to `dist`.
 - **Netlify:** Connect your repository, set the build command to `npm run build` and publish directory to `dist`.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](file:///d:/OneDrive%20-%20NATIONAL%20INSTITUTE%20OF%20TECHNOLOGY%20ANDHRA%20PRADESH/Code%20Files/portfolio/LICENSE) file for details.
+
