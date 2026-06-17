@@ -1,42 +1,20 @@
-import { Box, Container, Typography, Button, Grid, Chip, LinearProgress, Avatar } from '@mui/material';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { Box, Container, Typography, Button, Grid, Chip } from '@mui/material';
+import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import CodeIcon from '@mui/icons-material/Code';
-import StorageIcon from '@mui/icons-material/Storage';
-import BrushIcon from '@mui/icons-material/Brush';
-import StarIcon from '@mui/icons-material/Star';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import SchoolIcon from '@mui/icons-material/School';
-import WorkIcon from '@mui/icons-material/Work';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { alpha } from '@mui/material/styles';
 
 import GlowCard from '../components/ui/GlowCard';
 import TechBadge from '../components/ui/TechBadge';
 import SectionHeader from '../components/ui/SectionHeader';
-import { VIOLET, VIOLET_LIGHT, VIOLET_DARK, BORDER, BG_ELEVATED } from '../theme/theme';
+import { VIOLET, VIOLET_LIGHT, BORDER } from '../theme/theme';
 
 /* ─────────────────────────────────────────────────────────────
    CONSTANTS
 ───────────────────────────────────────────────────────────── */
-
-const TECH_STACK = [
-  { name: 'React', color: '#61DAFB', desc: 'UI Library' },
-  { name: 'Vite', color: '#646CFF', desc: 'Build Tool' },
-  { name: 'Material UI', color: '#0081CB', desc: 'Component Library' },
-  { name: 'JavaScript', color: '#F7DF1E', desc: 'Language' },
-  { name: 'Node.js', color: '#68A063', desc: 'Runtime' },
-  { name: 'Express.js', color: '#999', desc: 'Web Framework' },
-  { name: 'MongoDB', color: '#47A248', desc: 'NoSQL Database' },
-  { name: 'MySQL', color: '#4479A1', desc: 'SQL Database' },
-  { name: 'Git & GitHub', color: '#F1502F', desc: 'Version Control' },
-];
 
 const PROJECTS = [
   {
@@ -65,80 +43,11 @@ const PROJECTS = [
   }
 ];
 
-const SKILLS = [
-  {
-    category: 'Frontend', icon: <BrushIcon />, color: '#06B6D4', items: [
-      { name: 'React', level: 90 },
-      { name: 'Material UI', level: 88 },
-      { name: 'JavaScript (ES6+)', level: 90 },
-      { name: 'HTML & CSS', level: 92 },
-      { name: 'Framer Motion', level: 75 },
-    ]
-  },
-  {
-    category: 'Backend', icon: <StorageIcon />, color: '#10B981', items: [
-      { name: 'Node.js', level: 85 },
-      { name: 'Express.js', level: 85 },
-      { name: 'REST APIs', level: 90 },
-      { name: 'MongoDB', level: 85 },
-      { name: 'MySQL', level: 80 },
-    ]
-  },
-  {
-    category: 'Dev Tools', icon: <CodeIcon />, color: VIOLET_LIGHT, items: [
-      { name: 'Git & GitHub', level: 88 },
-      { name: 'Vite', level: 82 },
-      { name: 'VS Code', level: 95 },
-      { name: 'Postman', level: 85 },
-      { name: 'Render / Streamlit', level: 88 },
-    ]
-  },
-];
-
-const EXPERIENCES = [
-  {
-    type: 'education',
-    icon: <SchoolIcon />,
-    title: 'B.Tech in Electronics and Communication Engineering',
-    org: 'NIT Andhra Pradesh',
-    period: '2023 – Present',
-    desc: 'Final Year Student in ECE, Pursuing a Minor in Software Engineering & active member of open-source community.',
-    color: '#06B6D4',
-  },
-  {
-    type: 'achievement',
-    icon: <EmojiEventsIcon />,
-    title: 'Hacktoberfest Contributor',
-    org: 'Hacktoberfest',
-    period: '2025',
-    desc: 'Secured Top 10,000 rank globally, earned the Supercontributor badge and received official Hacktoberfest T-shirt',
-    color: '#F59E0B',
-  },
-  {
-    type: 'work',
-    icon: <WorkIcon />,
-    title: 'Full-Stack Developer',
-    org: 'Open Source / Freelance',
-    period: '2024 – Present',
-    desc: 'Building and shipping production web apps — MERN stack, REST APIs, and cloud deployments.',
-    color: VIOLET_LIGHT,
-  },
-  {
-    type: 'achievement',
-    icon: <StarIcon />,
-    title: '600+ GitHub Contributions',
-    org: 'github.com/sahitya1903',
-    period: '2024 – Present',
-    desc: 'Consistent open-source contributor with an active streak spanning multiple projects — web, AI/ML, and tooling.',
-    color: '#10B981',
-  },
-];
-
 const STATS = [
   { value: '2+', label: 'Years Coding' },
   { value: '5+', label: 'Projects Shipped' },
   { value: '600+', label: 'GitHub Contributions' },
-  { value: '6+', label: 'Tech Stack Tools' },
+  { value: '10+', label: 'Tech Stack Tools' },
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -315,61 +224,19 @@ const Hero = () => (
               >
                 View Projects
               </Button>
+              <Button
+                id="hero-about-me"
+                variant="outlined"
+                size="large"
+                component={RouterLink}
+                to="/about"
+                sx={{ px: 3, py: 1.4, fontSize: '0.95rem' }}
+              >
+                About Me
+              </Button>
             </Box>
           </motion.div>
 
-          {/* Social links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
-          >
-            <Box sx={{ display: 'flex', gap: 2, mt: 4, alignItems: 'center' }}>
-              {[
-                { icon: <GitHubIcon sx={{ fontSize: 20 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub' },
-                { icon: <LinkedInIcon sx={{ fontSize: 20 }} />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn' },
-              ].map(({ icon, href, label }) => (
-                <Box
-                  key={label}
-                  component="a"
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  sx={{
-                    display: 'flex', alignItems: 'center', gap: 0.75,
-                    color: '#475569', textDecoration: 'none', fontSize: '0.82rem',
-                    transition: 'color 0.2s',
-                    '&:hover': { color: VIOLET_LIGHT },
-                  }}
-                >
-                  {icon}
-                  <Typography sx={{ fontSize: '0.82rem', fontWeight: 500, color: 'inherit' }}>{label}</Typography>
-                </Box>
-              ))}
-              {/* divider */}
-              <Box sx={{ width: '1px', height: 14, background: '#1E293B' }} />
-              {/* LeetCode */}
-              <Box
-                component="a"
-                href="https://leetcode.com/u/sahitya1903/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LeetCode"
-                sx={{
-                  display: 'flex', alignItems: 'center', gap: 0.75,
-                  color: '#475569', textDecoration: 'none', fontSize: '0.82rem',
-                  transition: 'color 0.2s',
-                  '&:hover': { color: '#FFA116' },
-                }}
-              >
-                <Box sx={{ width: 16, height: 16, borderRadius: '3px', background: '#FFA116', opacity: 0.85, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Box component="span" sx={{ fontSize: '8px', fontWeight: 900, color: '#fff', lineHeight: 1 }}>LC</Box>
-                </Box>
-                <Typography sx={{ fontSize: '0.82rem', fontWeight: 500, color: 'inherit' }}>LeetCode</Typography>
-              </Box>
-            </Box>
-          </motion.div>
         </Grid>
 
         {/* Right column — floating code card */}
@@ -477,57 +344,7 @@ const Hero = () => (
 );
 
 /* ─────────────────────────────────────────────────────────────
-   TECH STACK SECTION
-───────────────────────────────────────────────────────────── */
-const TechStackSection = () => (
-  <Section id="tech-stack" sx={{ borderTop: `1px solid ${BORDER}` }}>
-    <SectionHeader
-      label="Tech Stack"
-      title={<>Tools I <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>build with</Box></>}
-      subtitle="A curated set of modern technologies I use to ship fast, scalable, and maintainable products."
-    />
-    <Box
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(3, 1fr)' },
-        gap: 2,
-      }}
-    >
-      {TECH_STACK.map((tech, i) => (
-        <FadeIn key={tech.name} delay={i * 0.07}>
-          <GlowCard sx={{ p: 3, height: '100%', cursor: 'default' }} glowIntensity={0.6}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1.5 }}>
-              {/* Color dot as logo substitute */}
-              <Box
-                sx={{
-                  width: 40, height: 40, borderRadius: '10px',
-                  background: alpha(tech.color, 0.15),
-                  border: `1px solid ${alpha(tech.color, 0.3)}`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                <Box sx={{ width: 14, height: 14, borderRadius: '50%', background: tech.color, boxShadow: `0 0 8px ${alpha(tech.color, 0.7)}` }} />
-              </Box>
-              <Box>
-                <Typography sx={{ fontWeight: 600, fontSize: '0.95rem', color: 'text.primary', lineHeight: 1.2 }}>
-                  {tech.name}
-                </Typography>
-                <Typography sx={{ fontSize: '0.72rem', color: '#475569', fontFamily: '"JetBrains Mono", monospace' }}>
-                  {tech.desc}
-                </Typography>
-              </Box>
-            </Box>
-            <Box sx={{ height: '3px', borderRadius: '2px', background: `linear-gradient(90deg, ${alpha(tech.color, 0.8)}, ${alpha(tech.color, 0.2)})`, mt: 1 }} />
-          </GlowCard>
-        </FadeIn>
-      ))}
-    </Box>
-  </Section>
-);
-
-/* ─────────────────────────────────────────────────────────────
-   PROJECTS SECTION
+   FEATURED PROJECTS SECTION (slim teaser)
 ───────────────────────────────────────────────────────────── */
 const ProjectsSection = () => (
   <Section id="featured-projects" sx={{ borderTop: `1px solid ${BORDER}` }}>
@@ -644,166 +461,15 @@ const ProjectsSection = () => (
 );
 
 /* ─────────────────────────────────────────────────────────────
-   EXPERIENCE & ACHIEVEMENTS SECTION
-───────────────────────────────────────────────────────────── */
-const ExperienceSection = () => (
-  <Section id="experience" sx={{ borderTop: `1px solid ${BORDER}` }}>
-    <SectionHeader
-      label="Experience"
-      title={<>Journey & <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Milestones</Box></>}
-      subtitle="Education, work experience, and key achievements that shaped who I am as a developer."
-    />
-    <Box sx={{ position: 'relative' }}>
-      {/* Vertical timeline line — perfectly centred */}
-      <Box sx={{
-        position: 'absolute',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        top: 0, bottom: 0,
-        width: '1px',
-        background: `linear-gradient(to bottom, transparent, ${alpha(VIOLET, 0.5)}, transparent)`,
-        display: { xs: 'none', md: 'block' },
-      }} />
-
-      {EXPERIENCES.map((exp, i) => {
-        const isLeft = i % 2 === 0;
-        const card = (
-          <GlowCard sx={{ p: 3, width: '100%' }} glowIntensity={0.5}>
-            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-              <Box sx={{
-                width: 40, height: 40, borderRadius: '10px', flexShrink: 0,
-                background: alpha(exp.color, 0.15),
-                border: `1px solid ${alpha(exp.color, 0.3)}`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: exp.color,
-              }}>
-                {exp.icon}
-              </Box>
-              <Box>
-                <Typography sx={{ fontWeight: 700, fontSize: '0.95rem', color: 'text.primary', mb: 0.25 }}>
-                  {exp.title}
-                </Typography>
-                <Typography sx={{ fontSize: '0.78rem', color: exp.color, fontFamily: '"JetBrains Mono", monospace', mb: 0.5 }}>
-                  {exp.org} · {exp.period}
-                </Typography>
-                <Typography sx={{ fontSize: '0.83rem', color: '#64748B', lineHeight: 1.65 }}>
-                  {exp.desc}
-                </Typography>
-              </Box>
-            </Box>
-          </GlowCard>
-        );
-
-        return (
-          <FadeIn key={i} delay={i * 0.1}>
-            {/* ── Desktop: two-column symmetric layout ── */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', mb: 4 }}>
-              {/* Left half — flex:1 ensures equal widths */}
-              <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', pr: 3 }}>
-                {isLeft ? card : null}
-              </Box>
-
-              {/* Center dot — fixed 48px strip keeps line perfectly centred */}
-              <Box sx={{ width: 48, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
-                <Box sx={{
-                  width: 12, height: 12, borderRadius: '50%',
-                  background: exp.color,
-                  boxShadow: `0 0 14px ${alpha(exp.color, 0.75)}`,
-                  border: '2px solid rgba(5,5,8,1)',
-                }} />
-              </Box>
-
-              {/* Right half */}
-              <Box sx={{ flex: 1, pl: 3 }}>
-                {!isLeft ? card : null}
-              </Box>
-            </Box>
-
-            {/* ── Mobile: single-column stack ── */}
-            <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 3 }}>
-              {card}
-            </Box>
-          </FadeIn>
-        );
-      })}
-    </Box>
-  </Section>
-);
-
-/* ─────────────────────────────────────────────────────────────
-   SKILLS SECTION
-───────────────────────────────────────────────────────────── */
-const SkillsSection = () => (
-  <Section id="skills" sx={{ borderTop: `1px solid ${BORDER}` }}>
-    <SectionHeader
-      label="Skills"
-      title={<>What I'm <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #F59E0B)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>good at</Box></>}
-      subtitle="Proficiency levels across the full stack — from pixels to databases."
-    />
-    <Grid container spacing={3}>
-      {SKILLS.map((skillGroup, gi) => (
-        <Grid key={skillGroup.category} size={{ xs: 12, md: 4 }}>
-          <FadeIn delay={gi * 0.15}>
-            <GlowCard sx={{ p: 3, height: '100%' }} glowIntensity={0.6}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
-                <Box sx={{
-                  color: skillGroup.color,
-                  width: 36, height: 36, borderRadius: '8px',
-                  background: alpha(skillGroup.color, 0.1),
-                  border: `1px solid ${alpha(skillGroup.color, 0.25)}`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  '& svg': { fontSize: 18 },
-                }}>
-                  {skillGroup.icon}
-                </Box>
-                <Typography sx={{ fontWeight: 700, fontSize: '1rem', color: 'text.primary' }}>
-                  {skillGroup.category}
-                </Typography>
-              </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-                {skillGroup.items.map((skill) => (
-                  <Box key={skill.name}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.75 }}>
-                      <Typography sx={{ fontSize: '0.82rem', color: '#94A3B8', fontWeight: 500 }}>
-                        {skill.name}
-                      </Typography>
-                      <Typography sx={{ fontSize: '0.72rem', color: skillGroup.color, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
-                        {skill.level}%
-                      </Typography>
-                    </Box>
-                    <LinearProgress
-                      variant="determinate"
-                      value={skill.level}
-                      sx={{
-                        height: 4, borderRadius: 2,
-                        background: 'rgba(255,255,255,0.04)',
-                        '& .MuiLinearProgress-bar': {
-                          background: `linear-gradient(90deg, ${skillGroup.color}, ${alpha(skillGroup.color, 0.6)})`,
-                          borderRadius: 2,
-                        },
-                      }}
-                    />
-                  </Box>
-                ))}
-              </Box>
-            </GlowCard>
-          </FadeIn>
-        </Grid>
-      ))}
-    </Grid>
-  </Section>
-);
-
-/* ─────────────────────────────────────────────────────────────
    GITHUB ACTIVITY SECTION
 ───────────────────────────────────────────────────────────── */
 const GitHubSection = () => {
   const GITHUB_USERNAME = 'sahitya1903';
   const GITHUB_STATS = [
     { label: 'Public Repos', value: '10+', color: VIOLET_LIGHT },
-    { label: 'Stars Earned', value: '30+', color: '#F59E0B' },
+    { label: 'Stars Earned', value: '20+', color: '#F59E0B' },
     { label: 'Contributions', value: '600+', color: '#10B981' },
-    { label: 'Followers', value: '20+', color: '#06B6D4' },
+    { label: 'Followers', value: '15+', color: '#06B6D4' },
   ];
 
   return (
@@ -886,14 +552,14 @@ const GitHubSection = () => {
               src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&hide_border=true&title_color=9D6FFF&icon_color=7C3AED&text_color=94A3B8&bg_color=00000000`}
               alt="GitHub Stats"
               onError={(e) => { e.target.style.display = 'none'; }}
-              sx={{ width: '100%', height: 'auto' }}
+              sx={{ width: '100%', height: '200px' }}
             />
             <Box
               component="img"
               src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=9D6FFF&text_color=94A3B8&bg_color=00000000`}
               alt="Top Languages"
               onError={(e) => { e.target.style.display = 'none'; }}
-              sx={{ width: '100%', height: 'auto' }}
+              sx={{ width: '100%', height: '200px' }}
             />
           </Box>
         </GlowCard>
@@ -903,114 +569,13 @@ const GitHubSection = () => {
 };
 
 /* ─────────────────────────────────────────────────────────────
-   CONTACT CTA SECTION
-───────────────────────────────────────────────────────────── */
-const ContactCTA = () => (
-  <Section id="contact-cta" sx={{ borderTop: `1px solid ${BORDER}` }}>
-    <FadeIn>
-      <GlowCard
-        sx={{
-          p: { xs: 4, md: 8 },
-          textAlign: 'center',
-          background: `linear-gradient(145deg, ${alpha(VIOLET, 0.08)} 0%, rgba(13,13,20,0.95) 60%, ${alpha('#06B6D4', 0.04)} 100%)`,
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        glowIntensity={0.8}
-      >
-        {/* Decorative blobs */}
-        <Box sx={{
-          position: 'absolute', top: '-60px', right: '-60px',
-          width: 250, height: 250, borderRadius: '50%',
-          background: `radial-gradient(circle, ${alpha(VIOLET, 0.15)} 0%, transparent 60%)`,
-          filter: 'blur(30px)', pointerEvents: 'none',
-        }} />
-        <Box sx={{
-          position: 'absolute', bottom: '-40px', left: '-40px',
-          width: 200, height: 200, borderRadius: '50%',
-          background: `radial-gradient(circle, ${alpha('#06B6D4', 0.1)} 0%, transparent 60%)`,
-          filter: 'blur(25px)', pointerEvents: 'none',
-        }} />
-
-        <Box sx={{ position: 'relative', zIndex: 1 }}>
-          <Box
-            sx={{
-              display: 'inline-flex', alignItems: 'center', gap: 1,
-              px: 2, py: 0.75, mb: 3, borderRadius: '100px',
-              border: `1px solid ${alpha(VIOLET, 0.35)}`,
-              background: alpha(VIOLET, 0.08),
-            }}
-          >
-            <Box sx={{ width: 8, height: 8, borderRadius: '50%', background: '#10B981', animation: 'pulse-glow 2s infinite' }} />
-            <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.72rem', color: '#94A3B8' }}>
-              Open to opportunities · Class of 2027
-            </Typography>
-          </Box>
-
-          <Typography
-            variant="h2"
-            sx={{ mb: 2, color: 'text.primary' }}
-          >
-            Let's build something{' '}
-            <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              great together
-            </Box>
-          </Typography>
-
-          <Typography variant="body1" sx={{ maxWidth: 500, mx: 'auto', mb: 5, color: '#64748B', lineHeight: 1.8 }}>
-            Whether you have a project in mind, want to collaborate, or just want to chat about tech — my inbox is always open.
-          </Typography>
-
-          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button
-              id="cta-email"
-              variant="contained"
-              size="large"
-              component="a"
-              href="mailto:sahitya7985@gmail.com"
-              endIcon={<EmailOutlinedIcon />}
-              sx={{ px: 4, py: 1.5, fontSize: '1rem' }}
-            >
-              E-mail
-            </Button>
-            <Button
-              id="cta-linkedin"
-              variant="outlined"
-              size="large"
-              component="a"
-              href="https://linkedin.com/in/sahityakushwaha"
-              target="_blank"
-              endIcon={<LinkedInIcon />}
-              sx={{ px: 4, py: 1.5, fontSize: '1rem' }}
-            >
-              LinkedIn
-            </Button>
-          </Box>
-
-          <Typography sx={{
-            mt: 4, fontFamily: '"JetBrains Mono", monospace', fontSize: '0.72rem',
-            color: '#334155', letterSpacing: '0.06em',
-          }}>
-            Response time: usually within 24 hours · sahitya.codes
-          </Typography>
-        </Box>
-      </GlowCard>
-    </FadeIn>
-  </Section>
-);
-
-/* ─────────────────────────────────────────────────────────────
    HOME PAGE (assembles all sections)
 ───────────────────────────────────────────────────────────── */
 const Home = () => (
   <>
     <Hero />
-    <TechStackSection />
     <ProjectsSection />
-    <ExperienceSection />
-    <SkillsSection />
     <GitHubSection />
-    <ContactCTA />
   </>
 );
 

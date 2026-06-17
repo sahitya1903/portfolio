@@ -1,8 +1,6 @@
-import { Box, Container, Typography, Button, Grid } from '@mui/material';
+import { Box, Container, Typography, Button, Grid, LinearProgress } from '@mui/material';
 import { motion } from 'framer-motion';
-import DownloadIcon from '@mui/icons-material/Download';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import WorkIcon from '@mui/icons-material/Work';
@@ -10,6 +8,7 @@ import StarIcon from '@mui/icons-material/Star';
 import CodeIcon from '@mui/icons-material/Code';
 import StorageIcon from '@mui/icons-material/Storage';
 import BrushIcon from '@mui/icons-material/Brush';
+import PsychologyIcon from '@mui/icons-material/Psychology';
 import { alpha } from '@mui/material/styles';
 
 import GlowCard from '../components/ui/GlowCard';
@@ -40,24 +39,18 @@ const WHAT_I_DO = [
   },
 ];
 
-const TIMELINE = [
+const EXPERIENCES = [
   {
+    type: 'education',
     icon: <SchoolIcon />,
     title: 'B.Tech in Electronics and Communication Engineering',
     org: 'NIT Andhra Pradesh',
     period: '2023 – Present',
-    desc: 'Final Year Student in ECE pursuing a minor in Software Engineering & active member of open-source community.',
+    desc: 'Final Year Student in ECE, Pursuing a Minor in Software Engineering & active member of open-source community.',
     color: '#06B6D4',
   },
   {
-    icon: <WorkIcon />,
-    title: 'Full-Stack Developer',
-    org: 'Open Source / Freelance',
-    period: '2024 – Present',
-    desc: 'Building and shipping production web apps — MERN stack, REST APIs, and cloud deployments.',
-    color: VIOLET_LIGHT,
-  },
-  {
+    type: 'achievement',
     icon: <EmojiEventsIcon />,
     title: 'Hacktoberfest Contributor',
     org: 'Hacktoberfest',
@@ -66,16 +59,63 @@ const TIMELINE = [
     color: '#F59E0B',
   },
   {
+    type: 'work',
+    icon: <WorkIcon />,
+    title: 'Full-Stack Developer',
+    org: 'Open Source / Freelance',
+    period: '2024 – Present',
+    desc: 'Building and shipping production web apps — MERN stack, REST APIs, and cloud deployments.',
+    color: VIOLET_LIGHT,
+  },
+  {
+    type: 'achievement',
     icon: <StarIcon />,
     title: '600+ GitHub Contributions',
     org: 'github.com/sahitya1903',
     period: '2024 – Present',
-    desc: 'Consistent open-source activity across web, AI/ML, and tooling projects. Green squares are my love language.',
+    desc: 'Consistent open-source contributor with an active streak spanning multiple projects — web, AI/ML, and tooling.',
     color: '#10B981',
   },
 ];
 
-
+const SKILLS = [
+  {
+    category: 'Frontend', icon: <BrushIcon />, color: '#06B6D4', items: [
+      { name: 'React', level: 90 },
+      { name: 'Material UI', level: 88 },
+      { name: 'JavaScript (ES6+)', level: 90 },
+      { name: 'HTML & CSS', level: 92 },
+      { name: 'Framer Motion', level: 75 },
+    ]
+  },
+  {
+    category: 'Backend', icon: <StorageIcon />, color: '#10B981', items: [
+      { name: 'Node.js', level: 85 },
+      { name: 'Express.js', level: 85 },
+      { name: 'REST APIs', level: 90 },
+      { name: 'MongoDB', level: 85 },
+      { name: 'MySQL', level: 80 },
+    ]
+  },
+  {
+    category: 'AI / ML', icon: <PsychologyIcon />, color: '#F59E0B', items: [
+      { name: 'Python', level: 85 },
+      { name: 'TensorFlow', level: 75 },
+      { name: 'OpenCV', level: 78 },
+      { name: 'YOLO', level: 72 },
+      { name: 'Streamlit', level: 80 },
+    ]
+  },
+  {
+    category: 'Dev Tools', icon: <CodeIcon />, color: VIOLET_LIGHT, items: [
+      { name: 'Git & GitHub', level: 88 },
+      { name: 'Vite', level: 82 },
+      { name: 'VS Code', level: 95 },
+      { name: 'Postman', level: 85 },
+      { name: 'Render', level: 85 },
+    ]
+  },
+];
 
 /* ─────────────────────────────────────────────────────────────
    FADE-IN WRAPPER
@@ -178,7 +218,7 @@ const About = () => (
                   id="about-download-resume"
                   variant="contained"
                   size="large"
-                  startIcon={<DownloadIcon />}
+                  startIcon={<DescriptionOutlinedIcon />}
                   component="a"
                   href="/resume.pdf"
                   target="_blank"
@@ -190,50 +230,6 @@ const About = () => (
 
               </Box>
 
-              {/* Social + LeetCode links */}
-              <Box sx={{ display: 'flex', gap: 2.5, mt: 3, alignItems: 'center', flexWrap: 'wrap' }}>
-                {[
-                  { icon: <GitHubIcon sx={{ fontSize: 18 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub' },
-                  { icon: <LinkedInIcon sx={{ fontSize: 18 }} />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn' },
-                ].map((s) => (
-                  <Box
-                    key={s.label}
-                    component="a"
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                      display: 'flex', alignItems: 'center', gap: 0.75,
-                      color: '#64748B', textDecoration: 'none',
-                      fontSize: '0.8rem',
-                      transition: 'color 0.2s ease',
-                      '&:hover': { color: '#94A3B8' },
-                    }}
-                  >
-                    {s.icon}
-                    {s.label}
-                  </Box>
-                ))}
-                <Box sx={{ width: '1px', height: 14, background: '#1E293B' }} />
-                <Box
-                  component="a"
-                  href="https://leetcode.com/u/sahitya1903/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{
-                    display: 'flex', alignItems: 'center', gap: 0.75,
-                    color: '#64748B', textDecoration: 'none',
-                    fontSize: '0.8rem',
-                    transition: 'color 0.2s ease',
-                    '&:hover': { color: '#FFA116' },
-                  }}
-                >
-                  <Box sx={{ width: 14, height: 14, borderRadius: '3px', background: '#FFA116', opacity: 0.8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <Box component="span" sx={{ fontSize: '8px', fontWeight: 900, color: '#fff', lineHeight: 1 }}>LC</Box>
-                  </Box>
-                  LeetCode
-                </Box>
-              </Box>
             </motion.div>
           </Grid>
 
@@ -343,49 +339,149 @@ const About = () => (
       </Container>
     </Box>
 
-    {/* ── TIMELINE ── */}
+    {/* ── SKILLS ── */}
+    <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${BORDER}` }}>
+      <Container maxWidth="lg">
+        <SectionHeader
+          label="Skills"
+          title={<>What I'm <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #F59E0B)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>good at</Box></>}
+          subtitle="Proficiency levels across the full stack — from pixels to databases to ML models."
+        />
+        <Grid container spacing={3}>
+          {SKILLS.map((skillGroup, gi) => (
+            <Grid key={skillGroup.category} size={{ xs: 12, sm: 6, md: 3 }}>
+              <FadeIn delay={gi * 0.15}>
+                <GlowCard sx={{ p: 3, height: '100%' }} glowIntensity={0.6}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
+                    <Box sx={{
+                      color: skillGroup.color,
+                      width: 36, height: 36, borderRadius: '8px',
+                      background: alpha(skillGroup.color, 0.1),
+                      border: `1px solid ${alpha(skillGroup.color, 0.25)}`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      '& svg': { fontSize: 18 },
+                    }}>
+                      {skillGroup.icon}
+                    </Box>
+                    <Typography sx={{ fontWeight: 700, fontSize: '1rem', color: 'text.primary' }}>
+                      {skillGroup.category}
+                    </Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+                    {skillGroup.items.map((skill) => (
+                      <Box key={skill.name}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.75 }}>
+                          <Typography sx={{ fontSize: '0.82rem', color: '#94A3B8', fontWeight: 500 }}>
+                            {skill.name}
+                          </Typography>
+                          <Typography sx={{ fontSize: '0.72rem', color: skillGroup.color, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
+                            {skill.level}%
+                          </Typography>
+                        </Box>
+                        <LinearProgress
+                          variant="determinate"
+                          value={skill.level}
+                          sx={{
+                            height: 4, borderRadius: 2,
+                            background: 'rgba(255,255,255,0.04)',
+                            '& .MuiLinearProgress-bar': {
+                              background: `linear-gradient(90deg, ${skillGroup.color}, ${alpha(skillGroup.color, 0.6)})`,
+                              borderRadius: 2,
+                            },
+                          }}
+                        />
+                      </Box>
+                    ))}
+                  </Box>
+                </GlowCard>
+              </FadeIn>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
+
+    {/* ── EXPERIENCE & MILESTONES (two-column timeline) ── */}
     <Box component="section" sx={{ py: { xs: 8, md: 12 } }}>
       <Container maxWidth="lg">
         <SectionHeader
-          label="Journey"
-          title={<>Education & <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Milestones</Box></>}
-          subtitle="The path that shaped who I am as a developer."
+          label="Experience"
+          title={<>Journey & <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Milestones</Box></>}
+          subtitle="Education, work experience, and key achievements that shaped who I am as a developer."
         />
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, maxWidth: 680, mx: 'auto' }}>
-          {TIMELINE.map((item, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <GlowCard sx={{ p: 3 }} glowIntensity={0.5}>
-                <Box sx={{ display: 'flex', gap: 2.5, alignItems: 'flex-start' }}>
+        <Box sx={{ position: 'relative' }}>
+          {/* Vertical timeline line — perfectly centred */}
+          <Box sx={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            top: 0, bottom: 0,
+            width: '1px',
+            background: `linear-gradient(to bottom, transparent, ${alpha(VIOLET, 0.5)}, transparent)`,
+            display: { xs: 'none', md: 'block' },
+          }} />
+
+          {EXPERIENCES.map((exp, i) => {
+            const isLeft = i % 2 === 0;
+            const card = (
+              <GlowCard sx={{ p: 3, width: '100%' }} glowIntensity={0.5}>
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                   <Box sx={{
-                    width: 44, height: 44, borderRadius: '10px', flexShrink: 0,
-                    background: alpha(item.color, 0.12),
-                    border: `1px solid ${alpha(item.color, 0.3)}`,
+                    width: 40, height: 40, borderRadius: '10px', flexShrink: 0,
+                    background: alpha(exp.color, 0.15),
+                    border: `1px solid ${alpha(exp.color, 0.3)}`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: item.color,
-                    '& svg': { fontSize: 20 },
+                    color: exp.color,
                   }}>
-                    {item.icon}
+                    {exp.icon}
                   </Box>
-                  <Box sx={{ flex: 1 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 1, mb: 0.5 }}>
-                      <Typography sx={{ fontWeight: 700, fontSize: '0.95rem', color: 'text.primary' }}>
-                        {item.title}
-                      </Typography>
-                      <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.68rem', color: '#475569' }}>
-                        {item.period}
-                      </Typography>
-                    </Box>
-                    <Typography sx={{ fontSize: '0.78rem', color: item.color, fontFamily: '"JetBrains Mono", monospace', mb: 0.75 }}>
-                      {item.org}
+                  <Box>
+                    <Typography sx={{ fontWeight: 700, fontSize: '0.95rem', color: 'text.primary', mb: 0.25 }}>
+                      {exp.title}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: '#64748B', lineHeight: 1.7 }}>
-                      {item.desc}
+                    <Typography sx={{ fontSize: '0.78rem', color: exp.color, fontFamily: '"JetBrains Mono", monospace', mb: 0.5 }}>
+                      {exp.org} · {exp.period}
+                    </Typography>
+                    <Typography sx={{ fontSize: '0.83rem', color: '#64748B', lineHeight: 1.65 }}>
+                      {exp.desc}
                     </Typography>
                   </Box>
                 </Box>
               </GlowCard>
-            </FadeIn>
-          ))}
+            );
+
+            return (
+              <FadeIn key={i} delay={i * 0.1}>
+                {/* ── Desktop: two-column symmetric layout ── */}
+                <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', mb: 4 }}>
+                  {/* Left half — flex:1 ensures equal widths */}
+                  <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', pr: 3 }}>
+                    {isLeft ? card : null}
+                  </Box>
+
+                  {/* Center dot — fixed 48px strip keeps line perfectly centred */}
+                  <Box sx={{ width: 48, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
+                    <Box sx={{
+                      width: 12, height: 12, borderRadius: '50%',
+                      background: exp.color,
+                      boxShadow: `0 0 14px ${alpha(exp.color, 0.75)}`,
+                      border: '2px solid rgba(5,5,8,1)',
+                    }} />
+                  </Box>
+
+                  {/* Right half */}
+                  <Box sx={{ flex: 1, pl: 3 }}>
+                    {!isLeft ? card : null}
+                  </Box>
+                </Box>
+
+                {/* ── Mobile: single-column stack ── */}
+                <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 3 }}>
+                  {card}
+                </Box>
+              </FadeIn>
+            );
+          })}
         </Box>
       </Container>
     </Box>

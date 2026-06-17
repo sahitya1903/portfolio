@@ -3,7 +3,6 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import {
   AppBar,
   Box,
-  Button,
   Container,
   Drawer,
   IconButton,
@@ -16,9 +15,8 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import { alpha } from '@mui/material/styles';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 
 const NAV_LINKS = [
@@ -110,76 +108,66 @@ const Navbar = () => {
           >
             <Logo />
 
-            {/* Desktop nav */}
+            {/* Desktop nav — right-aligned */}
             <Box
               component="nav"
-              sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 0.5 }}
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                alignItems: 'center',
+                gap: 0.5,
+                background: alpha(VIOLET, 0.04),
+                border: `1px solid ${alpha(VIOLET, 0.1)}`,
+                borderRadius: '12px',
+                px: 0.75,
+                py: 0.4,
+              }}
             >
               {NAV_LINKS.map(({ label, path }) => {
                 const isActive = pathname === path;
                 return (
-                  <Button
+                  <Box
                     key={path}
                     component={RouterLink}
                     to={path}
                     id={`nav-${label.toLowerCase()}`}
                     sx={{
                       position: 'relative',
-                      color: isActive ? '#fff' : 'text.secondary',
-                      fontWeight: isActive ? 600 : 400,
-                      px: 1.5,
-                      py: 1,
-                      fontSize: '0.875rem',
-                      '&:hover': { color: '#fff', background: 'transparent' },
-                      '&::after': {
-                        content: '""',
-                        position: 'absolute',
-                        bottom: 4,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        width: isActive ? '16px' : '0px',
-                        height: '2px',
-                        background: VIOLET_LIGHT,
-                        borderRadius: '1px',
-                        transition: 'width 0.3s ease',
+                      textDecoration: 'none',
+                      color: isActive ? '#F8FAFC' : '#64748B',
+                      fontWeight: isActive ? 600 : 500,
+                      fontSize: '0.82rem',
+                      px: 2,
+                      py: 0.75,
+                      borderRadius: '8px',
+                      background: isActive ? alpha(VIOLET, 0.15) : 'transparent',
+                      transition: 'all 0.25s ease',
+                      '&:hover': {
+                        color: '#F8FAFC',
+                        background: alpha(VIOLET, 0.08),
                       },
-                      '&:hover::after': { width: '16px' },
                     }}
                   >
                     {label}
-                  </Button>
+                  </Box>
                 );
               })}
             </Box>
 
-            {/* CTA */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Button
-                id="nav-hire-me"
-                variant="contained"
-                size="small"
-                endIcon={<ArrowOutwardIcon sx={{ fontSize: '14px !important' }} />}
-                component="a"
-                href="mailto:sahitya7985@gmail.com"
-                sx={{
-                  display: { xs: 'none', sm: 'inline-flex' },
-                  fontSize: '0.8rem',
-                  px: 2,
-                  py: 0.75,
-                }}
-              >
-                Hire me
-              </Button>
-
-              {/* Hamburger */}
-              <IconButton
-                id="nav-menu-toggle"
-                onClick={() => setDrawerOpen(true)}
-                sx={{ display: { xs: 'flex', md: 'none' }, color: 'text.secondary' }}
-              >
-                <MenuIcon />
-              </IconButton>
-            </Box>
+            {/* Hamburger — mobile only */}
+            <IconButton
+              id="nav-menu-toggle"
+              onClick={() => setDrawerOpen(true)}
+              sx={{
+                display: { xs: 'flex', md: 'none' },
+                color: 'text.secondary',
+                border: `1px solid ${BORDER}`,
+                borderRadius: '10px',
+                width: 38,
+                height: 38,
+              }}
+            >
+              <MenuIcon sx={{ fontSize: 20 }} />
+            </IconButton>
           </Box>
         </Container>
       </AppBar>
@@ -191,57 +179,102 @@ const Navbar = () => {
         onClose={() => setDrawerOpen(false)}
         PaperProps={{
           sx: {
-            width: 280,
-            background: 'rgba(5,5,8,0.97)',
-            backdropFilter: 'blur(20px)',
-            borderLeft: `1px solid ${BORDER}`,
+            width: 300,
+            background: `linear-gradient(160deg, rgba(15,12,30,0.55) 0%, rgba(8,8,14,0.45) 100%)`,
+            backdropFilter: 'blur(32px) saturate(200%)',
+            WebkitBackdropFilter: 'blur(32px) saturate(200%)',
+            borderLeft: `1px solid ${alpha(VIOLET, 0.2)}`,
+            boxShadow: `-20px 0 80px ${alpha(VIOLET, 0.12)}, inset 0 0 80px ${alpha(VIOLET, 0.03)}`,
           },
         }}
       >
-        <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        {/* Header */}
+        <Box sx={{ p: 2.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Logo />
-          <IconButton onClick={() => setDrawerOpen(false)} sx={{ color: 'text.secondary' }}>
-            <CloseIcon />
+          <IconButton
+            onClick={() => setDrawerOpen(false)}
+            sx={{
+              color: '#94A3B8',
+              border: `1px solid ${alpha(VIOLET, 0.2)}`,
+              background: alpha(VIOLET, 0.06),
+              borderRadius: '10px',
+              width: 36,
+              height: 36,
+              transition: 'all 0.2s',
+              '&:hover': {
+                background: alpha(VIOLET, 0.12),
+                borderColor: alpha(VIOLET, 0.4),
+                color: '#F8FAFC',
+              },
+            }}
+          >
+            <CloseIcon sx={{ fontSize: 18 }} />
           </IconButton>
         </Box>
-        <Box sx={{ height: '1px', background: BORDER, mx: 2 }} />
-        <List sx={{ px: 1, pt: 2 }}>
-          {NAV_LINKS.map(({ label, path }, i) => (
-            <ListItem key={path} disablePadding>
-              <ListItemButton
+
+        {/* Gradient divider */}
+        <Box sx={{
+          height: '1px', mx: 2.5,
+          background: `linear-gradient(90deg, transparent, ${alpha(VIOLET, 0.3)}, transparent)`,
+        }} />
+
+        {/* Nav links */}
+        <Box sx={{ px: 2, pt: 3, display: 'flex', flexDirection: 'column', gap: 1 }}>
+          {NAV_LINKS.map(({ label, path }, i) => {
+            const isActive = pathname === path;
+            return (
+              <Box
+                key={path}
                 component={RouterLink}
                 to={path}
-                selected={pathname === path}
                 sx={{
-                  borderRadius: '10px',
-                  mb: 0.5,
-                  '&.Mui-selected': {
-                    background: alpha(VIOLET, 0.1),
-                    color: VIOLET_LIGHT,
-                    '&:hover': { background: alpha(VIOLET, 0.15) },
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1.5,
+                  textDecoration: 'none',
+                  px: 2,
+                  py: 1.5,
+                  borderRadius: '12px',
+                  border: `1px solid ${isActive ? alpha(VIOLET, 0.25) : 'transparent'}`,
+                  background: isActive ? alpha(VIOLET, 0.1) : 'transparent',
+                  transition: 'all 0.25s ease',
+                  '&:hover': {
+                    background: alpha(VIOLET, 0.08),
+                    borderColor: alpha(VIOLET, 0.15),
+                    transform: 'translateX(4px)',
                   },
                 }}
               >
                 <Typography
-                  sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.78rem', color: 'text.secondary', mr: 1 }}
+                  sx={{
+                    fontFamily: '"JetBrains Mono", monospace',
+                    fontSize: '0.7rem',
+                    color: isActive ? VIOLET_LIGHT : '#334155',
+                    fontWeight: 600,
+                  }}
                 >
-                  {String(i + 1).padStart(2, '0')}.
+                  {String(i + 1).padStart(2, '0')}
                 </Typography>
-                <ListItemText primary={label} primaryTypographyProps={{ fontWeight: 500 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Box sx={{ p: 2, mt: 'auto' }}>
-          <Button
-            fullWidth
-            variant="contained"
-            endIcon={<ArrowOutwardIcon />}
-            component="a"
-            href="mailto:sahitya7985@gmail.com"
-          >
-            Hire me
-          </Button>
+                <Typography
+                  sx={{
+                    fontSize: '0.92rem',
+                    fontWeight: isActive ? 600 : 500,
+                    color: isActive ? '#F8FAFC' : '#94A3B8',
+                  }}
+                >
+                  {label}
+                </Typography>
+                {isActive && (
+                  <Box sx={{
+                    ml: 'auto',
+                    width: 6, height: 6, borderRadius: '50%',
+                    background: VIOLET_LIGHT,
+                    boxShadow: `0 0 8px ${alpha(VIOLET_LIGHT, 0.6)}`,
+                  }} />
+                )}
+              </Box>
+            );
+          })}
         </Box>
       </Drawer>
     </>
