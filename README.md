@@ -96,10 +96,10 @@ npm run lint
 This portfolio is currently configured for developer **Sahitya Kushwaha** (`sahitya.codes`). To personalize it for yourself:
 
 1. **Branding & Metadata:**
-   Open [index.html](file:///d:/OneDrive%20-%20NATIONAL%20INSTITUTE%20OF%20TECHNOLOGY%20ANDHRA%20PRADESH/Code%20Files/portfolio/index.html) and update the `<title>`, `<meta>` tags (description, keywords, author, open-graph details).
+   Open [index.html](index.html) and update the `<title>`, `<meta>` tags (description, keywords, author, open-graph details).
 
 2. **Personal Profile, Tech & Projects Details:**
-   Open [src/pages/Home.jsx](file:///d:/OneDrive%20-%20NATIONAL%20INSTITUTE%20OF%20TECHNOLOGY%20ANDHRA%20PRADESH/Code%20Files/portfolio/src/pages/Home.jsx) and edit the constants defined at the top:
+   Open [src/pages/Home.jsx](src/pages/Home.jsx) and edit the constants defined at the top:
    - `TECH_STACK`: Update list of technologies and their hex colors.
    - `PROJECTS`: Add your custom projects, GitHub links, and stats.
    - `SKILLS`: Tailor the frontend, backend, and tools categories and levels.
@@ -108,7 +108,7 @@ This portfolio is currently configured for developer **Sahitya Kushwaha** (`sahi
    - `GITHUB_USERNAME`: Change to your own username to render your live GitHub contribution graph and language statistics.
 
 3. **Navigation & Links:**
-   - In [src/components/layout/Navbar.jsx](file:///d:/OneDrive%20-%20NATIONAL%20INSTITUTE%20OF%20TECHNOLOGY%20ANDHRA%20PRADESH/Code%20Files/portfolio/src/components/layout/Navbar.jsx) and [src/components/layout/Footer.jsx](file:///d:/OneDrive%20-%20NATIONAL%20INSTITUTE%20OF%20TECHNOLOGY%20ANDHRA%20PRADESH/Code%20Files/portfolio/src/components/layout/Footer.jsx), update the logo text, links, and contact email.
+   - In [src/components/layout/Navbar.jsx](src/components/layout/Navbar.jsx) and [src/components/layout/Footer.jsx](src/components/layout/Footer.jsx), update the logo text, links, and contact email.
 
 ---
 
@@ -122,5 +122,5 @@ The project is static-site friendly and ready for deployment to platforms like:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](file:///d:/OneDrive%20-%20NATIONAL%20INSTITUTE%20OF%20TECHNOLOGY%20ANDHRA%20PRADESH/Code%20Files/portfolio/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
