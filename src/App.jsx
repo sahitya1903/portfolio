@@ -1,13 +1,34 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import theme from './theme/theme';
 import GlobalStyles from './theme/GlobalStyles';
 import CursorGlow from './components/ui/CursorGlow';
 import PageWrapper from './components/layout/PageWrapper';
 import Home from './pages/Home';
-import About from './pages/About';
 import Projects from './pages/Projects';
-import Contact from './pages/Contact';
+
+// Scroll to hash element utility
+function ScrollToHash() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.slice(1);
+      const element = document.getElementById(id);
+      if (element) {
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+        return () => clearTimeout(timer);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
+
+  return null;
+}
 
 function App() {
   return (
@@ -16,12 +37,11 @@ function App() {
       <GlobalStyles />
       <CursorGlow />
       <BrowserRouter>
+        <ScrollToHash />
         <PageWrapper>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
           </Routes>
         </PageWrapper>
       </BrowserRouter>

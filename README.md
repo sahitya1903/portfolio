@@ -1,6 +1,6 @@
 # 🌌 Premium Full-Stack Developer Portfolio
 
-A modern, highly interactive, and visually stunning personal portfolio built with **React 19**, **Vite 8**, **Material UI (v9)**, **Framer Motion**, and **React Router DOM (v7)**. Designed with a dark mode glassmorphism SaaS aesthetic and deployed to **Azure Static Web Apps** via GitHub Actions.
+A modern, highly interactive, and visually stunning personal portfolio built with **React 19**, **Vite 8**, **Material UI (v9)**, **Framer Motion**, and **React Router DOM (v7)**. Designed with a dark mode glassmorphism SaaS aesthetic, structured as a single-page landing flow with a separate Projects archive, and deployed to **Azure Static Web Apps** via GitHub Actions.
 
 🔗 **Live:** [www.sahitya.codes](https://www.sahitya.codes)
 
@@ -8,18 +8,59 @@ A modern, highly interactive, and visually stunning personal portfolio built wit
 
 ## ✨ Features
 
+- **Single-Page Landing Flow:** Hero, About (Bio, Skills, & Experience Timeline), and Contact sections merged into a single continuous, scrollable landing experience (`/`) for seamless visitor engagement.
+- **Dedicated Projects Page:** A separate Projects archive page (`/projects`) showing a gallery of 9 projects, complete with category filtering (Full-Stack, AI/ML, Frontend, DSA) and layout transitions.
+- **Dynamic Hash Scrolling:** Seamless scroll restoration and smooth section navigation using a custom `<ScrollToHash />` routing hook. Navigating to `#skills`, `#experience`, or `#contact` works instantly even when coming from the separate projects page.
+- **Hero Bio Integration:** Combined first-impression hero copy and professional background bio into a clean, human-like introduction.
+- **Functional Contact Form (EmailJS):** Sleek, centered contact form (`maxWidth: 760px`) with client-side validation and EmailJS integration for receiving messages directly to your inbox.
 - **Dynamic Cursor Glow:** Custom interactive background glow that tracks mouse movement (`CursorGlow.jsx`).
 - **Premium Glassmorphism Aesthetics:** Clean cards, subtle border gradients, and sleek backdrops configured via a custom Material UI theme.
 - **Micro-Animations & Scroll Effects:** Smooth scrolling and reveal animations powered by `framer-motion` for a responsive and alive user experience.
 - **GitHub Integration:** Dynamic embedding of real-time GitHub activity stats, top languages, and contribution charts.
-- **Dedicated Pages:** Fully built-out **Home**, **About**, **Projects**, and **Contact** pages — each with unique layouts and animations.
-- **Contact Form (EmailJS):** Functional contact form with client-side validation and EmailJS integration for receiving messages directly to your inbox.
-- **Filterable Project Gallery:** Browse projects by category (Full-Stack, AI/ML, Frontend, Backend) with animated transitions.
-- **Skills & Experience Timeline:** Interactive skill bars and a two-column alternating timeline for education, work, and achievements.
-- **Downloadable Resume:** One-click access to a PDF resume hosted in the `public/` directory. Resume PDF is automatically generated from LaTeX and deployed via GitHub Actions.
-- **Modular Component Architecture:** Well-organized components categorized under Layout and UI elements.
+- **Skills & Experience Timeline:** Alternate-column journey timeline for education, work, and milestones, alongside a balanced 5-category skills grid.
+- **Downloadable Resume:** One-click primary Call-To-Action (CTA) in the hero section pointing to a PDF resume hosted in the `public/` directory.
 - **Responsive Layout:** A fluid layout tailored for all screens, complete with a slide-out mobile navigation drawer.
-- **Modern Typography:** Pre-configured typography using `Inter` and `JetBrains Mono` from Google Fonts.
+
+---
+
+## 📂 Featured & Practice Projects
+
+This repository hosts a curated collection of **9 projects**, categorized by tech stacks and domains:
+
+### 🌐 Full-Stack & Backend
+1. **[Roomify](https://github.com/sahitya1903/roomify)** (`Full-Stack` | `Live`)
+   - Hotel booking & rental platform.
+   - **Tech:** EJS, Node.js, Express.js, MongoDB, Material UI.
+2. **[Web Development with MERN & SQL](https://github.com/sahitya1903/webdev-MERN)** (`Full-Stack Practice` | `Ongoing`)
+   - A collection of MERN stack experiments, REST APIs, and authentication patterns.
+   - **Tech:** MongoDB, Express.js, React, Node.js.
+
+### 🤖 Artificial Intelligence & Machine Learning
+3. **[Driver Drowsiness Detection](https://github.com/sahitya1903/drowsiness-detection)** (`AI/ML` | `Live`)
+   - Real-time driver drowsiness detector with audio alarms.
+   - **Tech:** Python, TensorFlow, OpenCV, Streamlit.
+4. **[Animal Detection & Alert System](https://github.com/sahitya1903/animal-detection)** (`AI/ML` | `Completed`)
+   - YOLO-based security system for farm perimeter defense.
+   - **Tech:** Python, YOLOv12, OpenCV.
+
+### 🎨 Frontend Web Applications
+5. **[Dev Portfolio V2](https://github.com/sahitya1903/portfolio)** (`Frontend` | `Live`)
+   - Current iteration of the premium glassmorphism dark-mode portfolio site.
+   - **Tech:** React 19, Vite 8, Material UI v9, Framer Motion.
+6. **[Weather App](https://github.com/sahitya1903/weather)** (`Frontend` | `Completed`)
+   - Clean, interactive real-time weather forecast dashboard.
+   - **Tech:** React, Vite, Material UI, OpenWeather API.
+7. **[Todo List App](https://github.com/sahitya1903/todo-list)** (`Frontend` | `Completed`)
+   - A minimalist, responsive task management board.
+   - **Tech:** React, Vite, JavaScript, CSS.
+
+### 🧮 DSA & Code Practice
+8. **[JavaDSA](https://github.com/sahitya1903/JavaDSA)** (`DSA Practice` | `Ongoing`)
+   - Comprehensive implementation of data structures and algorithms in Java.
+   - **Tech:** Java, Data Structures, Algorithms.
+9. **[Python Practice & Projects](https://github.com/sahitya1903/Python)** (`Practice` | `Ongoing`)
+   - Basic syntax practice, advanced data structures, and CLI mini-projects (e.g., Hotel Management System with MySQL).
+   - **Tech:** Python, MySQL, CLI.
 
 ---
 
@@ -42,30 +83,27 @@ src/
 ├── components/
 │   ├── layout/                 # Main layout components
 │   │   ├── Footer.jsx          # Styled site footer with social links & site map
-│   │   ├── Navbar.jsx          # Navigation bar with responsive mobile drawer
+│   │   ├── Navbar.jsx          # Navigation bar with responsive drawer and section routing
 │   │   └── PageWrapper.jsx     # Global wrapper for page-level formatting
 │   └── ui/                     # Reusable premium UI elements
 │       ├── CursorGlow.jsx      # Interactive mouse glow tracker
 │       ├── GlowCard.jsx        # Card with hover-based radial glow
 │       ├── SectionHeader.jsx   # Unified section title & subtitle header
 │       └── TechBadge.jsx       # Pill-shaped chip for tech items
-├── pages/                      # Page-level components
-│   ├── Home.jsx                # Landing page — hero, featured projects, GitHub activity
-│   ├── About.jsx               # Bio, skills, what I do, experience timeline
-│   ├── Projects.jsx            # Full project gallery with category filters
-│   └── Contact.jsx             # Contact form (EmailJS) + social links
+├── pages/                      # Page & Section components
+│   ├── Home.jsx                # Landing page — Hero, GitHub, and layout orchestration
+│   ├── About.jsx               # Refactored to hold Skills and Experience sub-sections
+│   ├── Projects.jsx            # Separate route page showing full projects gallery
+│   └── Contact.jsx             # Refactored centered Contact form
 ├── theme/                      # Theme styling tokens
-│   ├── GlobalStyles.jsx        # Reset style rules and custom webkit scrollbar overrides
+│   ├── GlobalStyles.jsx        # Reset style rules and custom scrollbar overrides
 │   └── theme.js                # Custom Material UI theme definition (violet/cyan palette)
-├── App.jsx                     # Route manager and entry layout mapping
+├── App.jsx                     # Route manager, ScrollToHash utility, and entry layout mapping
 └── main.jsx                    # DOM mounting & rendering
 public/
 ├── logo.png                    # Site favicon / logo
 ├── profile.jpg                 # About page profile photo
-└── resume.pdf                  # Downloadable resume (auto-generated from LaTeX via GitHub Actions)
-.github/
-└── workflows/
-    └── azure-static-web-apps-gentle-desert-01876f000.yml   # CI/CD pipeline for Azure deployment
+└── resume.pdf                  # Downloadable resume
 ```
 
 ---
@@ -119,31 +157,24 @@ This portfolio is currently configured for developer **Sahitya Kushwaha** (`sahi
 1. **Branding & Metadata:**
    Open [index.html](index.html) and update the `<title>`, `<meta>` tags (description, keywords, author, open-graph details).
 
-2. **Home Page — Hero & Featured Projects:**
-   Open [src/pages/Home.jsx](src/pages/Home.jsx) and edit:
-   - `PROJECTS`: Featured project cards with descriptions, tags, GitHub links, and live URLs.
-   - `STATS`: Counters displayed below the hero (years coding, contributions, etc.).
-   - `GITHUB_USERNAME`: Change to your own username to render your live GitHub contribution graph and language statistics.
+2. **Hero Bio:**
+   Open [src/pages/Home.jsx](src/pages/Home.jsx) and edit the text inside the `Hero` component headline and subheadline with your own bio.
 
-3. **About Page — Bio, Skills & Experience:**
+3. **Skills & Experience Timeline:**
    Open [src/pages/About.jsx](src/pages/About.jsx) and edit:
-   - `WHAT_I_DO`: Areas of expertise cards (Frontend, Backend, AI/ML).
    - `EXPERIENCES`: Education, work, and achievement timeline entries.
-   - `SKILLS`: Skill categories with proficiency levels (Frontend, Backend, AI/ML, Dev Tools).
-   - Bio text and profile photo path.
+   - `SKILLS`: Skill categories (Languages, Frontend, Backend & Databases, Cloud, ML & Tools).
 
-4. **Projects Page — Full Gallery:**
+4. **Projects Gallery:**
    Open [src/pages/Projects.jsx](src/pages/Projects.jsx) and edit:
-   - `ALL_PROJECTS`: Complete list of projects with categories, tags, and links.
+   - `ALL_PROJECTS`: Complete list of projects (including recent additions like Todo List, JavaDSA, and Python projects) with categories, tags, and links.
    - `FILTERS`: Category filter chips.
 
 5. **Contact Page:**
-   Open [src/pages/Contact.jsx](src/pages/Contact.jsx) and edit:
-   - `SOCIAL_ITEMS`: GitHub, LinkedIn, and email links.
-   - EmailJS environment variables in `.env`.
+   Open [src/pages/Contact.jsx](src/pages/Contact.jsx) and edit form attributes. Add EmailJS variables in your `.env` file.
 
-6. **Navigation & Links:**
-   - In [src/components/layout/Navbar.jsx](src/components/layout/Navbar.jsx) and [src/components/layout/Footer.jsx](src/components/layout/Footer.jsx), update the logo text, links, and contact email.
+6. **Navbar Links:**
+   - In [src/components/layout/Navbar.jsx](src/components/layout/Navbar.jsx), configure `NAV_LINKS` to scroll to your desired section IDs on the landing page.
 
 ---
 
@@ -155,9 +186,7 @@ This project is deployed to **Azure Static Web Apps** via a GitHub Actions CI/CD
 - **Triggers:** Automatically builds and deploys on every push to `main` and on pull request events.
 - **Secrets Required:** `AZURE_STATIC_WEB_APPS_API_TOKEN_*`, plus the EmailJS env vars (`VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY`).
 
-Alternatively, the project is static-site friendly and can be deployed to:
-- **Vercel:** Set build command to `npm run build` and output directory to `dist`.
-- **Netlify:** Set build command to `npm run build` and publish directory to `dist`.
+Alternatively, the project is static-site friendly and can be deployed to Vercel, Netlify, or GitHub Pages.
 
 ---
 

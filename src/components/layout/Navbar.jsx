@@ -20,9 +20,11 @@ import { motion } from 'framer-motion';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 
 const NAV_LINKS = [
-  { label: 'About', path: '/about' },
+  { label: 'Skills', path: '/#skills' },
+  { label: 'Experience', path: '/#experience' },
+  { label: 'GitHub', path: '/#github' },
   { label: 'Projects', path: '/projects' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'Contact', path: '/#contact' },
 ];
 
 const Logo = () => (
@@ -69,7 +71,7 @@ const Logo = () => (
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 20 });
 
   // Close drawer on route change
@@ -123,7 +125,9 @@ const Navbar = () => {
               }}
             >
               {NAV_LINKS.map(({ label, path }) => {
-                const isActive = pathname === path;
+                const isActive = path.startsWith('/#')
+                  ? (pathname === '/' && hash === path.slice(1))
+                  : pathname === path;
                 return (
                   <Box
                     key={path}
@@ -221,7 +225,9 @@ const Navbar = () => {
         {/* Nav links */}
         <Box sx={{ px: 2, pt: 3, display: 'flex', flexDirection: 'column', gap: 1 }}>
           {NAV_LINKS.map(({ label, path }, i) => {
-            const isActive = pathname === path;
+            const isActive = path.startsWith('/#')
+              ? (pathname === '/' && hash === path.slice(1))
+              : pathname === path;
             return (
               <Box
                 key={path}

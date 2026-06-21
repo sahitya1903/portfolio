@@ -157,7 +157,7 @@ const Footer = () => (
       }}>
         <Typography sx={{
           fontSize: '0.68rem',
-          color: '#334155',
+          color: '#64748B',
           fontFamily: '"JetBrains Mono", monospace',
           display: 'flex', alignItems: 'center', gap: 0.5,
         }}>
@@ -168,7 +168,7 @@ const Footer = () => (
 
         <Typography sx={{
           fontSize: '0.65rem',
-          color: '#475569',
+          color: '#64748B',
           fontFamily: '"JetBrains Mono", monospace',
           letterSpacing: '0.04em',
         }}>

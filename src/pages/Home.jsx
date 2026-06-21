@@ -5,8 +5,11 @@ import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import { alpha } from '@mui/material/styles';
 
+import About from './About';
+import Contact from './Contact';
 import GlowCard from '../components/ui/GlowCard';
 import TechBadge from '../components/ui/TechBadge';
 import SectionHeader from '../components/ui/SectionHeader';
@@ -22,12 +25,12 @@ const PROJECTS = [
     title: 'Roomify',
     desc: 'A full-stack hotel booking and rental platform. Enables landlords to list properties and tenants to discover, filter, and book rooms — with real-time availability, JWT auth, and an admin dashboard.',
     tags: ['EJS', 'Node.js', 'Express.js', 'MongoDB'],
-    accent: VIOLET,
-    accentLight: VIOLET_LIGHT,
-    flag: 'Backend',
+    accent: '#06B6D4',
+    accentLight: '#67E8F9',
+    flag: 'Full-Stack',
     github: 'https://github.com/sahitya1903/roomify',
     live: 'https://roomify-1gzx.onrender.com',
-    stats: [{ label: 'Status', value: 'Live' }, { label: 'Type', value: 'Backend' }, { label: 'Stack', value: 'EJS + Node.js' }],
+    stats: [{ label: 'Status', value: 'Live' }, { label: 'Type', value: 'Full-Stack' }, { label: 'Stack', value: 'EJS + Node.js' }],
   },
   {
     id: 'drowsiness-detection',
@@ -39,15 +42,15 @@ const PROJECTS = [
     flag: 'AI / ML',
     github: 'https://github.com/sahitya1903/drowsiness-detection',
     live: 'https://drowsiness-detection-0.streamlit.app',
-    stats: [{ label: 'Status', value: 'Deployed' }, { label: 'Type', value: 'AI / ML' }, { label: 'Model', value: 'CNN' }],
+    stats: [{ label: 'Status', value: 'Live' }, { label: 'Type', value: 'AI / ML' }, { label: 'Model', value: 'CNN' }],
   }
 ];
 
 const STATS = [
   { value: '2+', label: 'Years Coding' },
-  { value: '5+', label: 'Projects Shipped' },
-  { value: '600+', label: 'GitHub Contributions' },
-  { value: '10+', label: 'Tech Stack Tools' },
+  { value: '6+', label: 'Projects' },
+  { value: '750+', label: 'GitHub Contributions' },
+  { value: '15+', label: 'Tech Stack Tools' },
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -141,7 +144,7 @@ const Hero = () => (
                 animation: 'pulse-glow 2s ease infinite',
               }} />
               <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.72rem', color: '#94A3B8', letterSpacing: '0.06em' }}>
-                Open to opportunities · sahitya.codes
+                Open to opportunities
               </Typography>
             </Box>
           </motion.div>
@@ -152,42 +155,27 @@ const Hero = () => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Typography
-              component="h1"
-              sx={{
-                fontSize: { xs: '2.4rem', sm: '3.5rem', md: '4.5rem', lg: '5.5rem' },
-                fontWeight: 800,
-                lineHeight: 1.02,
-                letterSpacing: '-0.04em',
-                color: '#F8FAFC',
-                mb: 0.5,
-              }}
-            >
-              Building{' '}
-              <Box
-                component="span"
+                          <Typography
+                component="h1"
                 sx={{
-                  background: `linear-gradient(135deg, ${VIOLET_LIGHT}, ${VIOLET}, #06B6D4)`,
+                  fontSize: { xs: '2.4rem', md: '3.5rem' },
+                  fontWeight: 800,
+                  lineHeight: 1.05,
+                  letterSpacing: '-0.04em',
+                  color: '#F8FAFC',
+                  mb: 3,
+                }}
+              >
+                Hey, I'm{' '}
+                <Box component="span" sx={{
+                  background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
-                }}
-              >
-                digital
-              </Box>
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: { xs: '2.4rem', sm: '3.5rem', md: '4.5rem', lg: '5.5rem' },
-                fontWeight: 800,
-                lineHeight: 1.02,
-                letterSpacing: '-0.04em',
-                color: '#F8FAFC',
-                display: 'block',
-              }}
-            >
-              experiences
-            </Typography>
+                }}>
+                  Sahitya
+                </Box>
+              </Typography>
           </motion.div>
 
           {/* Sub headline */}
@@ -198,11 +186,15 @@ const Hero = () => (
           >
             <Typography
               variant="body1"
-              sx={{ mt: 3, mb: 4, maxWidth: 480, fontSize: { xs: '1rem', md: '1.1rem' }, lineHeight: 1.75, color: '#64748B' }}
+              sx={{ mt: 3, mb: 2, maxWidth: 540, fontSize: { xs: '0.98rem', md: '1.05rem' }, lineHeight: 1.8, color: '#94A3B8' }}
             >
-              Hey, I'm{' '}
-              <Box component="span" sx={{ color: '#94A3B8', fontWeight: 500 }}>Sahitya Kushwaha</Box>
-              {' '}— a full-stack developer passionate about building fast, beautiful, and accessible web applications with modern tooling.
+              I'm an ECE undergraduate at <Box component="span" sx={{ color: '#F8FAFC', fontWeight: 500 }}>NIT Andhra Pradesh</Box> (graduating in 2027) with a deep interest in software engineering. I love building fast, clean web applications—focusing on polished React frontends and solid backend APIs.
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ mb: 4, maxWidth: 540, fontSize: { xs: '0.98rem', md: '1.05rem' }, lineHeight: 1.8, color: '#94A3B8' }}
+            >
+              Lately, I've also been diving into AI/ML, training real-time computer vision models with Python and YOLO. I'm always open to internships, interesting collabs, or just a good dev chat!
             </Typography>
           </motion.div>
 
@@ -214,26 +206,19 @@ const Hero = () => (
           >
             <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
               <Button
-                id="hero-view-projects"
+                id="hero-view-resume"
                 variant="contained"
                 size="large"
-                component={RouterLink}
-                to="/projects"
-                endIcon={<ArrowForwardIcon />}
+                component="a"
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<DescriptionOutlinedIcon />}
                 sx={{ px: 3, py: 1.4, fontSize: '0.95rem' }}
               >
-                View Projects
+                View Resume
               </Button>
-              <Button
-                id="hero-about-me"
-                variant="outlined"
-                size="large"
-                component={RouterLink}
-                to="/about"
-                sx={{ px: 3, py: 1.4, fontSize: '0.95rem' }}
-              >
-                About Me
-              </Button>
+
             </Box>
           </motion.div>
 
@@ -254,7 +239,7 @@ const Hero = () => (
                   <Box key={c} sx={{ width: 10, height: 10, borderRadius: '50%', background: c, opacity: 0.85 }} />
                 ))}
                 <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.65rem', color: '#475569', ml: 1 }}>
-                  sahitya.dev ~ main
+                  sahitya.codes ~ main
                 </Typography>
               </Box>
 
@@ -263,7 +248,7 @@ const Hero = () => (
                 {[
                   { indent: 0, color: '#9D6FFF', text: 'const developer = {' },
                   { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>name</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"Sahitya Kushwaha"</Box>,</> },
-                  { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>domain</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"sahitya.codes"</Box>,</> },
+                  { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>domain</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"www.sahitya.codes"</Box>,</> },
                   { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>role</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"Full-Stack Dev"</Box>,</> },
                   { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>stack</Box>: [<Box component="span" sx={{ color: '#86EFAC' }}>"React"</Box>, <Box component="span" sx={{ color: '#86EFAC' }}>"Node"</Box>],</> },
                   { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>open</Box>: <Box component="span" sx={{ color: '#FB923C' }}>true</Box>,</> },
@@ -351,7 +336,7 @@ const ProjectsSection = () => (
     <SectionHeader
       label="Featured Work"
       title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value</Box></>}
-      subtitle="Hand-picked highlights from my portfolio. Each built end-to-end with attention to performance, UX, and code quality."
+      subtitle="Hand-picked highlights from my portfolio."
     />
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
       {PROJECTS.map((project, i) => (
@@ -468,7 +453,7 @@ const GitHubSection = () => {
   const GITHUB_STATS = [
     { label: 'Public Repos', value: '15+', color: VIOLET_LIGHT },
     { label: 'Stars Earned', value: '20+', color: '#F59E0B' },
-    { label: 'Contributions', value: '600+', color: '#10B981' },
+    { label: 'Contributions', value: '750+', color: '#10B981' },
     { label: 'Followers', value: '15+', color: '#06B6D4' },
   ];
 
@@ -477,7 +462,7 @@ const GitHubSection = () => {
       <SectionHeader
         label="GitHub Activity"
         title={<>Open source <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>footprint</Box></>}
-        subtitle="Consistent contributor — shipping code, reviewing PRs, and building in public."
+        subtitle="Consistent contributor — shipping code, reviewing PRs, and building."
       />
 
       <Grid container spacing={3} sx={{ mb: 4 }}>
@@ -549,7 +534,7 @@ const GitHubSection = () => {
           <Box sx={{ mt: 3, display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2 }}>
             <Box
               component="img"
-              src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&hide_border=true&title_color=9D6FFF&icon_color=7C3AED&text_color=94A3B8&bg_color=00000000`}
+              src={`https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${GITHUB_USERNAME}&layout=compact&theme=transparent`}
               alt="GitHub Stats"
               onError={(e) => { e.target.style.display = 'none'; }}
               sx={{ width: '100%', height: '200px' }}
@@ -574,8 +559,10 @@ const GitHubSection = () => {
 const Home = () => (
   <>
     <Hero />
+    <About />
     <ProjectsSection />
     <GitHubSection />
+    <Contact />
   </>
 );
 
