@@ -8,9 +8,9 @@ A modern, highly interactive, and visually stunning personal portfolio built wit
 
 ## ✨ Features
 
-- **Single-Page Landing Flow:** Hero, About (Bio, Skills, & Experience Timeline), and Contact sections merged into a single continuous, scrollable landing experience (`/`) for seamless visitor engagement.
+- **Single-Page Landing Flow:** Hero, About (Bio, Skills, & Experience Timeline), Projects, and Contact sections merged into a single continuous, scrollable landing experience (`/`) for seamless visitor engagement.
 - **Dedicated Projects Page:** A separate Projects archive page (`/projects`) showing a gallery of 9 projects, complete with category filtering (Full-Stack, AI/ML, Frontend, DSA) and layout transitions.
-- **Dynamic Hash Scrolling:** Seamless scroll restoration and smooth section navigation using a custom `<ScrollToHash />` routing hook. Navigating to `#skills`, `#experience`, or `#contact` works instantly even when coming from the separate projects page.
+- **Dynamic Hash Scrolling:** Seamless scroll restoration and smooth section navigation using a custom `<ScrollToHash />` routing hook. Navigating to `#skills`, `#experience`, `#projects`, or `#contact` works instantly even when coming from the separate projects page.
 - **Hero Bio Integration:** Combined first-impression hero copy and professional background bio into a clean, human-like introduction.
 - **Functional Contact Form (EmailJS):** Sleek, centered contact form (`maxWidth: 760px`) with client-side validation and EmailJS integration for receiving messages directly to your inbox.
 - **Dynamic Cursor Glow:** Custom interactive background glow that tracks mouse movement (`CursorGlow.jsx`).
@@ -32,12 +32,12 @@ This repository hosts a curated collection of **9 projects**, categorized by tec
    - Hotel booking & rental platform.
    - **Tech:** EJS, Node.js, Express.js, MongoDB, Material UI.
 2. **[Web Development with MERN & SQL](https://github.com/sahitya1903/webdev-MERN)** (`Full-Stack Practice` | `Ongoing`)
-   - A collection of MERN stack experiments, REST APIs, and authentication patterns.
+   - A curated collection of MERN stack experiments and practice projects. Covers REST API design, JWT auth patterns, state management, and component architecture.
    - **Tech:** MongoDB, Express.js, React, Node.js.
 
 ### 🤖 Artificial Intelligence & Machine Learning
 3. **[Driver Drowsiness Detection](https://github.com/sahitya1903/drowsiness-detection)** (`AI/ML` | `Live`)
-   - Real-time driver drowsiness detector with audio alarms.
+   - Real-time driver drowsiness detector with audio alerts.
    - **Tech:** Python, TensorFlow, OpenCV, Streamlit.
 4. **[Animal Detection & Alert System](https://github.com/sahitya1903/animal-detection)** (`AI/ML` | `Completed`)
    - YOLO-based security system for farm perimeter defense.
@@ -48,19 +48,19 @@ This repository hosts a curated collection of **9 projects**, categorized by tec
    - Current iteration of the premium glassmorphism dark-mode portfolio site.
    - **Tech:** React 19, Vite 8, Material UI v9, Framer Motion.
 6. **[Weather App](https://github.com/sahitya1903/weather)** (`Frontend` | `Completed`)
-   - Clean, interactive real-time weather forecast dashboard.
-   - **Tech:** React, Vite, Material UI, OpenWeather API.
+   - A weather application built with React and MUI, powered by the OpenWeather API. Displays real-time weather data, forecasts, and location-based search.
+   - **Tech:** React, Vite, MUI, OpenWeather API.
 7. **[Todo List App](https://github.com/sahitya1903/todo-list)** (`Frontend` | `Completed`)
-   - A minimalist, responsive task management board.
+   - A simple and responsive Todo List application. Manage daily tasks efficiently.
    - **Tech:** React, Vite, JavaScript, CSS.
 
 ### 🧮 DSA & Code Practice
 8. **[JavaDSA](https://github.com/sahitya1903/JavaDSA)** (`DSA Practice` | `Ongoing`)
-   - Comprehensive implementation of data structures and algorithms in Java.
-   - **Tech:** Java, Data Structures, Algorithms.
+   - A collection of Java programs ranging from basic language fundamentals to advanced data structure implementations for practice and learning purposes.
+   - **Tech:** Java, DSA, Algorithms.
 9. **[Python Practice & Projects](https://github.com/sahitya1903/Python)** (`Practice` | `Ongoing`)
-   - Basic syntax practice, advanced data structures, and CLI mini-projects (e.g., Hotel Management System with MySQL).
-   - **Tech:** Python, MySQL, CLI.
+   - A curated collection of Python programs ranging from basic language fundamentals to advanced data structure implementations, mini-projects and university course assignments.
+   - **Tech:** Python, DSA.
 
 ---
 

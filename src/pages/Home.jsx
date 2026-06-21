@@ -332,7 +332,7 @@ const Hero = () => (
    FEATURED PROJECTS SECTION (slim teaser)
 ───────────────────────────────────────────────────────────── */
 const ProjectsSection = () => (
-  <Section id="featured-projects" sx={{ borderTop: `1px solid ${BORDER}` }}>
+  <Section id="projects" sx={{ borderTop: `1px solid ${BORDER}` }}>
     <SectionHeader
       label="Featured Work"
       title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value</Box></>}
@@ -432,12 +432,12 @@ const ProjectsSection = () => (
     <Box sx={{ textAlign: 'center', mt: 6 }}>
       <Button
         id="view-all-projects"
-        variant="outlined"
+        variant="contained"
         size="large"
         component={RouterLink}
         to="/projects"
         endIcon={<ArrowOutwardIcon />}
-        sx={{ px: 4 }}
+        sx={{ px: 4, py: 1.4, fontSize: '0.95rem' }}
       >
         View All Projects
       </Button>

@@ -22,8 +22,8 @@ import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 const NAV_LINKS = [
   { label: 'Skills', path: '/#skills' },
   { label: 'Experience', path: '/#experience' },
+  { label: 'Projects', path: '/#projects' },
   { label: 'GitHub', path: '/#github' },
-  { label: 'Projects', path: '/projects' },
   { label: 'Contact', path: '/#contact' },
 ];
 
