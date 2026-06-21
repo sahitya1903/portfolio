@@ -466,7 +466,7 @@ const ProjectsSection = () => (
 const GitHubSection = () => {
   const GITHUB_USERNAME = 'sahitya1903';
   const GITHUB_STATS = [
-    { label: 'Public Repos', value: '10+', color: VIOLET_LIGHT },
+    { label: 'Public Repos', value: '15+', color: VIOLET_LIGHT },
     { label: 'Stars Earned', value: '20+', color: '#F59E0B' },
     { label: 'Contributions', value: '600+', color: '#10B981' },
     { label: 'Followers', value: '15+', color: '#06B6D4' },
