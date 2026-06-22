@@ -73,11 +73,9 @@ const Navbar = () => {
 
   // Close drawer on route change
   useEffect(() => {
-    if (drawerOpen) {
-      const timer = setTimeout(() => setDrawerOpen(false), 0);
-      return () => clearTimeout(timer);
-    }
-  }, [pathname, drawerOpen]);
+    const timer = setTimeout(() => setDrawerOpen(false), 0);
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
   // Scrollspy logic to automatically highlight section on scroll
   useEffect(() => {
@@ -113,7 +111,7 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     // Defer initial run to avoid synchronous state update in effect body
     const timeoutId = setTimeout(handleScroll, 0);
 
@@ -228,14 +226,16 @@ const Navbar = () => {
         anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        PaperProps={{
-          sx: {
-            width: 300,
-            background: `linear-gradient(160deg, rgba(15,12,30,0.55) 0%, rgba(8,8,14,0.45) 100%)`,
-            backdropFilter: 'blur(32px) saturate(200%)',
-            WebkitBackdropFilter: 'blur(32px) saturate(200%)',
-            borderLeft: `1px solid ${alpha(VIOLET, 0.2)}`,
-            boxShadow: `-20px 0 80px ${alpha(VIOLET, 0.12)}, inset 0 0 80px ${alpha(VIOLET, 0.03)}`,
+        slotProps={{
+          paper: {
+            sx: {
+              width: 300,
+              background: 'rgba(13, 13, 20, 0.68)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.08)',
+              boxShadow: '-16px 0 48px rgba(0, 0, 0, 0.24)',
+            },
           },
         }}
       >
@@ -281,6 +281,7 @@ const Navbar = () => {
                 key={path}
                 component={RouterLink}
                 to={path}
+                onClick={() => setDrawerOpen(false)}
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
