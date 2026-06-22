@@ -67,8 +67,9 @@ const Logo = () => (
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { pathname, hash } = useLocation();
+  const { pathname } = useLocation();
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 20 });
+  const [activeSection, setActiveSection] = useState('');
 
   // Close drawer on route change
   useEffect(() => {
@@ -77,6 +78,50 @@ const Navbar = () => {
       return () => clearTimeout(timer);
     }
   }, [pathname, drawerOpen]);
+
+  // Scrollspy logic to automatically highlight section on scroll
+  useEffect(() => {
+    if (pathname !== '/') {
+      const timeoutId = setTimeout(() => setActiveSection(''), 0);
+      return () => clearTimeout(timeoutId);
+    }
+
+    const sectionIds = ['skills', 'experience', 'projects', 'github', 'contact'];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 160; // offset for navbar and breathing room
+
+      let currentSection = '';
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            currentSection = id;
+            break;
+          }
+        }
+      }
+
+      // Check if we are at the bottom of the page (within 50px tolerance)
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 50) {
+        currentSection = 'contact';
+      }
+
+      setActiveSection((prev) => (prev !== currentSection ? currentSection : prev));
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Defer initial run to avoid synchronous state update in effect body
+    const timeoutId = setTimeout(handleScroll, 0);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [pathname]);
 
   return (
     <>
@@ -126,8 +171,9 @@ const Navbar = () => {
               }}
             >
               {NAV_LINKS.map(({ label, path }) => {
-                const isActive = path.startsWith('/#')
-                  ? (pathname === '/' && hash === path.slice(1))
+                const sectionId = path.startsWith('/#') ? path.slice(2) : null;
+                const isActive = sectionId
+                  ? (pathname === '/' && activeSection === sectionId)
                   : pathname === path;
                 return (
                   <Box
@@ -226,8 +272,9 @@ const Navbar = () => {
         {/* Nav links */}
         <Box sx={{ px: 2, pt: 3, display: 'flex', flexDirection: 'column', gap: 1 }}>
           {NAV_LINKS.map(({ label, path }, i) => {
-            const isActive = path.startsWith('/#')
-              ? (pathname === '/' && hash === path.slice(1))
+            const sectionId = path.startsWith('/#') ? path.slice(2) : null;
+            const isActive = sectionId
+              ? (pathname === '/' && activeSection === sectionId)
               : pathname === path;
             return (
               <Box
