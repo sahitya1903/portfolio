@@ -123,6 +123,24 @@ const ALL_PROJECTS = [
     category: ['React', 'Vite', 'Frontend'],
   },
   {
+    id: 'leetcode-practice',
+    title: 'LeetCode Practice',
+    subtitle: 'Automated Sync Repository',
+    desc: 'A collection of solutions to various LeetCode problems across multiple programming languages. Configured with a GitHub Actions workflow to automatically synchronize submissions from LeetCode daily.',
+    tags: ['Java', 'Python', 'JavaScript', 'SQL', 'GitHub Actions'],
+    accent: '#FFA116',
+    accentLight: '#FFB84D',
+    flag: 'DSA / Automation',
+    github: 'https://github.com/sahitya1903/leetcode-practice',
+    live: null,
+    stats: [
+      { label: 'Sync Tool', value: 'leetcode-sync' },
+      { label: 'Schedule', value: 'Daily 08:00 UTC' },
+      { label: 'Status', value: 'Active' },
+    ],
+    category: ['DSA'],
+  },
+  {
     id: 'webdev-MERN',
     title: 'Web Development with MERN & SQL',
     subtitle: 'MERN stack experiments',
@@ -175,7 +193,7 @@ const ALL_PROJECTS = [
       { label: 'Status', value: 'Ongoing' },
     ],
     category: ['Python', 'DSA'],
-  },
+  }
 ];
 
 const FILTERS = ['All', 'Full-Stack', 'AI / ML', 'Frontend','DSA'];

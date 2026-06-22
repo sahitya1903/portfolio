@@ -23,44 +23,17 @@ A modern, highly interactive, and visually stunning personal portfolio built wit
 
 ---
 
-## 📂 Featured & Practice Projects
+## 📂 Featured Projects
 
-This repository hosts a curated collection of **9 projects**, categorized by tech stacks and domains:
+This portfolio showcases a curated collection of **10 projects**, ranging from full-stack web applications and AI/ML computer vision systems to frontend applications and DSA practice repositories.
 
-### 🌐 Full-Stack & Backend
-1. **[Roomify](https://github.com/sahitya1903/roomify)** (`Full-Stack` | `Live`)
-   - Hotel booking & rental platform.
-   - **Tech:** EJS, Node.js, Express.js, MongoDB, Material UI.
-2. **[Web Development with MERN & SQL](https://github.com/sahitya1903/webdev-MERN)** (`Full-Stack Practice` | `Ongoing`)
-   - A curated collection of MERN stack experiments and practice projects. Covers REST API design, JWT auth patterns, state management, and component architecture.
-   - **Tech:** MongoDB, Express.js, React, Node.js.
+### Key Highlights
+- **[Roomify](https://github.com/sahitya1903/roomify)** (`Full-Stack` | `Live`): A hotel booking & rental platform built with EJS, Node.js, Express, and MongoDB.
+- **[Driver Drowsiness Detection](https://github.com/sahitya1903/drowsiness-detection)** (`AI/ML` | `Live`): A computer vision system built with TensorFlow and OpenCV to trigger alerts.
+- **[Animal Detection & Alert System](https://github.com/sahitya1903/animal-detection)** (`AI/ML` | `Completed`): A real-time YOLOv12 security system for perimeter monitoring.
+- **[Dev Portfolio V2](https://github.com/sahitya1903/portfolio)** (`Frontend` | `Live`): This portfolio site built with React 19, Vite 8, Material UI, and Framer Motion.
 
-### 🤖 Artificial Intelligence & Machine Learning
-3. **[Driver Drowsiness Detection](https://github.com/sahitya1903/drowsiness-detection)** (`AI/ML` | `Live`)
-   - Real-time driver drowsiness detector with audio alerts.
-   - **Tech:** Python, TensorFlow, OpenCV, Streamlit.
-4. **[Animal Detection & Alert System](https://github.com/sahitya1903/animal-detection)** (`AI/ML` | `Completed`)
-   - YOLO-based security system for farm perimeter defense.
-   - **Tech:** Python, YOLOv12, OpenCV.
-
-### 🎨 Frontend Web Applications
-5. **[Dev Portfolio V2](https://github.com/sahitya1903/portfolio)** (`Frontend` | `Live`)
-   - Current iteration of the premium glassmorphism dark-mode portfolio site.
-   - **Tech:** React 19, Vite 8, Material UI v9, Framer Motion.
-6. **[Weather App](https://github.com/sahitya1903/weather)** (`Frontend` | `Completed`)
-   - A weather application built with React and MUI, powered by the OpenWeather API. Displays real-time weather data, forecasts, and location-based search.
-   - **Tech:** React, Vite, MUI, OpenWeather API.
-7. **[Todo List App](https://github.com/sahitya1903/todo-list)** (`Frontend` | `Completed`)
-   - A simple and responsive Todo List application. Manage daily tasks efficiently.
-   - **Tech:** React, Vite, JavaScript, CSS.
-
-### 🧮 DSA & Code Practice
-8. **[JavaDSA](https://github.com/sahitya1903/JavaDSA)** (`DSA Practice` | `Ongoing`)
-   - A collection of Java programs ranging from basic language fundamentals to advanced data structure implementations for practice and learning purposes.
-   - **Tech:** Java, DSA, Algorithms.
-9. **[Python Practice & Projects](https://github.com/sahitya1903/Python)** (`Practice` | `Ongoing`)
-   - A curated collection of Python programs ranging from basic language fundamentals to advanced data structure implementations, mini-projects and university course assignments.
-   - **Tech:** Python, DSA.
+*For the complete archive of all 10 projects (including MERN experiments, JavaDSA, Python scripts, LeetCode Practice, Weather App, and Todo List), please visit the dedicated `/projects` route.*
 
 ---
 
@@ -102,7 +75,6 @@ src/
 └── main.jsx                    # DOM mounting & rendering
 public/
 ├── logo.png                    # Site favicon / logo
-├── profile.jpg                 # About page profile photo
 └── resume.pdf                  # Downloadable resume
 ```
 

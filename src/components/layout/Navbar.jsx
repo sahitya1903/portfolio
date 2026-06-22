@@ -6,10 +6,6 @@ import {
   Container,
   Drawer,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   Typography,
   useScrollTrigger,
 } from '@mui/material';
@@ -75,7 +71,12 @@ const Navbar = () => {
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 20 });
 
   // Close drawer on route change
-  useEffect(() => { setDrawerOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (drawerOpen) {
+      const timer = setTimeout(() => setDrawerOpen(false), 0);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname, drawerOpen]);
 
   return (
     <>

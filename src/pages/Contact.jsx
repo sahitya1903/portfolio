@@ -9,7 +9,7 @@ import { alpha } from '@mui/material/styles';
 
 import GlowCard from '../components/ui/GlowCard';
 import SectionHeader from '../components/ui/SectionHeader';
-import { VIOLET, VIOLET_LIGHT, BORDER } from '../theme/theme';
+import { VIOLET, VIOLET_LIGHT } from '../theme/theme';
 
 /* ─────────────────────────────────────────────────────────────
    EMAILJS CONFIG  — set these in your .env file:

@@ -1,6 +1,5 @@
-import { Box, Container, Typography, Button, Grid, LinearProgress } from '@mui/material';
+import { Box, Container, Typography, Grid, LinearProgress } from '@mui/material';
 import { motion } from 'framer-motion';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import WorkIcon from '@mui/icons-material/Work';
@@ -50,7 +49,7 @@ const EXPERIENCES = [
   {
     type: 'achievement',
     icon: <StarIcon />,
-    title: '750+ GitHub Contributions',
+    title: '900+ GitHub Contributions',
     org: 'github.com/sahitya1903',
     period: '2024 – Present',
     desc: 'Consistent open-source contributor with an active streak spanning multiple projects — web, AI/ML, and tooling.',

@@ -2,7 +2,6 @@ import { Box, Container, Typography, Button, Grid, Chip } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
@@ -49,7 +48,7 @@ const PROJECTS = [
 const STATS = [
   { value: '2+', label: 'Years Coding' },
   { value: '6+', label: 'Projects' },
-  { value: '750+', label: 'GitHub Contributions' },
+  { value: '900+', label: 'GitHub Contributions' },
   { value: '15+', label: 'Tech Stack Tools' },
 ];
 
@@ -453,7 +452,7 @@ const GitHubSection = () => {
   const GITHUB_STATS = [
     { label: 'Public Repos', value: '15+', color: VIOLET_LIGHT },
     { label: 'Stars Earned', value: '20+', color: '#F59E0B' },
-    { label: 'Contributions', value: '750+', color: '#10B981' },
+    { label: 'Contributions', value: '900+', color: '#10B981' },
     { label: 'Followers', value: '15+', color: '#06B6D4' },
   ];
 
