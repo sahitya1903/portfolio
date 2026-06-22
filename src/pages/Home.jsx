@@ -22,27 +22,37 @@ const PROJECTS = [
   {
     id: 'roomify',
     title: 'Roomify',
+    subtitle: 'Hotel Booking Platform',
     desc: 'A full-stack hotel booking and rental platform. Enables landlords to list properties and tenants to discover, filter, and book rooms — with real-time availability, JWT auth, and an admin dashboard.',
-    tags: ['EJS', 'Node.js', 'Express.js', 'MongoDB'],
-    accent: '#06B6D4',
-    accentLight: '#67E8F9',
-    flag: 'Full-Stack',
+    tags: ['EJS', 'Node.js', 'Express.js', 'MongoDB', 'MUI'],
+    accent: VIOLET,
+    accentLight: VIOLET_LIGHT,
     github: 'https://github.com/sahitya1903/roomify',
     live: 'https://roomify-1gzx.onrender.com',
-    stats: [{ label: 'Status', value: 'Live' }, { label: 'Type', value: 'Full-Stack' }, { label: 'Stack', value: 'EJS + Node.js' }],
+    stats: [
+      { label: 'Type', value: 'Full-Stack' },
+      { label: 'Stack', value: 'EJS + Node.js' },
+      { label: 'Status', value: 'Live' },
+    ],
+    category: ['Full-Stack', 'Node.js'],
   },
   {
     id: 'drowsiness-detection',
     title: 'Driver Drowsiness Detection',
-    desc: 'Real-time drowsiness detection system using computer vision and deep learning. Monitors eye aspect ratio and facial landmarks to trigger audio alerts and prevent accidents.',
-    tags: ['Python', 'TensorFlow', 'OpenCV'],
-    accent: '#F59E0B',
-    accentLight: '#FCD34D',
-    flag: 'AI / ML',
+    subtitle: 'Real-time Alert System',
+    desc: 'Real-time drowsiness detection using computer vision and deep learning. Monitors eye aspect ratio and facial landmarks via a webcam to trigger audio alerts — preventing accidents before they happen.',
+    tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
+    accent: '#D97706',
+    accentLight: '#FBBF24',
     github: 'https://github.com/sahitya1903/drowsiness-detection',
     live: 'https://drowsiness-detection-0.streamlit.app',
-    stats: [{ label: 'Status', value: 'Live' }, { label: 'Type', value: 'AI / ML' }, { label: 'Model', value: 'CNN' }],
-  }
+    stats: [
+      { label: 'Type', value: 'AI / ML' },
+      { label: 'Model', value: 'CNN' },
+      { label: 'Status', value: 'Live' },
+    ],
+    category: ['Python', 'AI / ML'],
+  },
 ];
 
 const STATS = [
@@ -154,27 +164,28 @@ const Hero = () => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-                          <Typography
-                component="h1"
-                sx={{
-                  fontSize: { xs: '2.4rem', md: '3.5rem' },
-                  fontWeight: 800,
-                  lineHeight: 1.05,
-                  letterSpacing: '-0.04em',
-                  color: '#F8FAFC',
-                  mb: 3,
-                }}
-              >
-                Hey, I'm{' '}
-                <Box component="span" sx={{
-                  background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}>
-                  Sahitya
-                </Box>
-              </Typography>
+            <Typography
+              component="h1"
+              sx={{
+                fontFamily: '"Playfair Display", serif',
+                fontSize: { xs: '2.3rem', sm: '3rem' },
+                fontWeight: 500,
+                lineHeight: 1.2,
+                letterSpacing: '0.03em',
+                color: '#F8FAFC',
+                mb: 2,
+              }}
+            >
+              Hey, I'm{' '}
+              <Box component="span" sx={{
+                background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}>
+                Sahitya..
+              </Box>
+            </Typography>
           </motion.div>
 
           {/* Sub headline */}
@@ -185,15 +196,19 @@ const Hero = () => (
           >
             <Typography
               variant="body1"
-              sx={{ mt: 3, mb: 2, maxWidth: 540, fontSize: { xs: '0.98rem', md: '1.05rem' }, lineHeight: 1.8, color: '#94A3B8' }}
+              sx={{
+                fontFamily: '"Playfair Display", serif',
+                fontStyle: 'italic',
+                mt: 2,
+                mb: 4,
+                maxWidth: 560,
+                fontSize: { xs: '1.2rem', md: '1.55rem' },
+                lineHeight: 1.4,
+                color: '#94A3B8',
+                letterSpacing: '0.03em',
+              }}
             >
-              I'm an ECE undergraduate at <Box component="span" sx={{ color: '#F8FAFC', fontWeight: 500 }}>NIT Andhra Pradesh</Box> (graduating in 2027) with a deep interest in software engineering. I love building fast, clean web applications—focusing on polished React frontends and solid backend APIs.
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ mb: 4, maxWidth: 540, fontSize: { xs: '0.98rem', md: '1.05rem' }, lineHeight: 1.8, color: '#94A3B8' }}
-            >
-              Lately, I've also been diving into AI/ML, training real-time computer vision models with Python and YOLO. I'm always open to internships, interesting collabs, or just a good dev chat!
+              Welcome to my corner of the web!
             </Typography>
           </motion.div>
 
@@ -213,7 +228,7 @@ const Hero = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<DescriptionOutlinedIcon />}
-                sx={{ px: 3, py: 1.4, fontSize: '0.95rem' }}
+                sx={{ px: 3, py: 1.4, fontSize: '0.95rem', fontFamily: '"Playfair Display", serif' }}
               >
                 View Resume
               </Button>
@@ -247,7 +262,7 @@ const Hero = () => (
                 {[
                   { indent: 0, color: '#9D6FFF', text: 'const developer = {' },
                   { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>name</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"Sahitya Kushwaha"</Box>,</> },
-                  { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>domain</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"www.sahitya.codes"</Box>,</> },
+                  { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>domain</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"sahitya.codes"</Box>,</> },
                   { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>role</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"Full-Stack Dev"</Box>,</> },
                   { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>stack</Box>: [<Box component="span" sx={{ color: '#86EFAC' }}>"React"</Box>, <Box component="span" sx={{ color: '#86EFAC' }}>"Node"</Box>],</> },
                   { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>open</Box>: <Box component="span" sx={{ color: '#FB923C' }}>true</Box>,</> },
@@ -259,7 +274,6 @@ const Hero = () => (
                     key={i}
                     sx={{
                       display: 'flex',
-                      pl: line.indent * 2,
                       '&::before': {
                         content: `"${String(i + 1).padStart(2, ' ')}"`,
                         color: '#334155',
@@ -270,7 +284,7 @@ const Hero = () => (
                       },
                     }}
                   >
-                    <Box component="span" sx={{ color: line.color }}>{line.text}</Box>
+                    <Box component="span" sx={{ color: line.color, pl: line.indent * 2 }}>{line.text}</Box>
                   </Box>
                 ))}
               </Box>
@@ -297,7 +311,9 @@ const Hero = () => (
           sx={{
             mt: { xs: 8, md: 10 },
             pt: 4,
+            pb: 4,
             borderTop: `1px solid ${BORDER}`,
+            borderBottom: `1px solid ${BORDER}`,
             display: 'grid',
             gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(4, 1fr)' },
             gap: 2,
@@ -334,8 +350,7 @@ const ProjectsSection = () => (
   <Section id="projects" sx={{ borderTop: `1px solid ${BORDER}` }}>
     <SectionHeader
       label="Featured Work"
-      title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value</Box></>}
-      subtitle="Hand-picked highlights from my portfolio."
+      title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value..</Box></>}
     />
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
       {PROJECTS.map((project, i) => (
@@ -345,27 +360,19 @@ const ProjectsSection = () => (
               <Grid size={{ xs: 12, md: 8 }}>
                 {/* Header row */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2, flexWrap: 'wrap' }}>
-                  <Typography sx={{ fontWeight: 700, fontSize: '1.2rem', color: 'text.primary' }}>
+                  <Typography
+                    sx={{
+                      fontFamily: '"Playfair Display", serif',
+                      fontWeight: 600,
+                      fontSize: '1.25rem',
+                      color: 'text.primary',
+                    }}
+                  >
                     {project.title}
                   </Typography>
-                  {project.flag && (
-                    <Chip
-                      label={project.flag}
-                      size="small"
-                      sx={{
-                        fontFamily: '"JetBrains Mono", monospace',
-                        fontSize: '0.62rem',
-                        height: 20,
-                        background: alpha(project.accent, 0.2),
-                        color: project.accentLight,
-                        border: `1px solid ${alpha(project.accent, 0.4)}`,
-                        borderRadius: '4px',
-                      }}
-                    />
-                  )}
                 </Box>
 
-                <Typography variant="body1" sx={{ color: '#64748B', mb: 2.5, lineHeight: 1.75 }}>
+                <Typography variant="body2" sx={{ color: '#64748B', mb: 2.5, lineHeight: 1.75, fontSize: '0.88rem' }}>
                   {project.desc}
                 </Typography>
 
@@ -436,7 +443,7 @@ const ProjectsSection = () => (
         component={RouterLink}
         to="/projects"
         endIcon={<ArrowOutwardIcon />}
-        sx={{ px: 4, py: 1.4, fontSize: '0.95rem' }}
+        sx={{ px: 4, py: 1.4, fontSize: '0.95rem', fontFamily: '"Playfair Display", serif' }}
       >
         View All Projects
       </Button>
@@ -450,9 +457,9 @@ const ProjectsSection = () => (
 const GitHubSection = () => {
   const GITHUB_USERNAME = 'sahitya1903';
   const GITHUB_STATS = [
+    { label: 'Contributions', value: '900+', color: '#10B981' },
     { label: 'Public Repos', value: '15+', color: VIOLET_LIGHT },
     { label: 'Stars Earned', value: '20+', color: '#F59E0B' },
-    { label: 'Contributions', value: '900+', color: '#10B981' },
     { label: 'Followers', value: '15+', color: '#06B6D4' },
   ];
 
@@ -460,8 +467,7 @@ const GitHubSection = () => {
     <Section id="github" sx={{ borderTop: `1px solid ${BORDER}` }}>
       <SectionHeader
         label="GitHub Activity"
-        title={<>Open source <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>footprint</Box></>}
-        subtitle="Consistent contributor — shipping code, reviewing PRs, and building."
+        title={<>Open source <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>footprint..</Box></>}
       />
 
       <Grid container spacing={3} sx={{ mb: 4 }}>

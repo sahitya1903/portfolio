@@ -9,7 +9,7 @@ import { alpha } from '@mui/material/styles';
 
 import GlowCard from '../components/ui/GlowCard';
 import SectionHeader from '../components/ui/SectionHeader';
-import { VIOLET, VIOLET_LIGHT } from '../theme/theme';
+import { VIOLET, VIOLET_LIGHT, BORDER } from '../theme/theme';
 
 /* ─────────────────────────────────────────────────────────────
    EMAILJS CONFIG  — set these in your .env file:
@@ -91,7 +91,7 @@ const Contact = () => {
       <Box
         component="section"
         id="contact"
-        sx={{ py: { xs: 8, md: 12 }, position: 'relative', overflow: 'hidden' }}
+        sx={{ py: { xs: 8, md: 12 }, position: 'relative', overflow: 'hidden', borderTop: `1px solid ${BORDER}` }}
       >        {/* Ambient orb */}
         <Box sx={{
           position: 'absolute', bottom: '10%', left: '-5%',
@@ -103,8 +103,7 @@ const Contact = () => {
         <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
           <SectionHeader
             label="Contact"
-            title={<>Let's build something <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>great together</Box></>}
-            subtitle="Have a project in mind, want to collaborate, or just want to chat about tech? I'd love to hear from you."
+            title={<>Let's build something <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>great together..</Box></>}
           />
 
           <FadeIn delay={0.15}>
@@ -137,7 +136,15 @@ const Contact = () => {
                 ) : (
                   /* ── Form ── */
                   <>
-                    <Typography sx={{ fontWeight: 700, fontSize: '1.1rem', color: 'text.primary', mb: 0.5 }}>
+                    <Typography
+                      sx={{
+                        fontFamily: '"Playfair Display", serif',
+                        fontWeight: 600,
+                        fontSize: '1.25rem',
+                        color: 'text.primary',
+                        mb: 0.5,
+                      }}
+                    >
                       Send a message
                     </Typography>
                     <Typography sx={{ fontSize: '0.82rem', color: '#475569', mb: 3.5 }}>
@@ -218,7 +225,7 @@ const Contact = () => {
                         size="large"
                         disabled={status === 'sending'}
                         endIcon={status === 'sending' ? <CircularProgress size={16} color="inherit" /> : <SendIcon sx={{ fontSize: '16px !important' }} />}
-                        sx={{ alignSelf: 'flex-start', px: 4, py: 1.4, fontSize: '0.95rem' }}
+                        sx={{ alignSelf: 'flex-start', px: 4, py: 1.4, fontSize: '0.95rem', fontFamily: '"Playfair Display", serif' }}
                       >
                         {status === 'sending' ? 'Sending…' : 'Send Message'}
                       </Button>

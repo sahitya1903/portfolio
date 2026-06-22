@@ -27,7 +27,7 @@ const Footer = () => (
     component="footer"
     sx={{
       position: 'relative',
-      mt: 8,
+      mt: 2,
       overflow: 'hidden',
     }}
   >
@@ -65,12 +65,11 @@ const Footer = () => (
             animation: 'pulse-glow 2.5s ease infinite',
           }} />
           <Typography sx={{
-            fontFamily: '"JetBrains Mono", monospace',
-            fontSize: '0.8rem',
+            fontFamily: '"Playfair Display", serif',
+            fontSize: '1rem',
             fontWeight: 600,
             color: '#94A3B8',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
           }}>
             Sahitya Kushwaha
           </Typography>
@@ -81,7 +80,7 @@ const Footer = () => (
           href="https://www.sahitya.codes"
           sx={{
             fontFamily: '"JetBrains Mono", monospace',
-            fontSize: '0.68rem',
+            fontSize: '0.75rem',
             color: alpha(VIOLET_LIGHT, 0.6),
             textDecoration: 'none',
             letterSpacing: '0.06em',
@@ -94,7 +93,7 @@ const Footer = () => (
 
         {/* Social links row */}
         <Box sx={{
-          display: 'flex', gap: 1.5, justifyContent: 'center', mt: 3.5, flexWrap: 'wrap',
+          display: 'flex', gap: 1.5, justifyContent: 'center', mt: 2, flexWrap: 'wrap',
         }}>
           {SOCIAL_LINKS.map(({ icon, href, label, color }) => (
             <Box
@@ -128,7 +127,7 @@ const Footer = () => (
                 fontSize: '0.72rem',
                 fontWeight: 500,
                 color: '#64748B',
-                fontFamily: '"JetBrains Mono", monospace',
+                fontFamily: '"Inter", sans-serif',
                 transition: 'color 0.25s',
               }}>
                 {label}
@@ -156,21 +155,21 @@ const Footer = () => (
         },
       }}>
         <Typography sx={{
-          fontSize: '0.68rem',
-          color: '#64748B',
-          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: '0.76rem',
+          color: '#94A3B8',
+          fontFamily: '"Playfair Display", serif',
           display: 'flex', alignItems: 'center', gap: 0.5,
         }}>
           © {new Date().getFullYear()} · Designed & built with
-          <FavoriteIcon sx={{ fontSize: 10, color: '#EF4444', mx: 0.25 }} />
+          <FavoriteIcon sx={{ fontSize: 11, color: '#EF4444', mx: 0.25 }} />
           by Sahitya
         </Typography>
 
         <Typography sx={{
-          fontSize: '0.65rem',
-          color: '#64748B',
-          fontFamily: '"JetBrains Mono", monospace',
-          letterSpacing: '0.04em',
+          fontSize: '0.76rem',
+          color: '#94A3B8',
+          fontFamily: '"Playfair Display", serif',
+          letterSpacing: '0.05em',
         }}>
           React · Vite · MUI · Framer Motion
         </Typography>

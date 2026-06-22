@@ -119,8 +119,7 @@ const About = () => (
       <Container maxWidth="lg">
         <SectionHeader
           label="Skills"
-          title={<>What I'm <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #F59E0B)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>good at</Box></>}
-          subtitle="Proficiency levels across the full stack — from pixels to databases to ML models."
+          title={<>What I'm <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #F59E0B)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>good at..</Box></>}
         />
         <Grid container spacing={3}>
           {SKILLS.map((skillGroup, gi) => (
@@ -138,7 +137,14 @@ const About = () => (
                     }}>
                       {skillGroup.icon}
                     </Box>
-                    <Typography sx={{ fontWeight: 700, fontSize: '1rem', color: 'text.primary' }}>
+                    <Typography
+                      sx={{
+                        fontFamily: '"Playfair Display", serif',
+                        fontWeight: 600,
+                        fontSize: '1.05rem',
+                        color: 'text.primary',
+                      }}
+                    >
                       {skillGroup.category}
                     </Typography>
                   </Box>
@@ -181,8 +187,7 @@ const About = () => (
       <Container maxWidth="lg">
         <SectionHeader
           label="Experience"
-          title={<>Journey & <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Milestones</Box></>}
-          subtitle="Education, work experience, and key achievements that shaped who I am as a developer."
+          title={<>Journey & <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Milestones..</Box></>}
         />
         <Box sx={{ position: 'relative' }}>
           {/* Vertical timeline line — perfectly centred */}
@@ -211,7 +216,15 @@ const About = () => (
                     {exp.icon}
                   </Box>
                   <Box>
-                    <Typography sx={{ fontWeight: 700, fontSize: '0.95rem', color: 'text.primary', mb: 0.25 }}>
+                    <Typography
+                      sx={{
+                        fontFamily: '"Playfair Display", serif',
+                        fontWeight: 600,
+                        fontSize: '1.05rem',
+                        color: 'text.primary',
+                        mb: 0.25,
+                      }}
+                    >
                       {exp.title}
                     </Typography>
                     <Typography sx={{ fontSize: '0.78rem', color: exp.color, fontFamily: '"JetBrains Mono", monospace', mb: 0.5 }}>

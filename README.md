@@ -11,7 +11,7 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 - **Landing Flow & Subpages:** Continuous scroll landing page (`/`) with scroll-spy navbar highlighting, custom hash routing, and a separate interactive filterable Projects archive (`/projects`).
 - **Personalized Sections:** Integrated bio introduction, alternate-column experience timeline, 5-category skill progress grid, and dynamic GitHub activity/stats embedding.
 - **Automated Resume Sync:** Downloadable PDF resume (`public/resume.pdf`) auto-synchronized with Overleaf edits via a GitHub Actions workflow in a separate repository.
-- **SaaS Glassmorphism Aesthetics:** Premium dark-mode design system with radial hover glow, border gradients, smooth micro-animations, and interactive mouse-tracking cursor glow.
+- **SaaS Glassmorphism Aesthetics:** Premium dark-mode design system with custom typography (Playfair Display serif for headings), radial hover glow, border gradients, smooth micro-animations, and interactive mouse-tracking cursor glow.
 - **Functional Contact Form:** Responsive contact form integrated with EmailJS for direct inbox delivery and client-side validation.
 - **Fully Responsive:** Fluid layouts with slide-out mobile navigation drawer optimized for all screen sizes.
 
@@ -103,6 +103,7 @@ npm run build
 3. **Skills & Experience:** Edit timeline/skills datasets in [src/pages/About.jsx](src/pages/About.jsx).
 4. **Projects Gallery:** Manage the `ALL_PROJECTS` list in [src/pages/Projects.jsx](src/pages/Projects.jsx).
 5. **Contact Form:** Configure EmailJS inside [src/pages/Contact.jsx](src/pages/Contact.jsx).
+6. **Typography:** Customize loaded fonts in [index.html](index.html) and adjust theme overrides inside [src/theme/theme.js](src/theme/theme.js).
 
 ---
 

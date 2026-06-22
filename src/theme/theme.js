@@ -46,35 +46,41 @@ const theme = createTheme({
   typography: {
     fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     h1: {
+      fontFamily: '"Playfair Display", serif',
       fontSize: 'clamp(2.5rem, 6vw, 5rem)',
       fontWeight: 800,
       lineHeight: 1.05,
       letterSpacing: '-0.04em',
     },
     h2: {
-      fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+      fontFamily: '"Playfair Display", serif',
+      fontSize: 'clamp(2.3rem, 5vw, 3rem)',
       fontWeight: 700,
       lineHeight: 1.15,
       letterSpacing: '-0.03em',
     },
     h3: {
+      fontFamily: '"Playfair Display", serif',
       fontSize: 'clamp(1.25rem, 2.5vw, 1.875rem)',
       fontWeight: 700,
       lineHeight: 1.3,
       letterSpacing: '-0.02em',
     },
     h4: {
+      fontFamily: '"Playfair Display", serif',
       fontSize: '1.25rem',
       fontWeight: 600,
       lineHeight: 1.4,
       letterSpacing: '-0.01em',
     },
     h5: {
+      fontFamily: '"Playfair Display", serif',
       fontSize: '1rem',
       fontWeight: 600,
       lineHeight: 1.5,
     },
     h6: {
+      fontFamily: '"Playfair Display", serif',
       fontSize: '0.875rem',
       fontWeight: 600,
       lineHeight: 1.5,
@@ -103,6 +109,7 @@ const theme = createTheme({
       textTransform: 'uppercase',
     },
     button: {
+      fontFamily: '"Inter", sans-serif',
       fontWeight: 600,
       letterSpacing: '0.01em',
       textTransform: 'none',

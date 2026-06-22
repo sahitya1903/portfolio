@@ -22,7 +22,6 @@ const ALL_PROJECTS = [
     tags: ['EJS', 'Node.js', 'Express.js', 'MongoDB', 'MUI'],
     accent: VIOLET,
     accentLight: VIOLET_LIGHT,
-    flag: 'Full-Stack',
     github: 'https://github.com/sahitya1903/roomify',
     live: 'https://roomify-1gzx.onrender.com',
     stats: [
@@ -40,7 +39,6 @@ const ALL_PROJECTS = [
     tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
     accent: '#D97706',
     accentLight: '#FBBF24',
-    flag: 'AI / ML',
     github: 'https://github.com/sahitya1903/drowsiness-detection',
     live: 'https://drowsiness-detection-0.streamlit.app',
     stats: [
@@ -58,7 +56,6 @@ const ALL_PROJECTS = [
     tags: ['React', 'Vite', 'MUI', 'Framer Motion'],
     accent: '#06B6D4',
     accentLight: '#67E8F9',
-    flag: 'Frontend',
     github: 'https://github.com/sahitya1903/portfolio',
     live: 'https://sahitya.codes',
     stats: [
@@ -76,7 +73,6 @@ const ALL_PROJECTS = [
     tags: ['Python', 'YOLO', 'OpenCV'],
     accent: '#15803D',
     accentLight: '#4ADE80',
-    flag: 'AI / ML',
     github: 'https://github.com/sahitya1903/animal-detection',
     live: null,
     stats: [
@@ -94,7 +90,6 @@ const ALL_PROJECTS = [
     tags: ['React', 'Vite', 'MUI', 'OpenWeather API'],
     accent: '#0284C7',
     accentLight: '#38BDF8',
-    flag: 'Frontend',
     github: 'https://github.com/sahitya1903/weather',
     live: null,
     stats: [
@@ -112,7 +107,6 @@ const ALL_PROJECTS = [
     tags: ['React', 'Vite', 'JavaScript', 'CSS'],
     accent: '#4F46E5',
     accentLight: '#818CF8',
-    flag: 'Frontend',
     github: 'https://github.com/sahitya1903/todo-list',
     live: null,
     stats: [
@@ -123,24 +117,6 @@ const ALL_PROJECTS = [
     category: ['React', 'Vite', 'Frontend'],
   },
   {
-    id: 'leetcode-practice',
-    title: 'LeetCode Practice',
-    subtitle: 'Automated Sync Repository',
-    desc: 'A collection of solutions to various LeetCode problems across multiple programming languages. Configured with a GitHub Actions workflow to automatically synchronize submissions from LeetCode daily.',
-    tags: ['Java', 'Python', 'JavaScript', 'SQL', 'GitHub Actions'],
-    accent: '#FFA116',
-    accentLight: '#FFB84D',
-    flag: 'DSA / Automation',
-    github: 'https://github.com/sahitya1903/leetcode-practice',
-    live: null,
-    stats: [
-      { label: 'Sync Tool', value: 'leetcode-sync' },
-      { label: 'Schedule', value: 'Daily 08:00 UTC' },
-      { label: 'Status', value: 'Active' },
-    ],
-    category: ['DSA'],
-  },
-  {
     id: 'webdev-MERN',
     title: 'Web Development with MERN & SQL',
     subtitle: 'MERN stack experiments',
@@ -148,15 +124,31 @@ const ALL_PROJECTS = [
     tags: ['MongoDB', 'Express.js', 'React', 'Node.js'],
     accent: '#DB2777',
     accentLight: '#F472B6',
-    flag: 'Full-Stack',
     github: 'https://github.com/sahitya1903/webdev-MERN',
     live: null,
     stats: [
-      { label: 'Type', value: 'Full-Stack Practice' },
+      { label: 'Type', value: 'Mini Projects' },
       { label: 'Stack', value: 'MERN' },
       { label: 'Status', value: 'Ongoing' },
     ],
     category: ['Full-Stack', 'MERN'],
+  },
+  {
+    id: 'leetcode-practice',
+    title: 'LeetCode Practice',
+    subtitle: 'Automated Sync Repository',
+    desc: 'A collection of solutions to various LeetCode problems across multiple programming languages. Configured with a GitHub Actions workflow to automatically synchronize submissions from LeetCode daily.',
+    tags: ['Java', 'Python', 'JavaScript', 'SQL', 'GitHub Actions'],
+    accent: '#FFA116',
+    accentLight: '#FFB84D',
+    github: 'https://github.com/sahitya1903/leetcode-practice',
+    live: null,
+    stats: [
+      { label: 'Type', value: 'DSA Practice' },
+      { label: 'Sync Tool', value: 'leetcode-sync' },
+      { label: 'Status', value: 'Ongoing' },
+    ],
+    category: ['DSA'],
   },
   {
     id: 'java-dsa',
@@ -166,12 +158,11 @@ const ALL_PROJECTS = [
     tags: ['Java', 'DSA', 'Algorithms'],
     accent: '#EA580C',
     accentLight: '#FB923C',
-    flag: 'Java / DSA',
     github: 'https://github.com/sahitya1903/JavaDSA',
     live: null,
     stats: [
-      { label: 'Language', value: 'Java' },
       { label: 'Type', value: 'DSA Practice' },
+      { label: 'Language', value: 'Java' },
       { label: 'Status', value: 'Ongoing' },
     ],
     category: ['DSA', 'Java'],
@@ -184,12 +175,11 @@ const ALL_PROJECTS = [
     tags: ['Python', 'DSA'],
     accent: '#EAB308',
     accentLight: '#FDE047',
-    flag: 'Python',
     github: 'https://github.com/sahitya1903/Python',
     live: null,
     stats: [
-      { label: 'Language', value: 'Python 3.x' },
       { label: 'Type', value: 'Mini Projects' },
+      { label: 'Language', value: 'Python 3.x' },
       { label: 'Status', value: 'Ongoing' },
     ],
     category: ['Python', 'DSA'],
@@ -215,29 +205,21 @@ const ProjectCard = ({ project, index }) => (
         <Grid size={{ xs: 12, md: 8 }}>
           {/* Header */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1, flexWrap: 'wrap' }}>
-            <Typography sx={{ fontWeight: 700, fontSize: '1.15rem', color: 'text.primary' }}>
+            <Typography
+              sx={{
+                fontFamily: '"Playfair Display", serif',
+                fontWeight: 600,
+                fontSize: '1.25rem',
+                color: 'text.primary',
+              }}
+            >
               {project.title}
             </Typography>
-            {project.flag && (
-              <Chip
-                label={project.flag}
-                size="small"
-                sx={{
-                  fontFamily: '"JetBrains Mono", monospace',
-                  fontSize: '0.62rem',
-                  height: 20,
-                  background: alpha(project.accent, 0.2),
-                  color: project.accentLight,
-                  border: `1px solid ${alpha(project.accent, 0.4)}`,
-                  borderRadius: '4px',
-                }}
-              />
-            )}
           </Box>
           <Typography sx={{ fontSize: '0.78rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', mb: 1.5 }}>
             {project.subtitle}
           </Typography>
-          <Typography variant="body2" sx={{ color: '#64748B', mb: 2.5, lineHeight: 1.75 }}>
+          <Typography variant="body2" sx={{ color: '#64748B', mb: 2.5, lineHeight: 1.75, fontSize: '0.88rem' }}>
             {project.desc}
           </Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
@@ -340,8 +322,8 @@ const Projects = () => {
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
           <SectionHeader
             label="All Work"
-            title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value</Box></>}
-            subtitle="A complete showcase of everything I've built — from full-stack web apps to AI/ML systems."
+            title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value..</Box></>}
+            // subtitle="A complete showcase of everything I've built — from full-stack web apps to AI/ML systems."
           />
 
           {/* Filter chips */}

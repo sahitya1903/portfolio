@@ -41,26 +41,17 @@ const Logo = () => (
     <Box>
       <Typography
         sx={{
-          fontWeight: 700,
-          fontSize: '0.9rem',
+          fontFamily: '"Playfair Display", serif',
+          fontWeight: 400,
+          fontSize: '1.1rem',
           color: 'text.primary',
           lineHeight: 1.1,
           letterSpacing: '-0.02em',
         }}
       >
-        Sahitya Kushwaha
+        SAHITYA KUSHWAHA
       </Typography>
-      <Typography
-        sx={{
-          fontFamily: '"JetBrains Mono", monospace',
-          fontSize: '0.62rem',
-          color: VIOLET_LIGHT,
-          lineHeight: 1,
-          letterSpacing: '0.05em',
-        }}
-      >
-        sahitya.codes
-      </Typography>
+
     </Box>
   </RouterLink>
 );
@@ -182,9 +173,10 @@ const Navbar = () => {
                     sx={{
                       position: 'relative',
                       textDecoration: 'none',
+                      fontFamily: '"Inter", sans-serif',
                       color: isActive ? '#F8FAFC' : '#64748B',
                       fontWeight: isActive ? 600 : 500,
-                      fontSize: '0.82rem',
+                      fontSize: '0.85rem',
                       px: 2,
                       py: 0.75,
                       borderRadius: '8px',
@@ -312,7 +304,8 @@ const Navbar = () => {
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: '0.92rem',
+                    fontFamily: '"Inter", sans-serif',
+                    fontSize: '0.95rem',
                     fontWeight: isActive ? 600 : 500,
                     color: isActive ? '#F8FAFC' : '#94A3B8',
                   }}
