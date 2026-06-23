@@ -44,8 +44,8 @@ const PROJECTS = [
     tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
     accent: '#D97706',
     accentLight: '#FBBF24',
-    github: 'https://github.com/sahitya1903/drowsiness-detection',
-    live: 'https://drowsiness-detection-0.streamlit.app',
+    github: 'https://github.com/sahitya1903/alert-drive',
+    live: 'https://alert-drive.streamlit.app',
     stats: [
       { label: 'Type', value: 'AI / ML' },
       { label: 'Model', value: 'CNN' },
