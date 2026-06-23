@@ -23,7 +23,7 @@ const PROJECTS = [
     id: 'roomify',
     title: 'Roomify',
     subtitle: 'Hotel Booking Platform',
-    desc: 'A full-stack hotel booking and rental platform. Enables landlords to list properties and tenants to discover, filter, and book rooms — with real-time availability, JWT auth, and an admin dashboard.',
+    desc: 'A modern hotel booking platform where users can browse accommodations, create listings, upload images, and share reviews through a secure and responsive web interface.',
     tags: ['EJS', 'Node.js', 'Express.js', 'MongoDB', 'MUI'],
     accent: VIOLET,
     accentLight: VIOLET_LIGHT,
@@ -38,9 +38,9 @@ const PROJECTS = [
   },
   {
     id: 'drowsiness-detection',
-    title: 'Driver Drowsiness Detection',
-    subtitle: 'Real-time Alert System',
-    desc: 'Real-time drowsiness detection using computer vision and deep learning. Monitors eye aspect ratio and facial landmarks via a webcam to trigger audio alerts — preventing accidents before they happen.',
+    title: 'Alert Drive',
+    subtitle: 'Real-time Driver Drowsiness Detection & Alert System',
+    desc: 'Real-time drowsiness detection using computer vision and deep learning. Monitors eye aspect ratio and facial landmarks via a webcam to trigger audio alerts.',
     tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
     accent: '#D97706',
     accentLight: '#FBBF24',
@@ -359,7 +359,7 @@ const ProjectsSection = () => (
             <Grid container spacing={3} alignItems="flex-start">
               <Grid size={{ xs: 12, md: 8 }}>
                 {/* Header row */}
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1, flexWrap: 'wrap' }}>
                   <Typography
                     sx={{
                       fontFamily: '"Playfair Display", serif',
@@ -371,6 +371,10 @@ const ProjectsSection = () => (
                     {project.title}
                   </Typography>
                 </Box>
+
+                <Typography sx={{ fontSize: '0.78rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', mb: 1.5 }}>
+                  {project.subtitle}
+                </Typography>
 
                 <Typography variant="body2" sx={{ color: '#64748B', mb: 2.5, lineHeight: 1.75, fontSize: '0.88rem' }}>
                   {project.desc}
@@ -458,7 +462,7 @@ const GitHubSection = () => {
   const GITHUB_USERNAME = 'sahitya1903';
   const GITHUB_STATS = [
     { label: 'Contributions', value: '900+', color: '#10B981' },
-    { label: 'Public Repos', value: '15+', color: VIOLET_LIGHT },
+    { label: 'Public Repos', value: '10+', color: VIOLET_LIGHT },
     { label: 'Stars Earned', value: '20+', color: '#F59E0B' },
     { label: 'Followers', value: '15+', color: '#06B6D4' },
   ];

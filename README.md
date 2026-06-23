@@ -19,9 +19,8 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 
 ## 📂 Curated Projects
 
-- **[Roomify](https://github.com/sahitya1903/roomify)** (`Full-Stack` | `Live`): Hotel booking & rental platform built with EJS, Node.js, Express, and MongoDB.
-- **[Driver Drowsiness Detection](https://github.com/sahitya1903/drowsiness-detection)** (`AI/ML` | `Live`): Computer vision system built with TensorFlow & OpenCV to trigger alerts.
-- **[Animal Detection System](https://github.com/sahitya1903/animal-detection)** (`AI/ML` | `Completed`): Real-time YOLOv12 security system for farm perimeter monitoring.
+- **[Roomify](https://github.com/sahitya1903/roomify)** (`Full-Stack` | `Live`): A modern hotel booking platform where users can browse accommodations, create listings, upload images, and share reviews, built with EJS, Node.js, Express, and MongoDB.
+- **[Alert Drive](https://github.com/sahitya1903/drowsiness-detection)** (`AI/ML` | `Live`): Real-time drowsiness detection using computer vision and deep learning. Monitors eye aspect ratio and facial landmarks via a webcam to trigger audio alerts.
 - **[Dev Portfolio V2](https://github.com/sahitya1903/portfolio)** (`Frontend` | `Live`): This portfolio site built with React 19, Vite 8, Material UI, and Framer Motion.
 
 *Visit the `/projects` route for the complete archive of 10+ projects (MERN experiments, JavaDSA, automation, etc.).*
