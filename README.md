@@ -9,7 +9,7 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 ## ✨ Features
 
 - **Landing Flow & Subpages:** Continuous scroll landing page (`/`) with scroll-spy navbar highlighting, custom hash routing, and a separate interactive filterable Projects archive (`/projects`).
-- **Personalized Sections:** Integrated bio introduction, alternate-column experience timeline, 5-category skill progress grid, and dynamic GitHub activity/stats embedding.
+- **Personalized Sections:** Integrated bio introduction, alternate-column experience timeline, **4-category skill progress grid**, and dynamic GitHub activity/stats embedding.
 - **Resume Integration:** Downloadable resume linked directly to Google Drive, ensuring it is always up-to-date.
 - **SaaS Glassmorphism Aesthetics:** Premium dark-mode design system with custom typography (Playfair Display serif for headings), radial hover glow, border gradients, smooth micro-animations, and interactive mouse-tracking cursor glow.
 - **Functional Contact Form:** Responsive contact form integrated with EmailJS for direct inbox delivery and client-side validation.
@@ -19,11 +19,12 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 
 ## 📂 Curated Projects
 
-- **[Roomify](https://github.com/sahitya1903/roomify)** (`Full-Stack` | `Live`): A modern hotel booking platform where users can browse accommodations, create listings, upload images, and share reviews, built with EJS, Node.js, Express, and MongoDB.
-- **[Alert Drive](https://github.com/sahitya1903/drowsiness-detection)** (`AI/ML` | `Live`): Real-time drowsiness detection using computer vision and deep learning. Monitors eye aspect ratio and facial landmarks via a webcam to trigger audio alerts.
+- **[Roomify](https://github.com/sahitya1903/roomify)** (`Full-Stack` | `Dockerized` | `Live`): Full-stack hotel booking and sharing platform built with MVC. Features Passport.js auth, Mapbox geocoding, Cloudinary image resizing, Docker containerization, and GitHub Actions CI/CD to Docker Hub.
+- **[Resume Syncer](https://github.com/sahitya1903/resume-syncer)** (`DevOps` | `Marketplace`): Published GitHub Actions Marketplace action automating a 5-stage Overleaf-to-Google Drive resume synchronization pipeline using Selenium, Git commits, and Google Drive API.
+- **[Alert Drive](https://github.com/sahitya1903/alert-drive)** (`AI/ML` | `Live`): Real-time driver drowsiness detection system using computer vision. Features OpenCV Haar Cascades for face/eye localization and a MobileNet model to classify eye states and trigger visual alerts.
 - **[Dev Portfolio V2](https://github.com/sahitya1903/portfolio)** (`Frontend` | `Live`): This portfolio site built with React 19, Vite 8, Material UI, and Framer Motion.
 
-*Visit the `/projects` route for the complete archive of 10+ projects (MERN experiments, JavaDSA, automation, etc.).*
+*Visit the `/projects` route for the complete archive of 10 curated projects (MERN + SQL experiments, JavaDSA, automation, etc.).*
 
 ---
 

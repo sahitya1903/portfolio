@@ -49,7 +49,7 @@ const EXPERIENCES = [
   {
     type: 'achievement',
     icon: <StarIcon />,
-    title: '900+ GitHub Contributions',
+    title: '1000+ GitHub Contributions',
     org: 'github.com/sahitya1903',
     period: '2024 – Present',
     desc: 'Consistent open-source contributor with an active streak spanning multiple projects — web, AI/ML, and tooling.',
@@ -60,38 +60,34 @@ const EXPERIENCES = [
 const SKILLS = [
   {
     category: 'Languages', icon: <CodeIcon />, color: VIOLET_LIGHT, items: [
-      { name: 'Java', level: 86 },
+      { name: 'Java', level: 88 },
       { name: 'Python', level: 90 },
       { name: 'JavaScript', level: 87 },
-      { name: 'C', level: 81 },
-      { name: 'SQL', level: 85 },
+      { name: 'SQL & Bash', level: 84 },
     ]
   },
   {
     category: 'Frontend', icon: <BrushIcon />, color: '#06B6D4', items: [
-      { name: 'React.js', level: 87 },
-      { name: 'Redux Toolkit', level: 82 },
+      { name: 'React & Redux Toolkit', level: 87 },
+      { name: 'Tailwind & Bootstrap', level: 85 },
       { name: 'Material UI', level: 88 },
-      { name: 'Tailwind CSS', level: 84 },
-      { name: 'Framer Motion', level: 80 },
+      { name: 'HTML, CSS & Motion', level: 86 },
     ]
   },
   {
     category: 'Backend & Databases', icon: <StorageIcon />, color: '#10B981', items: [
-      { name: 'Node.js', level: 85 },
-      { name: 'Express.js', level: 85 },
-      { name: 'REST APIs', level: 90 },
-      { name: 'MongoDB', level: 85 },
-      { name: 'MySQL', level: 80 },
+      { name: 'Node & Express.js', level: 85 },
+      { name: 'Passport & Mongoose', level: 83 },
+      { name: 'REST API Design', level: 90 },
+      { name: 'MongoDB Atlas & MySQL', level: 85 },
     ]
   },
   {
-    category: 'Cloud, ML & Tools', icon: <PsychologyIcon />, color: '#F59E0B', items: [
-      { name: 'AWS & Azure', level: 78 },
-      { name: 'Docker & Kubernetes', level: 75 },
-      { name: 'Git & GitHub', level: 90 },
-      { name: 'GitHub Actions / CI/CD', level: 82 },
-      { name: 'TensorFlow & OpenCV', level: 78 },
+    category: 'Cloud, ML & DevOps', icon: <PsychologyIcon />, color: '#F59E0B', items: [
+      { name: 'Azure, Docker & Git', level: 78 },
+      { name: 'GitHub Actions (CI/CD)', level: 82 },
+      { name: 'TensorFlow & OpenCV', level: 80 },
+      { name: 'WebRTC & Streamlit', level: 78 },
     ]
   },
 ];
@@ -115,7 +111,7 @@ const FadeIn = ({ children, delay = 0, y = 24 }) => (
 ───────────────────────────────────────────────────────────── */
 const About = () => (
   <>    {/* ── SKILLS ── */}
-    <Box component="section" id="skills" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${BORDER}` }}>
+    <Box component="section" id="skills" sx={{ pt: { xs: 4, md: 6 }, pb: { xs: 8, md: 12 }, borderBottom: `1px solid ${BORDER}` }}>
       <Container maxWidth="lg">
         <SectionHeader
           label="Skills"

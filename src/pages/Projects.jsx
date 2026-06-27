@@ -18,24 +18,42 @@ const ALL_PROJECTS = [
     id: 'roomify',
     title: 'Roomify',
     subtitle: 'Hotel Booking Platform',
-    desc: 'A modern hotel booking platform where users can browse accommodations, create listings, upload images, and share reviews through a secure and responsive web interface.',
-    tags: ['EJS', 'Node.js', 'Express.js', 'MongoDB', 'MUI'],
+    desc: 'Full-stack hotel booking and sharing platform built with MVC. Features Passport.js auth, Mapbox geocoding, Cloudinary image resizing, Docker containerization, and GitHub Actions CI/CD to Docker Hub.',
+    tags: ['Node.js', 'Express.js', 'MongoDB', 'EJS', 'Bootstrap', 'Docker', 'Mapbox', 'Cloudinary'],
     accent: VIOLET,
     accentLight: VIOLET_LIGHT,
     github: 'https://github.com/sahitya1903/roomify',
     live: 'https://roomify-1gzx.onrender.com',
     stats: [
-      { label: 'Type', value: 'Full-Stack' },
-      { label: 'Stack', value: 'EJS + Node.js' },
-      { label: 'Status', value: 'Live' },
+      { label: 'Type', value: 'Full-Stack (MVC)' },
+      { label: 'Stack', value: 'Express + MongoDB' },
+      { label: 'Status', value: 'Dockerized & Live' },
     ],
     category: ['Full-Stack', 'Node.js'],
+  },
+  {
+    id: 'resume-syncer',
+    title: 'Resume Syncer',
+    subtitle: 'Automated Overleaf Resume Syncer',
+    desc: 'Published GitHub Actions Marketplace action automating a 5-stage pipeline: Selenium Overleaf scraping, Git commits, Google Drive sync, and portfolio updates using Service Account credentials.',
+    tags: ['Python', 'GitHub Actions', 'Selenium', 'Google Drive API', 'Git', 'Bash'],
+    accent: '#10B981',
+    accentLight: '#34D399',
+    github: 'https://github.com/sahitya1903/resume-syncer',
+    live: 'https://github.com/marketplace/actions/overleaf-resume-syncer',
+    liveLabel: 'Marketplace',
+    stats: [
+      { label: 'Type', value: 'Automation / DevOps' },
+      { label: 'Platform', value: 'GitHub Actions' },
+      { label: 'Status', value: 'Published' },
+    ],
+    category: ['DevOps'],
   },
   {
     id: 'drowsiness-detection',
     title: 'Alert Drive',
     subtitle: 'Real-time Driver Drowsiness Detection & Alert System',
-    desc: 'Real-time drowsiness detection using computer vision and deep learning. Monitors eye aspect ratio and facial landmarks via a webcam to trigger audio alerts.',
+    desc: 'Real-time driver drowsiness detection system using computer vision. Features OpenCV Haar Cascades for face/eye localization and a MobileNet model to classify eye states and trigger visual alerts.',
     tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
     accent: '#D97706',
     accentLight: '#FBBF24',
@@ -43,7 +61,7 @@ const ALL_PROJECTS = [
     live: 'https://alert-drive.streamlit.app',
     stats: [
       { label: 'Type', value: 'AI / ML' },
-      { label: 'Model', value: 'CNN' },
+      { label: 'Model', value: 'MobileNet' },
       { label: 'Status', value: 'Live' },
     ],
     category: ['Python', 'AI / ML'],
@@ -69,7 +87,7 @@ const ALL_PROJECTS = [
     id: 'weather-app',
     title: 'Weather App',
     subtitle: 'Real-time Weather Dashboard',
-    desc: 'A weather application built with React and MUI, powered by the OpenWeather API. Displays real-time weather data, forecasts, and location-based search.',
+    desc: 'Real-time weather application built with React and MUI, powered by the OpenWeatherMap API. Features location-based search and dynamic card backgrounds reflecting the current weather conditions.',
     tags: ['React', 'Vite', 'MUI', 'OpenWeather API'],
     accent: '#0284C7',
     accentLight: '#38BDF8',
@@ -86,7 +104,7 @@ const ALL_PROJECTS = [
     id: 'animal-detection',
     title: 'Animal Detection & Alert System',
     subtitle: 'YOLO-based Security System',
-    desc: 'Real-time animal detection system powered by YOLOv12 and OpenCV. Processes live video streams to detect animals and fire automated alerts via Twilio SMS API.',
+    desc: 'Real-time animal detection system powered by YOLOv12x and OpenCV. Processes video streams to detect animals and trigger automated SMS alerts via Twilio API.',
     tags: ['Python', 'YOLO', 'OpenCV', 'Twilio'],
     accent: '#15803D',
     accentLight: '#4ADE80',
@@ -94,7 +112,7 @@ const ALL_PROJECTS = [
     live: null,
     stats: [
       { label: 'Type', value: 'AI / ML' },
-      { label: 'Model', value: 'YOLOv12' },
+      { label: 'Model', value: 'YOLOv12x' },
       { label: 'Status', value: 'Completed' },
     ],
     category: ['Python', 'AI / ML'],
@@ -103,24 +121,24 @@ const ALL_PROJECTS = [
     id: 'webdev-MERN',
     title: 'Web Development with MERN & SQL',
     subtitle: 'MERN stack experiments',
-    desc: 'A curated collection of MERN stack experiments and practice projects. Covers REST API design, JWT auth patterns, state management, and component architecture.',
-    tags: ['MongoDB', 'Express.js', 'React', 'Node.js'],
+    desc: 'Curated collection of MERN stack and SQL practice projects. Covers core HTML/CSS, styling frameworks (Tailwind/Bootstrap), REST APIs, SQL, MongoDB relations, and React/Redux Toolkit.',
+    tags: ['MongoDB', 'Express.js', 'React', 'Node.js', 'SQL', 'Redux Toolkit'],
     accent: '#DB2777',
     accentLight: '#F472B6',
     github: 'https://github.com/sahitya1903/webdev-MERN',
     live: null,
     stats: [
       { label: 'Type', value: 'Mini Projects' },
-      { label: 'Stack', value: 'MERN' },
+      { label: 'Stack', value: 'MERN + SQL' },
       { label: 'Status', value: 'Ongoing' },
     ],
-    category: ['Full-Stack', 'MERN'],
+    category: ['Mini Projects'],
   },
   {
     id: 'todo-list',
     title: 'Todo List App',
     subtitle: 'Simple & Responsive Task Manager',
-    desc: 'A simple and responsive Todo List application built using React and Vite. Manage your daily tasks efficiently with an intuitive user interface.',
+    desc: 'A simple, responsive, and intuitive task manager application built using React, Vite, and custom CSS for styling.',
     tags: ['React', 'Vite', 'JavaScript', 'CSS'],
     accent: '#4F46E5',
     accentLight: '#818CF8',
@@ -137,14 +155,14 @@ const ALL_PROJECTS = [
     id: 'leetcode-practice',
     title: 'LeetCode Practice',
     subtitle: 'Automated Sync Repository',
-    desc: 'A collection of solutions to various LeetCode problems across multiple programming languages. Configured with a GitHub Actions workflow to automatically synchronize submissions from LeetCode daily.',
+    desc: 'Daily automated sync repository of solutions to various LeetCode problems, configured with a GitHub Actions workflow.',
     tags: ['DSA', 'Java', 'Python', 'JavaScript', 'SQL', 'GitHub Actions'],
     accent: '#FFA116',
     accentLight: '#FFB84D',
     github: 'https://github.com/sahitya1903/leetcode-practice',
     live: null,
     stats: [
-      { label: 'Type', value: 'DSA Practice' },
+      { label: 'Type', value: 'Automation / DSA Practice' },
       { label: 'Sync Tool', value: 'leetcode-sync' },
       { label: 'Status', value: 'Ongoing' },
     ],
@@ -154,11 +172,11 @@ const ALL_PROJECTS = [
     id: 'java-dsa',
     title: 'JavaDSA',
     subtitle: 'Data Structures & Algorithms',
-    desc: 'A collection of Java programs ranging from basic language fundamentals to advanced data structure implementations for practice and learning purposes.',
+    desc: 'Collection of Java implementations of classic data structures, sorting/searching algorithms, and object-oriented programming concepts.',
     tags: ['Java', 'DSA'],
     accent: '#EA580C',
     accentLight: '#FB923C',
-    github: 'https://github.com/sahitya1903/JavaDSA',
+    github: 'https://github.com/sahitya1903/java-dsa',
     live: null,
     stats: [
       { label: 'Type', value: 'DSA Practice' },
@@ -171,22 +189,22 @@ const ALL_PROJECTS = [
     id: 'python-projects',
     title: 'Python Practice & Projects',
     subtitle: 'DSA & Mini Projects',
-    desc: 'A curated collection of Python programs ranging from basic language fundamentals to advanced data structure implementations, mini-projects and university course assignments.',
+    desc: 'Curated collection of Python programs ranging from fundamentals and data structures to CLI mini-projects and university assignments.',
     tags: ['Python', 'DSA'],
     accent: '#EAB308',
     accentLight: '#FDE047',
-    github: 'https://github.com/sahitya1903/Python',
+    github: 'https://github.com/sahitya1903/python-practice',
     live: null,
     stats: [
       { label: 'Type', value: 'DSA Practice' },
       { label: 'Language', value: 'Python 3.x' },
       { label: 'Status', value: 'Ongoing' },
     ],
-    category: ['Python', 'DSA'],
+    category: ['Python', 'DSA', 'Mini Projects'],
   }
 ];
 
-const FILTERS = ['All', 'Full-Stack', 'AI / ML', 'Frontend','DSA'];
+const FILTERS = ['All', 'Full-Stack', 'AI / ML', 'DevOps', 'Frontend', 'DSA', 'Mini Projects'];
 
 /* ─────────────────────────────────────────────────────────────
    PROJECT CARD
@@ -253,7 +271,7 @@ const ProjectCard = ({ project, index }) => (
                 rel="noopener noreferrer"
                 sx={{ fontSize: '0.78rem' }}
               >
-                Live Demo
+                {project.liveLabel || 'Live Demo'}
               </Button>
             )}
           </Box>

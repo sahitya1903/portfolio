@@ -23,24 +23,42 @@ const PROJECTS = [
     id: 'roomify',
     title: 'Roomify',
     subtitle: 'Hotel Booking Platform',
-    desc: 'A modern hotel booking platform where users can browse accommodations, create listings, upload images, and share reviews through a secure and responsive web interface.',
-    tags: ['EJS', 'Node.js', 'Express.js', 'MongoDB', 'MUI'],
+    desc: 'Full-stack hotel booking and sharing platform built with MVC. Features Passport.js auth, Mapbox geocoding, Cloudinary image resizing, Docker containerization, and GitHub Actions CI/CD to Docker Hub.',
+    tags: ['Node.js', 'Express.js', 'MongoDB', 'EJS', 'Bootstrap', 'Docker', 'Mapbox', 'Cloudinary'],
     accent: VIOLET,
     accentLight: VIOLET_LIGHT,
     github: 'https://github.com/sahitya1903/roomify',
-    live: 'https://roomify-1gzx.onrender.com',
+    live: 'https://roomify.azurewebsites.net',
     stats: [
-      { label: 'Type', value: 'Full-Stack' },
-      { label: 'Stack', value: 'EJS + Node.js' },
-      { label: 'Status', value: 'Live' },
+      { label: 'Type', value: 'Full-Stack (MVC)' },
+      { label: 'Stack', value: 'Express + MongoDB' },
+      { label: 'Status', value: 'Dockerized & Live' },
     ],
     category: ['Full-Stack', 'Node.js'],
+  },
+  {
+    id: 'resume-syncer',
+    title: 'Resume Syncer',
+    subtitle: 'Automated Overleaf Resume Syncer',
+    desc: 'Published GitHub Actions Marketplace action automating a 5-stage pipeline: Selenium Overleaf scraping, Git commits, Google Drive sync, and portfolio updates using Service Account credentials.',
+    tags: ['Python', 'GitHub Actions', 'Selenium', 'Google Drive API', 'Git', 'Bash'],
+    accent: '#10B981',
+    accentLight: '#34D399',
+    github: 'https://github.com/sahitya1903/resume-syncer',
+    live: 'https://github.com/marketplace/actions/overleaf-resume-syncer',
+    liveLabel: 'Marketplace',
+    stats: [
+      { label: 'Type', value: 'Automation / DevOps' },
+      { label: 'Platform', value: 'GitHub Actions' },
+      { label: 'Status', value: 'Published' },
+    ],
+    category: ['DevOps'],
   },
   {
     id: 'drowsiness-detection',
     title: 'Alert Drive',
     subtitle: 'Real-time Driver Drowsiness Detection & Alert System',
-    desc: 'Real-time drowsiness detection using computer vision and deep learning. Monitors eye aspect ratio and facial landmarks via a webcam to trigger audio alerts.',
+    desc: 'Real-time driver drowsiness detection system using computer vision. Features OpenCV Haar Cascades for face/eye localization and a MobileNet model to classify eye states and trigger visual alerts.',
     tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
     accent: '#D97706',
     accentLight: '#FBBF24',
@@ -48,7 +66,7 @@ const PROJECTS = [
     live: 'https://alert-drive.streamlit.app',
     stats: [
       { label: 'Type', value: 'AI / ML' },
-      { label: 'Model', value: 'CNN' },
+      { label: 'Model', value: 'MobileNet' },
       { label: 'Status', value: 'Live' },
     ],
     category: ['Python', 'AI / ML'],
@@ -57,8 +75,8 @@ const PROJECTS = [
 
 const STATS = [
   { value: '2+', label: 'Years Coding' },
-  { value: '6+', label: 'Projects' },
-  { value: '900+', label: 'GitHub Contributions' },
+  { value: '5+', label: 'Projects' },
+  { value: '1000+', label: 'GitHub Contributions' },
   { value: '15+', label: 'Tech Stack Tools' },
 ];
 
@@ -100,7 +118,7 @@ const Hero = () => (
     component="section"
     id="hero"
     sx={{
-      minHeight: '100vh',
+      minHeight: '90vh',
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
@@ -412,7 +430,7 @@ const ProjectsSection = () => (
                       rel="noopener noreferrer"
                       sx={{ fontSize: '0.78rem' }}
                     >
-                      Live Demo
+                      {project.liveLabel || 'Live Demo'}
                     </Button>
                   )}
                 </Box>
@@ -461,9 +479,9 @@ const ProjectsSection = () => (
 const GitHubSection = () => {
   const GITHUB_USERNAME = 'sahitya1903';
   const GITHUB_STATS = [
-    { label: 'Contributions', value: '900+', color: '#10B981' },
+    { label: 'Contributions', value: '1000+', color: '#10B981' },
     { label: 'Public Repos', value: '10+', color: VIOLET_LIGHT },
-    { label: 'Stars Earned', value: '20+', color: '#F59E0B' },
+    { label: 'Stars Earned', value: '30+', color: '#F59E0B' },
     { label: 'Followers', value: '15+', color: '#06B6D4' },
   ];
 
