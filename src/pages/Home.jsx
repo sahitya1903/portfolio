@@ -224,7 +224,7 @@ const Hero = () => (
                 variant="contained"
                 size="large"
                 component="a"
-                href="/resume.pdf"
+                href="https://drive.google.com/file/d/16G18Yy2UuTh1dVhpYcjGkzCxi9YOVJx7/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<DescriptionOutlinedIcon />}

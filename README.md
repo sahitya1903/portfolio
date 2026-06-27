@@ -10,7 +10,7 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 
 - **Landing Flow & Subpages:** Continuous scroll landing page (`/`) with scroll-spy navbar highlighting, custom hash routing, and a separate interactive filterable Projects archive (`/projects`).
 - **Personalized Sections:** Integrated bio introduction, alternate-column experience timeline, 5-category skill progress grid, and dynamic GitHub activity/stats embedding.
-- **Automated Resume Sync:** Downloadable PDF resume (`public/resume.pdf`) auto-synchronized with Overleaf edits via a GitHub Actions workflow in a separate repository.
+- **Resume Integration:** Downloadable resume linked directly to Google Drive, ensuring it is always up-to-date.
 - **SaaS Glassmorphism Aesthetics:** Premium dark-mode design system with custom typography (Playfair Display serif for headings), radial hover glow, border gradients, smooth micro-animations, and interactive mouse-tracking cursor glow.
 - **Functional Contact Form:** Responsive contact form integrated with EmailJS for direct inbox delivery and client-side validation.
 - **Fully Responsive:** Fluid layouts with slide-out mobile navigation drawer optimized for all screen sizes.
@@ -63,8 +63,7 @@ src/
 ├── App.jsx                     # Route manager, ScrollToHash utility, and entry layout mapping
 └── main.jsx                    # DOM mounting & rendering
 public/
-├── logo.png            # Favicon/Logo
-└── resume.pdf          # Downloadable resume
+└── logo.png            # Favicon/Logo
 ```
 
 ---
