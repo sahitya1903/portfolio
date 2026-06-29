@@ -5,14 +5,14 @@ import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import About from './About';
 import Contact from './Contact';
 import GlowCard from '../components/ui/GlowCard';
 import TechBadge from '../components/ui/TechBadge';
 import SectionHeader from '../components/ui/SectionHeader';
-import { VIOLET, VIOLET_LIGHT, BORDER } from '../theme/theme';
+import { VIOLET, VIOLET_LIGHT, VIOLET_DARK, BORDER } from '../theme/theme';
 
 /* ─────────────────────────────────────────────────────────────
    CONSTANTS
@@ -113,39 +113,47 @@ const Section = ({ children, id, sx = {} }) => (
 /* ─────────────────────────────────────────────────────────────
    HERO SECTION
 ───────────────────────────────────────────────────────────── */
-const Hero = () => (
-  <Box
-    component="section"
-    id="hero"
-    sx={{
-      minHeight: '90vh',
-      display: 'flex',
-      alignItems: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-    }}
-  >
-    {/* Ambient orbs */}
+const Hero = () => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+
+  return (
+    <Box
+      component="section"
+      id="hero"
+      sx={{
+        minHeight: '92vh',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        background: isDark
+          ? 'transparent'
+          : 'linear-gradient(160deg, #FAFAFF 0%, #FFFFFF 50%, #F8F5FF 100%)',
+      }}
+    >
+    {/* Ambient orb — right */}
     <Box sx={{
-      position: 'absolute', top: '20%', left: '60%',
-      width: 600, height: 600,
+      position: 'absolute', top: '10%', right: '-5%',
+      width: 650, height: 650,
       borderRadius: '50%',
-      background: `radial-gradient(circle, ${alpha(VIOLET, 0.15)} 0%, transparent 65%)`,
-      filter: 'blur(40px)',
-      animation: 'float 8s ease-in-out infinite',
+      background: 'radial-gradient(circle, rgba(124,58,237,0.07) 0%, rgba(139,92,246,0.03) 45%, transparent 70%)',
+      filter: 'blur(50px)',
+      animation: 'float 9s ease-in-out infinite',
       pointerEvents: 'none',
     }} />
+    {/* Ambient orb — left */}
     <Box sx={{
-      position: 'absolute', bottom: '10%', left: '5%',
-      width: 400, height: 400,
+      position: 'absolute', bottom: '5%', left: '-10%',
+      width: 500, height: 500,
       borderRadius: '50%',
-      background: `radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 65%)`,
-      filter: 'blur(40px)',
-      animation: 'float 10s ease-in-out infinite reverse',
+      background: 'radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 65%)',
+      filter: 'blur(50px)',
+      animation: 'floatReverse 11s ease-in-out infinite',
       pointerEvents: 'none',
     }} />
 
-    <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, pt: { xs: 6, md: 0 } }}>
+    <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, pt: { xs: 8, md: 0 } }}>
       <Grid container spacing={4} alignItems="center">
         <Grid size={{ xs: 12, md: 7 }}>
 
@@ -155,22 +163,25 @@ const Hero = () => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Box
-              sx={{
-                display: 'inline-flex', alignItems: 'center', gap: 1,
-                px: 2, py: 0.75, mb: 3,
-                borderRadius: '100px',
-                border: `1px solid ${alpha(VIOLET, 0.35)}`,
-                background: alpha(VIOLET, 0.08),
-              }}
-            >
+            <Box sx={{
+              display: 'inline-flex', alignItems: 'center', gap: 1,
+              px: 2, py: 0.75, mb: 3,
+              borderRadius: '100px',
+              border: '1px solid rgba(16,185,129,0.25)',
+              background: 'rgba(16,185,129,0.06)',
+            }}>
               <Box sx={{
-                width: 8, height: 8, borderRadius: '50%',
+                width: 7, height: 7, borderRadius: '50%',
                 background: '#10B981',
-                boxShadow: '0 0 8px #10B981',
-                animation: 'pulse-glow 2s ease infinite',
+                animation: 'pulse-dot 2.4s ease infinite',
               }} />
-              <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.72rem', color: '#94A3B8', letterSpacing: '0.06em' }}>
+              <Typography sx={{
+                fontFamily: '"JetBrains Mono", monospace',
+                fontSize: '0.7rem',
+                color: '#059669',
+                letterSpacing: '0.06em',
+                fontWeight: 600,
+              }}>
                 Open to opportunities
               </Typography>
             </Box>
@@ -178,31 +189,32 @@ const Hero = () => (
 
           {/* Headline */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.75, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <Typography
               component="h1"
               sx={{
                 fontFamily: '"Playfair Display", serif',
-                fontSize: { xs: '2.3rem', sm: '3rem' },
+                fontSize: { xs: '2.3rem', sm: '3.3rem', md: '4rem' },
                 fontWeight: 500,
-                lineHeight: 1.2,
-                letterSpacing: '0.03em',
-                color: '#F8FAFC',
+                lineHeight: 1.08,
+                letterSpacing: '-0.03em',
+                color: (theme) => theme.palette.mode === 'dark' ? '#FFFFFF' : '#0F172A',
                 mb: 2,
               }}
             >
               Hey, I'm{' '}
               <Box component="span" sx={{
-                background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`,
+                background: 'linear-gradient(125deg, #7C3AED 0%, #8B5CF6 45%, #06B6D4 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}>
-                Sahitya..
+                Sahitya
               </Box>
+              <Box component="span" sx={{ color: VIOLET, opacity: 0.5 }}>..</Box>
             </Typography>
           </motion.div>
 
@@ -210,19 +222,18 @@ const Hero = () => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.65, delay: 0.38, ease: [0.22, 1, 0.36, 1] }}
           >
             <Typography
-              variant="body1"
               sx={{
                 fontFamily: '"Playfair Display", serif',
                 fontStyle: 'italic',
-                mt: 2,
+                mt: 1,
                 mb: 4,
                 maxWidth: 560,
                 fontSize: { xs: '1.2rem', md: '1.55rem' },
                 lineHeight: 1.4,
-                color: '#94A3B8',
+                color: 'text.secondary',
                 letterSpacing: '0.03em',
               }}
             >
@@ -234,7 +245,7 @@ const Hero = () => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.52, ease: [0.22, 1, 0.36, 1] }}
           >
             <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
               <Button
@@ -246,14 +257,12 @@ const Hero = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<DescriptionOutlinedIcon />}
-                sx={{ px: 3, py: 1.4, fontSize: '0.95rem', fontFamily: '"Playfair Display", serif' }}
+                sx={{ px: 4, py: 1.4, fontSize: '0.95rem', fontFamily: '"Playfair Display", serif' }}
               >
                 View Resume
               </Button>
-
             </Box>
           </motion.div>
-
         </Grid>
 
         {/* Right column — floating code card */}
@@ -261,96 +270,127 @@ const Hero = () => (
           <motion.div
             initial={{ opacity: 0, x: 40, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            style={{ animation: 'float 7s ease-in-out infinite' }}
+            transition={{ duration: 0.85, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
-            <GlowCard sx={{ p: 3 }}>
-              {/* Terminal header */}
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2.5 }}>
-                {['#EF4444', '#F59E0B', '#10B981'].map((c) => (
-                  <Box key={c} sx={{ width: 10, height: 10, borderRadius: '50%', background: c, opacity: 0.85 }} />
-                ))}
-                <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.65rem', color: '#475569', ml: 1 }}>
-                  sahitya.codes ~ main
-                </Typography>
-              </Box>
+            <Box sx={{ animation: 'float 7s ease-in-out infinite' }}>
+              <GlowCard sx={{
+                p: 3,
+                background: isDark
+                  ? 'linear-gradient(160deg, #0D0D18 0%, #090912 100%)'
+                  : 'linear-gradient(160deg, #FAFAFC 0%, #F4F4F6 100%)',
+                borderColor: BORDER,
+                boxShadow: isDark
+                  ? '0 24px 64px rgba(0,0,0,0.22), 0 8px 24px rgba(124,58,237,0.12)'
+                  : '0 24px 64px rgba(15,23,42,0.08), 0 8px 24px rgba(124,58,237,0.04)',
+                '&:hover': { borderColor: 'rgba(124,58,237,0.35)' },
+              }}>
+                {/* Terminal header */}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mb: 2.5 }}>
+                  {['#EF4444', '#F59E0B', '#10B981'].map((c) => (
+                    <Box key={c} sx={{ width: 11, height: 11, borderRadius: '50%', background: c, opacity: 0.9 }} />
+                  ))}
+                  <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.63rem', color: isDark ? '#334155' : '#64748B', ml: 1.5 }}>
+                    sahitya.codes ~ main
+                  </Typography>
+                </Box>
 
-              {/* Code snippet */}
-              <Box sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.78rem', lineHeight: 1.85 }}>
-                {[
-                  { indent: 0, color: '#9D6FFF', text: 'const developer = {' },
-                  { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>name</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"Sahitya Kushwaha"</Box>,</> },
-                  { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>domain</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"sahitya.codes"</Box>,</> },
-                  { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>role</Box>: <Box component="span" sx={{ color: '#86EFAC' }}>"Full-Stack Dev"</Box>,</> },
-                  { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>stack</Box>: [<Box component="span" sx={{ color: '#86EFAC' }}>"React"</Box>, <Box component="span" sx={{ color: '#86EFAC' }}>"Node"</Box>],</> },
-                  { indent: 1, color: '#94A3B8', text: <><Box component="span" sx={{ color: '#38BDF8' }}>open</Box>: <Box component="span" sx={{ color: '#FB923C' }}>true</Box>,</> },
-                  { indent: 0, color: '#9D6FFF', text: '};' },
-                  { indent: 0, color: '#64748B', text: '' },
-                  { indent: 0, color: '#9D6FFF', text: <><Box component="span" sx={{ color: '#38BDF8' }}>console</Box>.log(<Box component="span" sx={{ color: '#86EFAC' }}>"Ready to build!"</Box>);</> },
-                ].map((line, i) => (
-                  <Box
-                    key={i}
-                    sx={{
-                      display: 'flex',
-                      '&::before': {
-                        content: `"${String(i + 1).padStart(2, ' ')}"`,
-                        color: '#334155',
-                        mr: 2,
-                        fontSize: '0.68rem',
-                        userSelect: 'none',
-                        flexShrink: 0,
-                      },
-                    }}
-                  >
-                    <Box component="span" sx={{ color: line.color, pl: line.indent * 2 }}>{line.text}</Box>
-                  </Box>
-                ))}
-              </Box>
+                {/* Code snippet */}
+                <Box sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.8rem', lineHeight: 1.9 }}>
+                  {[
+                    { indent: 0, color: isDark ? '#A78BFA' : '#7C3AED', text: 'const developer = {' },
+                    { indent: 1, color: isDark ? '#94A3B8' : '#475569', text: <><Box component="span" sx={{ color: isDark ? '#7DD3FC' : '#0284C7' }}>name</Box>: <Box component="span" sx={{ color: isDark ? '#86EFAC' : '#059669' }}>"Sahitya Kushwaha"</Box>,</> },
+                    { indent: 1, color: isDark ? '#94A3B8' : '#475569', text: <><Box component="span" sx={{ color: isDark ? '#7DD3FC' : '#0284C7' }}>domain</Box>: <Box component="span" sx={{ color: isDark ? '#86EFAC' : '#059669' }}>"sahitya.codes"</Box>,</> },
+                    { indent: 1, color: isDark ? '#94A3B8' : '#475569', text: <><Box component="span" sx={{ color: isDark ? '#7DD3FC' : '#0284C7' }}>role</Box>: <Box component="span" sx={{ color: isDark ? '#86EFAC' : '#059669' }}>"Full-Stack Dev"</Box>,</> },
+                    { indent: 1, color: isDark ? '#94A3B8' : '#475569', text: <><Box component="span" sx={{ color: isDark ? '#7DD3FC' : '#0284C7' }}>stack</Box>: [<Box component="span" sx={{ color: isDark ? '#86EFAC' : '#059669' }}>"React"</Box>, <Box component="span" sx={{ color: isDark ? '#86EFAC' : '#059669' }}>"Node"</Box>],</> },
+                    { indent: 1, color: isDark ? '#94A3B8' : '#475569', text: <><Box component="span" sx={{ color: isDark ? '#7DD3FC' : '#0284C7' }}>open</Box>: <Box component="span" sx={{ color: isDark ? '#FB923C' : '#D97706' }}>true</Box>,</> },
+                    { indent: 0, color: isDark ? '#A78BFA' : '#7C3AED', text: '};' },
+                    { indent: 0, color: isDark ? '#334155' : '#94A3B8', text: '' },
+                    { indent: 0, color: isDark ? '#A78BFA' : '#7C3AED', text: <><Box component="span" sx={{ color: isDark ? '#7DD3FC' : '#0284C7' }}>console</Box>.log(<Box component="span" sx={{ color: isDark ? '#86EFAC' : '#059669' }}>"Ready to build!"</Box>);</> },
+                  ].map((line, i) => (
+                    <Box
+                      key={i}
+                      sx={{
+                        display: 'flex',
+                        '&::before': {
+                          content: `"${String(i + 1).padStart(2, ' ')}"`,
+                          color: isDark ? '#334155' : '#94A3B8',
+                          mr: 2.5,
+                          fontSize: '0.68rem',
+                          userSelect: 'none',
+                          flexShrink: 0,
+                          minWidth: '18px',
+                        },
+                      }}
+                    >
+                      <Box component="span" sx={{ color: line.color, pl: line.indent * 1.5 }}>{line.text}</Box>
+                    </Box>
+                  ))}
+                </Box>
 
-              {/* Cursor blink */}
-              <Box sx={{
-                display: 'inline-block', width: '2px', height: '16px',
-                background: VIOLET_LIGHT, mt: 0.5, ml: 1,
-                animation: 'pulse-glow 1s step-end infinite',
-                verticalAlign: 'middle',
-              }} />
-            </GlowCard>
+                {/* Cursor blink */}
+                <Box sx={{
+                  display: 'inline-block', width: '2px', height: '15px',
+                  background: VIOLET_LIGHT, mt: 0.5, ml: 0.5,
+                  animation: 'cursor-blink 1.2s step-end infinite',
+                  verticalAlign: 'middle',
+                  borderRadius: '1px',
+                }} />
+              </GlowCard>
+            </Box>
           </motion.div>
         </Grid>
       </Grid>
 
-      {/* Stats bar */}
+      {/* Stats bar — card cells */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
+        transition={{ duration: 0.65, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
         <Box
           sx={{
-            mt: { xs: 8, md: 10 },
-            pt: 4,
-            pb: 4,
-            borderTop: `1px solid ${BORDER}`,
-            borderBottom: `1px solid ${BORDER}`,
+            mt: { xs: 6, md: 8 },
             display: 'grid',
             gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(4, 1fr)' },
             gap: 2,
           }}
         >
           {STATS.map(({ value, label }) => (
-            <Box key={label} sx={{ textAlign: 'center' }}>
+            <Box
+              key={label}
+              sx={{
+                textAlign: 'center',
+                py: 2.5,
+                px: 2,
+                borderRadius: '12px',
+                background: (theme) => theme.palette.mode === 'dark' ? '#10101A' : '#FFFFFF',
+                border: `1px solid ${BORDER}`,
+                boxShadow: (theme) => theme.palette.mode === 'dark'
+                  ? '0 4px 16px rgba(0,0,0,0.4)'
+                  : '0 2px 8px rgba(15,23,42,0.04)',
+                transition: 'all 0.25s ease',
+                '&:hover': {
+                  borderColor: 'rgba(124,58,237,0.3)',
+                  boxShadow: (theme) => theme.palette.mode === 'dark'
+                    ? `0 8px 24px ${alpha(VIOLET, 0.15)}`
+                    : '0 6px 20px rgba(124,58,237,0.08)',
+                  transform: 'translateY(-2px)',
+                },
+              }}
+            >
               <Typography sx={{
                 fontFamily: '"JetBrains Mono", monospace',
-                fontSize: { xs: '1.6rem', md: '2rem' },
+                fontSize: (theme) => theme.palette.mode === 'dark' ? { xs: '1.6rem', md: '2rem' } : { xs: '1.7rem', md: '2.1rem' },
                 fontWeight: 700,
-                background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #fff)`,
+                background: (theme) => theme.palette.mode === 'dark' ? `linear-gradient(135deg, ${VIOLET_LIGHT}, #fff)` : `linear-gradient(135deg, ${VIOLET} 0%, ${VIOLET_DARK} 100%)`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                lineHeight: 1.1,
               }}>
                 {value}
               </Typography>
-              <Typography variant="body2" sx={{ color: '#475569', mt: 0.25, fontSize: '0.8rem' }}>
+              <Typography sx={{ color: (theme) => theme.palette.mode === 'dark' ? 'text.secondary' : '#64748B', mt: 0.5, fontSize: (theme) => theme.palette.mode === 'dark' ? '0.8rem' : '0.78rem', fontWeight: (theme) => theme.palette.mode === 'dark' ? 400 : 500 }}>
                 {label}
               </Typography>
             </Box>
@@ -358,14 +398,18 @@ const Hero = () => (
         </Box>
       </motion.div>
     </Container>
-  </Box>
-);
+    </Box>
+  );
+};
 
 /* ─────────────────────────────────────────────────────────────
    FEATURED PROJECTS SECTION (slim teaser)
 ───────────────────────────────────────────────────────────── */
 const ProjectsSection = () => (
-  <Section id="projects" sx={{ borderTop: `1px solid ${BORDER}` }}>
+  <Section id="projects" sx={{
+    background: (theme) => theme.palette.mode === 'dark' ? 'transparent' : 'linear-gradient(180deg, #F8F7FF 0%, #FFFFFF 100%)',
+    borderTop: 'none',
+  }}>
     <SectionHeader
       label="Featured Work"
       title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value..</Box></>}
@@ -390,11 +434,11 @@ const ProjectsSection = () => (
                   </Typography>
                 </Box>
 
-                <Typography sx={{ fontSize: '0.78rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', mb: 1.5 }}>
+                <Typography sx={{ fontSize: '0.78rem', color: (theme) => theme.palette.mode === 'dark' ? project.accentLight : project.accent, fontFamily: '"JetBrains Mono", monospace', mb: 1.5 }}>
                   {project.subtitle}
                 </Typography>
 
-                <Typography variant="body2" sx={{ color: '#64748B', mb: 2.5, lineHeight: 1.75, fontSize: '0.88rem' }}>
+                <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2.5, lineHeight: 1.75, fontSize: '0.88rem' }}>
                   {project.desc}
                 </Typography>
 
@@ -438,15 +482,15 @@ const ProjectsSection = () => (
 
               <Grid size={{ xs: 12, md: 4 }}>
                 <Box sx={{
-                  background: 'rgba(255,255,255,0.02)',
+                  background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(15, 23, 42, 0.02)',
                   border: `1px solid ${BORDER}`,
                   borderRadius: '10px',
                   p: 2.5,
                 }}>
                   {project.stats.map(({ label, value }) => (
                     <Box key={label} sx={{ display: 'flex', justifyContent: 'space-between', py: 1, borderBottom: `1px solid ${BORDER}`, '&:last-child': { borderBottom: 'none', pb: 0 } }}>
-                      <Typography sx={{ fontSize: '0.75rem', color: '#475569', fontFamily: '"JetBrains Mono", monospace' }}>{label}</Typography>
-                      <Typography sx={{ fontSize: '0.75rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>{value}</Typography>
+                      <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', fontFamily: '"JetBrains Mono", monospace' }}>{label}</Typography>
+                      <Typography sx={{ fontSize: '0.75rem', color: (theme) => theme.palette.mode === 'dark' ? project.accentLight : project.accent, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>{value}</Typography>
                     </Box>
                   ))}
                 </Box>
@@ -477,6 +521,7 @@ const ProjectsSection = () => (
    GITHUB ACTIVITY SECTION
 ───────────────────────────────────────────────────────────── */
 const GitHubSection = () => {
+  const theme = useTheme();
   const GITHUB_USERNAME = 'sahitya1903';
   const GITHUB_STATS = [
     { label: 'Contributions', value: '1000+', color: '#10B981' },
@@ -486,7 +531,10 @@ const GitHubSection = () => {
   ];
 
   return (
-    <Section id="github" sx={{ borderTop: `1px solid ${BORDER}` }}>
+    <Section id="github" sx={{
+      background: (theme) => theme.palette.mode === 'dark' ? 'transparent' : 'linear-gradient(180deg, #FAFAFA 0%, #F8F7FF 100%)',
+      borderTop: 'none',
+    }}>
       <SectionHeader
         label="GitHub Activity"
         title={<>Open source <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>footprint..</Box></>}
@@ -505,7 +553,7 @@ const GitHubSection = () => {
                 }}>
                   {stat.value}
                 </Typography>
-                <Typography sx={{ fontSize: '0.78rem', color: '#475569' }}>
+                <Typography sx={{ fontSize: '0.78rem', color: 'text.secondary' }}>
                   {stat.label}
                 </Typography>
               </GlowCard>
@@ -518,8 +566,8 @@ const GitHubSection = () => {
         <GlowCard sx={{ p: 3, overflow: 'hidden' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5, flexWrap: 'wrap', gap: 1 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <GitHubIcon sx={{ color: '#94A3B8', fontSize: 20 }} />
-              <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.8rem', color: '#94A3B8' }}>
+              <GitHubIcon sx={{ color: 'text.secondary', fontSize: 20 }} />
+              <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.8rem', color: 'text.secondary' }}>
                 @{GITHUB_USERNAME}
               </Typography>
             </Box>
@@ -532,7 +580,7 @@ const GitHubSection = () => {
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              sx={{ fontSize: '0.75rem' }}
+              sx={{ fontSize: '0.78rem' }}
             >
               Visit Profile
             </Button>
@@ -543,7 +591,7 @@ const GitHubSection = () => {
             sx={{
               borderRadius: '8px',
               overflow: 'hidden',
-              background: 'rgba(255,255,255,0.02)',
+              background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(15, 23, 42, 0.02)',
               border: `1px solid ${BORDER}`,
               p: 2,
             }}
@@ -552,7 +600,7 @@ const GitHubSection = () => {
               component="img"
               src={`https://ghchart.rshah.org/7C3AED/${GITHUB_USERNAME}`}
               alt={`${GITHUB_USERNAME} GitHub contribution chart`}
-              onError={(e) => { e.target.style.display = 'none'; }}
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
               sx={{ width: '100%', height: 'auto', display: 'block', filter: 'opacity(0.9)', borderRadius: '4px' }}
             />
           </Box>
@@ -561,17 +609,23 @@ const GitHubSection = () => {
           <Box sx={{ mt: 3, display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2 }}>
             <Box
               component="img"
-              src={`https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${GITHUB_USERNAME}&layout=compact&theme=transparent`}
+              src={theme.palette.mode === 'dark'
+                ? `https://github-readme-stats-fast.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&hide_border=true&title_color=9D6FFF&text_color=94A3B8&icon_color=9D6FFF&bg_color=00000000`
+                : `https://github-readme-stats-fast.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&hide_border=true&title_color=7C3AED&text_color=475569&icon_color=7C3AED&bg_color=00000000`
+              }
               alt="GitHub Stats"
-              onError={(e) => { e.target.style.display = 'none'; }}
-              sx={{ width: '100%', height: '200px' }}
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              sx={{ width: '110%', height: '185px'}}
             />
             <Box
               component="img"
-              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=9D6FFF&text_color=94A3B8&bg_color=00000000`}
+              src={theme.palette.mode === 'dark'
+                ? `https://github-readme-stats-fast.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=9D6FFF&text_color=94A3B8&bg_color=00000000`
+                : `https://github-readme-stats-fast.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=7C3AED&text_color=475569&bg_color=00000000`
+              }
               alt="Top Languages"
-              onError={(e) => { e.target.style.display = 'none'; }}
-              sx={{ width: '100%', height: '200px' }}
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              sx={{ width: '100%', height: '185px'}}
             />
           </Box>
         </GlowCard>

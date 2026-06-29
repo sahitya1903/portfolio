@@ -44,7 +44,7 @@ const CursorGlow = () => {
         zIndex: 9999,
         opacity: 0,
         transition: 'opacity 0.3s ease',
-        mixBlendMode: 'screen',
+        mixBlendMode: (theme) => (theme.palette.mode === 'dark' ? 'screen' : 'multiply'),
       }}
     />
   );

@@ -7,7 +7,7 @@ import { alpha } from '@mui/material/styles';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 
 const SOCIAL_LINKS = [
-  { icon: <GitHubIcon sx={{ fontSize: 17 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub', color: '#F8FAFC' },
+  { icon: <GitHubIcon sx={{ fontSize: 17 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub', color: '#0F172A' },
   { icon: <LinkedInIcon sx={{ fontSize: 17 }} />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn', color: '#0A66C2' },
   { icon: <EmailIcon sx={{ fontSize: 17 }} />, href: 'mailto:sahitya7985@gmail.com', label: 'Email', color: VIOLET_LIGHT },
   {
@@ -29,6 +29,8 @@ const Footer = () => (
       position: 'relative',
       mt: 2,
       overflow: 'hidden',
+      background: (theme) => theme.palette.mode === 'dark' ? 'transparent' : 'linear-gradient(180deg, #F8F7FF 0%, #F3F4F6 100%)',
+      borderTop: `1px solid ${BORDER}`,
     }}
   >
     {/* Top gradient edge */}
@@ -68,7 +70,7 @@ const Footer = () => (
             fontFamily: '"Playfair Display", serif',
             fontSize: '1rem',
             fontWeight: 600,
-            color: '#94A3B8',
+            color: 'text.secondary',
             letterSpacing: '0.05em',
           }}>
             Sahitya Kushwaha
@@ -95,7 +97,7 @@ const Footer = () => (
         <Box sx={{
           display: 'flex', gap: 1.5, justifyContent: 'center', mt: 2, flexWrap: 'wrap',
         }}>
-          {SOCIAL_LINKS.map(({ icon, href, label, color }) => (
+           {SOCIAL_LINKS.map(({ icon, href, label, color }) => (
             <Box
               key={label}
               component="a"
@@ -108,27 +110,39 @@ const Footer = () => (
                 px: 1.5, py: 0.6,
                 borderRadius: '8px',
                 border: `1px solid ${BORDER}`,
-                background: 'rgba(255,255,255,0.02)',
+                background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(15, 23, 42, 0.02)',
                 textDecoration: 'none',
                 transition: 'all 0.25s ease',
                 cursor: 'pointer',
+                color: 'text.secondary',
                 '&:hover': {
-                  borderColor: alpha(color, 0.4),
-                  background: alpha(color, 0.06),
+                  borderColor: (theme) => {
+                    const resolvedColor = label === 'GitHub' && theme.palette.mode === 'dark' ? '#FFFFFF' : color;
+                    return alpha(resolvedColor, 0.4);
+                  },
+                  background: (theme) => {
+                    const resolvedColor = label === 'GitHub' && theme.palette.mode === 'dark' ? '#FFFFFF' : color;
+                    return alpha(resolvedColor, 0.08);
+                  },
+                  color: (theme) => {
+                    return label === 'GitHub' && theme.palette.mode === 'dark' ? '#FFFFFF' : color;
+                  },
                   transform: 'translateY(-2px)',
-                  boxShadow: `0 4px 20px ${alpha(color, 0.15)}`,
+                  boxShadow: (theme) => {
+                    const resolvedColor = label === 'GitHub' && theme.palette.mode === 'dark' ? '#FFFFFF' : color;
+                    return `0 4px 20px ${alpha(resolvedColor, 0.15)}`;
+                  },
                 },
               }}
             >
-              <Box sx={{ color: '#64748B', display: 'flex', alignItems: 'center', transition: 'color 0.25s', '.MuiBox-root:hover &': { color } }}>
+              <Box sx={{ color: 'inherit', display: 'flex', alignItems: 'center' }}>
                 {icon}
               </Box>
               <Typography sx={{
                 fontSize: '0.72rem',
                 fontWeight: 500,
-                color: '#64748B',
+                color: 'inherit',
                 fontFamily: '"Inter", sans-serif',
-                transition: 'color 0.25s',
               }}>
                 {label}
               </Typography>
@@ -156,7 +170,7 @@ const Footer = () => (
       }}>
         <Typography sx={{
           fontSize: '0.76rem',
-          color: '#94A3B8',
+          color: 'text.secondary',
           fontFamily: '"Playfair Display", serif',
           display: 'flex', alignItems: 'center', gap: 0.5,
         }}>
@@ -167,7 +181,7 @@ const Footer = () => (
 
         <Typography sx={{
           fontSize: '0.76rem',
-          color: '#94A3B8',
+          color: 'text.secondary',
           fontFamily: '"Playfair Display", serif',
           letterSpacing: '0.05em',
         }}>

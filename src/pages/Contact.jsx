@@ -91,12 +91,18 @@ const Contact = () => {
       <Box
         component="section"
         id="contact"
-        sx={{ py: { xs: 8, md: 12 }, position: 'relative', overflow: 'hidden', borderTop: `1px solid ${BORDER}` }}
+        sx={{
+          py: { xs: 8, md: 12 },
+          position: 'relative',
+          overflow: 'hidden',
+          background: (theme) => theme.palette.mode === 'dark' ? 'transparent' : 'linear-gradient(180deg, #FFFFFF 0%, #F8F7FF 100%)',
+          borderTop: 'none',
+        }}
       >        {/* Ambient orb */}
         <Box sx={{
           position: 'absolute', bottom: '10%', left: '-5%',
           width: 500, height: 500, borderRadius: '50%',
-          background: `radial-gradient(circle, ${alpha(VIOLET, 0.1)} 0%, transparent 65%)`,
+          background: `radial-gradient(circle, ${alpha(VIOLET, 0.05)} 0%, transparent 65%)`,
           filter: 'blur(60px)', pointerEvents: 'none',
         }} />
 
@@ -122,7 +128,7 @@ const Contact = () => {
                     <Typography variant="h3" sx={{ color: 'text.primary', mb: 1.5 }}>
                       Message sent!
                     </Typography>
-                    <Typography variant="body1" sx={{ color: '#64748B', mb: 4 }}>
+                    <Typography variant="body1" sx={{ color: 'text.secondary', mb: 4 }}>
                       Thanks for reaching out. I'll get back to you within 24 hours.
                     </Typography>
                     <Button
@@ -147,7 +153,7 @@ const Contact = () => {
                     >
                       Send a message
                     </Typography>
-                    <Typography sx={{ fontSize: '0.82rem', color: '#475569', mb: 3.5 }}>
+                    <Typography sx={{ fontSize: '0.82rem', color: 'text.secondary', mb: 3.5 }}>
                       Fill in the details below and I'll get back to you soon.
                     </Typography>
 

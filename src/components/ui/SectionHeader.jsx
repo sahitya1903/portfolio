@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import { alpha } from '@mui/material/styles';
-import { VIOLET, VIOLET_LIGHT } from '../../theme/theme';
+import { VIOLET, VIOLET_LIGHT, VIOLET_DARK } from '../../theme/theme';
 
 /**
  * SectionHeader — animated label + heading + optional subtext.
@@ -27,31 +27,37 @@ const SectionHeader = ({ label, title, subtitle, align = 'center', sx = {} }) =>
             display: 'inline-flex',
             alignItems: 'center',
             gap: 1,
-            mb: 2,
-            px: 1.5,
-            py: 0.5,
-            borderRadius: '6px',
-            border: `1px solid ${alpha(VIOLET, 0.3)}`,
-            background: alpha(VIOLET, 0.08),
+            mb: 2.5,
+            px: 2,
+            py: 0.6,
+            borderRadius: '100px',
+            border: (theme) => theme.palette.mode === 'dark'
+              ? `1px solid ${alpha(VIOLET, 0.3)}`
+              : `1px solid ${alpha(VIOLET, 0.2)}`,
+            background: (theme) => theme.palette.mode === 'dark'
+              ? alpha(VIOLET, 0.08)
+              : alpha(VIOLET, 0.06),
           }}
         >
           <Box
             sx={{
-              width: 6,
-              height: 6,
+              width: 5,
+              height: 5,
               borderRadius: '50%',
-              background: VIOLET_LIGHT,
-              animation: 'pulse-glow 2s ease-in-out infinite',
+              background: (theme) => theme.palette.mode === 'dark' ? VIOLET_LIGHT : VIOLET,
+              animation: (theme) => theme.palette.mode === 'dark' ? 'pulse-glow 2s ease-in-out infinite' : 'none',
+              opacity: (theme) => theme.palette.mode === 'dark' ? 1 : 0.8,
             }}
           />
           <Typography
             variant="caption"
             sx={{
-              color: VIOLET_LIGHT,
+              color: (theme) => theme.palette.mode === 'dark' ? VIOLET_LIGHT : VIOLET_DARK,
               fontFamily: '"JetBrains Mono", monospace',
               fontSize: '0.68rem',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
+              fontWeight: 700,
             }}
           >
             {label}
@@ -62,8 +68,8 @@ const SectionHeader = ({ label, title, subtitle, align = 'center', sx = {} }) =>
       <Typography
         variant="h2"
         sx={{
-          color: 'text.primary',
-          mb: subtitle ? 2 : 0,
+          color: (theme) => theme.palette.mode === 'dark' ? 'text.primary' : '#0F172A',
+          mb: subtitle ? (theme => theme.palette.mode === 'dark' ? 2 : 2.5) : 0,
           ...(isCenter && { textAlign: 'center' }),
         }}
       >
@@ -74,10 +80,11 @@ const SectionHeader = ({ label, title, subtitle, align = 'center', sx = {} }) =>
         <Typography
           variant="body1"
           sx={{
-            color: 'text.secondary',
+            color: (theme) => theme.palette.mode === 'dark' ? 'text.secondary' : '#64748B',
             maxWidth: isCenter ? 560 : '100%',
             ...(isCenter && { mx: 'auto' }),
             lineHeight: 1.8,
+            fontSize: (theme) => theme.palette.mode === 'dark' ? '1rem' : '1.05rem',
           }}
         >
           {subtitle}

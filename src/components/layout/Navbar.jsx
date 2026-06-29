@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import {
   AppBar,
@@ -11,9 +11,12 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import { alpha } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
+import { ThemeModeContext } from '../../App';
 
 const NAV_LINKS = [
   { label: 'Skills', path: '/#skills' },
@@ -32,10 +35,11 @@ const Logo = () => (
       sx={{
         width: 32,
         height: 32,
-        borderRadius: '8px',
-        boxShadow: `0 0 16px ${alpha(VIOLET, 0.3)}`,
+        filter: (theme) => theme.palette.mode === 'dark'
+          ? 'drop-shadow(0 0 8px rgba(157, 111, 255, 0.45))'
+          : 'drop-shadow(0 0 1px rgba(0, 0, 0, 0.3)) drop-shadow(0 1px 4px rgba(124, 58, 237, 0.3))',
         flexShrink: 0,
-        objectFit: 'cover'
+        objectFit: 'contain'
       }}
     />
     <Box>
@@ -57,6 +61,7 @@ const Logo = () => (
 );
 
 const Navbar = () => {
+  const { mode, toggleColorMode } = useContext(ThemeModeContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { pathname } = useLocation();
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 20 });
@@ -126,12 +131,14 @@ const Navbar = () => {
           left: 0,
           right: 0,
           zIndex: 1200,
-          background: scrolled
-            ? `rgba(5,5,8,0.85)`
+          background: (theme) => scrolled
+            ? (theme.palette.mode === 'dark' ? 'rgba(5,5,8,0.88)' : 'rgba(255,255,255,0.88)')
             : 'transparent',
-          backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
-          borderBottom: scrolled ? `1px solid ${BORDER}` : 'none',
-          transition: 'background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease',
+          backdropFilter: scrolled ? 'blur(24px) saturate(200%)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(200%)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(15,23,42,0.08)' : 'none',
+          boxShadow: scrolled ? '0 1px 16px rgba(15,23,42,0.06)' : 'none',
+          transition: 'all 0.4s cubic-bezier(0.22,1,0.36,1)',
         }}
       >
         <Container maxWidth="lg">
@@ -147,68 +154,104 @@ const Navbar = () => {
 
             {/* Desktop nav — right-aligned */}
             <Box
-              component="nav"
               sx={{
                 display: { xs: 'none', md: 'flex' },
                 alignItems: 'center',
-                gap: 0.5,
-                background: alpha(VIOLET, 0.04),
-                border: `1px solid ${alpha(VIOLET, 0.1)}`,
-                borderRadius: '12px',
-                px: 0.75,
-                py: 0.4,
+                gap: 1.5,
               }}
             >
-              {NAV_LINKS.map(({ label, path }) => {
-                const sectionId = path.startsWith('/#') ? path.slice(2) : null;
-                const isActive = sectionId
-                  ? (pathname === '/' && activeSection === sectionId)
-                  : pathname === path;
-                return (
-                  <Box
-                    key={path}
-                    component={RouterLink}
-                    to={path}
-                    id={`nav-${label.toLowerCase()}`}
-                    sx={{
-                      position: 'relative',
-                      textDecoration: 'none',
-                      fontFamily: '"Inter", sans-serif',
-                      color: isActive ? '#F8FAFC' : '#64748B',
-                      fontWeight: isActive ? 600 : 500,
-                      fontSize: '0.85rem',
-                      px: 2,
-                      py: 0.75,
-                      borderRadius: '8px',
-                      background: isActive ? alpha(VIOLET, 0.15) : 'transparent',
-                      transition: 'all 0.25s ease',
-                      '&:hover': {
-                        color: '#F8FAFC',
-                        background: alpha(VIOLET, 0.08),
-                      },
-                    }}
-                  >
-                    {label}
-                  </Box>
-                );
-              })}
+              <Box
+                component="nav"
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 0.5,
+                  background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(15,23,42,0.03)',
+                  border: (theme) => theme.palette.mode === 'dark' ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(15,23,42,0.08)',
+                  borderRadius: '12px',
+                  px: 0.75,
+                  py: 0.4,
+                }}
+              >
+                {NAV_LINKS.map(({ label, path }) => {
+                  const sectionId = path.startsWith('/#') ? path.slice(2) : null;
+                  const isActive = sectionId
+                    ? (pathname === '/' && activeSection === sectionId)
+                    : pathname === path;
+                  return (
+                    <Box
+                      key={path}
+                      component={RouterLink}
+                      to={path}
+                      id={`nav-${label.toLowerCase()}`}
+                      sx={{
+                        position: 'relative',
+                        textDecoration: 'none',
+                        fontFamily: '"Inter", sans-serif',
+                        color: isActive ? VIOLET : (theme) => theme.palette.text.secondary,
+                        fontWeight: isActive ? 600 : 500,
+                        fontSize: '0.85rem',
+                        px: 2,
+                        py: 0.75,
+                        borderRadius: '8px',
+                        background: isActive ? alpha(VIOLET, 0.08) : 'transparent',
+                        transition: 'all 0.22s ease',
+                        '&:hover': {
+                          color: (theme) => theme.palette.text.primary,
+                          background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.04)',
+                        },
+                      }}
+                    >
+                      {label}
+                    </Box>
+                  );
+                })}
+              </Box>
+
+              {/* Theme Toggle Button */}
+              <IconButton
+                id="theme-toggle"
+                onClick={toggleColorMode}
+                sx={{
+                  border: (theme) => theme.palette.mode === 'dark' ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(15,23,42,0.08)',
+                  borderRadius: '10px',
+                  width: 38,
+                  height: 38,
+                }}
+              >
+                {mode === 'dark' ? <WbSunnyOutlinedIcon sx={{ fontSize: 20, color: '#FBBF24' }} /> : <DarkModeOutlinedIcon sx={{ fontSize: 20, color: '#475569' }} />}
+              </IconButton>
             </Box>
 
-            {/* Hamburger — mobile only */}
-            <IconButton
-              id="nav-menu-toggle"
-              onClick={() => setDrawerOpen(true)}
-              sx={{
-                display: { xs: 'flex', md: 'none' },
-                color: 'text.secondary',
-                border: `1px solid ${BORDER}`,
-                borderRadius: '10px',
-                width: 38,
-                height: 38,
-              }}
-            >
-              <MenuIcon sx={{ fontSize: 20 }} />
-            </IconButton>
+            {/* Mobile Actions — hamburger + theme toggle */}
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+              <IconButton
+                id="theme-toggle-mobile"
+                onClick={toggleColorMode}
+                sx={{
+                  border: (theme) => theme.palette.mode === 'dark' ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(15,23,42,0.08)',
+                  borderRadius: '10px',
+                  width: 38,
+                  height: 38,
+                }}
+              >
+                {mode === 'dark' ? <WbSunnyOutlinedIcon sx={{ fontSize: 20, color: '#FBBF24' }} /> : <DarkModeOutlinedIcon sx={{ fontSize: 20, color: '#475569' }} />}
+              </IconButton>
+
+              <IconButton
+                id="nav-menu-toggle"
+                onClick={() => setDrawerOpen(true)}
+                sx={{
+                  color: 'text.secondary',
+                  border: `1px solid ${BORDER}`,
+                  borderRadius: '10px',
+                  width: 38,
+                  height: 38,
+                }}
+              >
+                <MenuIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+            </Box>
           </Box>
         </Container>
       </AppBar>
@@ -222,11 +265,11 @@ const Navbar = () => {
           paper: {
             sx: {
               width: 300,
-              background: 'rgba(13, 13, 20, 0.68)',
+              background: (theme) => theme.palette.mode === 'dark' ? 'rgba(13, 13, 20, 0.68)' : 'rgba(255, 255, 255, 0.95)',
               backdropFilter: 'blur(24px)',
               WebkitBackdropFilter: 'blur(24px)',
-              borderLeft: '1px solid rgba(255, 255, 255, 0.08)',
-              boxShadow: '-16px 0 48px rgba(0, 0, 0, 0.24)',
+              borderLeft: (theme) => theme.palette.mode === 'dark' ? '1px solid rgba(255, 255, 255, 0.08)' : `1px solid ${theme.palette.divider}`,
+              boxShadow: (theme) => theme.palette.mode === 'dark' ? '-16px 0 48px rgba(0, 0, 0, 0.24)' : '-16px 0 48px rgba(15, 23, 42, 0.06)',
             },
           },
         }}
@@ -237,7 +280,7 @@ const Navbar = () => {
           <IconButton
             onClick={() => setDrawerOpen(false)}
             sx={{
-              color: '#94A3B8',
+              color: 'text.secondary',
               border: `1px solid ${alpha(VIOLET, 0.2)}`,
               background: alpha(VIOLET, 0.06),
               borderRadius: '10px',
@@ -247,7 +290,7 @@ const Navbar = () => {
               '&:hover': {
                 background: alpha(VIOLET, 0.12),
                 borderColor: alpha(VIOLET, 0.4),
-                color: '#F8FAFC',
+                color: (theme) => theme.palette.mode === 'dark' ? '#F8FAFC' : '#0F172A',
               },
             }}
           >
@@ -296,7 +339,7 @@ const Navbar = () => {
                   sx={{
                     fontFamily: '"JetBrains Mono", monospace',
                     fontSize: '0.7rem',
-                    color: isActive ? VIOLET_LIGHT : '#334155',
+                    color: (theme) => isActive ? VIOLET_LIGHT : theme.palette.text.secondary,
                     fontWeight: 600,
                   }}
                 >
@@ -307,7 +350,7 @@ const Navbar = () => {
                     fontFamily: '"Inter", sans-serif',
                     fontSize: '0.95rem',
                     fontWeight: isActive ? 600 : 500,
-                    color: isActive ? '#F8FAFC' : '#94A3B8',
+                    color: (theme) => isActive ? (theme.palette.mode === 'dark' ? '#F8FAFC' : VIOLET_LIGHT) : theme.palette.text.secondary,
                   }}
                 >
                   {label}

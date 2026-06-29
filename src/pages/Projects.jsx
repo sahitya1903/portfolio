@@ -234,10 +234,10 @@ const ProjectCard = ({ project, index }) => (
               {project.title}
             </Typography>
           </Box>
-          <Typography sx={{ fontSize: '0.78rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', mb: 1.5 }}>
+          <Typography sx={{ fontSize: '0.78rem', color: (theme) => theme.palette.mode === 'dark' ? project.accentLight : project.accent, fontFamily: '"JetBrains Mono", monospace', mb: 1.5 }}>
             {project.subtitle}
           </Typography>
-          <Typography variant="body2" sx={{ color: '#64748B', mb: 2.5, lineHeight: 1.75, fontSize: '0.88rem' }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2.5, lineHeight: 1.75, fontSize: '0.88rem' }}>
             {project.desc}
           </Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
@@ -280,7 +280,7 @@ const ProjectCard = ({ project, index }) => (
         {/* Right: Stats */}
         <Grid size={{ xs: 12, md: 4 }}>
           <Box sx={{
-            background: 'rgba(255,255,255,0.02)',
+            background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(15, 23, 42, 0.02)',
             border: `1px solid ${BORDER}`,
             borderRadius: '10px',
             p: 2.5,
@@ -294,10 +294,10 @@ const ProjectCard = ({ project, index }) => (
                   '&:last-child': { borderBottom: 'none', pb: 0 },
                 }}
               >
-                <Typography sx={{ fontSize: '0.75rem', color: '#475569', fontFamily: '"JetBrains Mono", monospace' }}>
+                <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', fontFamily: '"JetBrains Mono", monospace' }}>
                   {label}
                 </Typography>
-                <Typography sx={{ fontSize: '0.75rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
+                <Typography sx={{ fontSize: '0.75rem', color: (theme) => theme.palette.mode === 'dark' ? project.accentLight : project.accent, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
                   {value}
                 </Typography>
               </Box>
@@ -333,7 +333,7 @@ const Projects = () => {
         <Box sx={{
           position: 'absolute', top: '10%', right: '-5%',
           width: 500, height: 500, borderRadius: '50%',
-          background: `radial-gradient(circle, ${alpha(VIOLET, 0.1)} 0%, transparent 65%)`,
+          background: (theme) => `radial-gradient(circle, ${alpha(VIOLET, theme.palette.mode === 'dark' ? 0.1 : 0.05)} 0%, transparent 65%)`,
           filter: 'blur(60px)', pointerEvents: 'none',
         }} />
 
@@ -364,8 +364,8 @@ const Projects = () => {
                       fontWeight: isActive ? 600 : 400,
                       cursor: 'pointer',
                       background: isActive ? alpha(VIOLET, 0.2) : 'transparent',
-                      color: isActive ? VIOLET_LIGHT : '#64748B',
-                      border: `1px solid ${isActive ? alpha(VIOLET, 0.6) : BORDER}`,
+                      color: (theme) => isActive ? (theme.palette.mode === 'dark' ? VIOLET_LIGHT : VIOLET) : theme.palette.text.secondary,
+                      border: (theme) => `1px solid ${isActive ? alpha(VIOLET, 0.6) : theme.palette.divider}`,
                       borderRadius: '8px',
                       height: 32,
                       transition: 'all 0.2s ease',
@@ -384,7 +384,7 @@ const Projects = () => {
 
           {/* Results count */}
           <Box sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
-            <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.72rem', color: '#475569' }}>
+            <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '0.72rem', color: 'text.secondary' }}>
               {filtered.length} project{filtered.length !== 1 ? 's' : ''} found
             </Typography>
             {activeFilter !== 'All' && (
@@ -421,7 +421,7 @@ const Projects = () => {
                   exit={{ opacity: 0 }}
                 >
                   <GlowCard sx={{ p: 6, textAlign: 'center' }}>
-                    <Typography sx={{ color: '#475569', fontFamily: '"JetBrains Mono", monospace', fontSize: '0.85rem' }}>
+                    <Typography sx={{ color: 'text.secondary', fontFamily: '"JetBrains Mono", monospace', fontSize: '0.85rem' }}>
                       No projects match this filter.
                     </Typography>
                   </GlowCard>

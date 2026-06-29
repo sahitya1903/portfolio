@@ -111,7 +111,12 @@ const FadeIn = ({ children, delay = 0, y = 24 }) => (
 ───────────────────────────────────────────────────────────── */
 const About = () => (
   <>    {/* ── SKILLS ── */}
-    <Box component="section" id="skills" sx={{ pt: { xs: 4, md: 6 }, pb: { xs: 8, md: 12 }, borderBottom: `1px solid ${BORDER}` }}>
+    <Box component="section" id="skills" sx={{
+      pt: { xs: 4, md: 6 },
+      pb: { xs: 8, md: 12 },
+      background: (theme) => theme.palette.mode === 'dark' ? 'transparent' : 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%)',
+      borderBottom: 'none',
+    }}>
       <Container maxWidth="lg">
         <SectionHeader
           label="Skills"
@@ -148,7 +153,7 @@ const About = () => (
                     {skillGroup.items.map((skill) => (
                       <Box key={skill.name}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.75 }}>
-                          <Typography sx={{ fontSize: '0.82rem', color: '#94A3B8', fontWeight: 500 }}>
+                          <Typography sx={{ fontSize: '0.82rem', color: 'text.secondary', fontWeight: 500 }}>
                             {skill.name}
                           </Typography>
                           <Typography sx={{ fontSize: '0.72rem', color: skillGroup.color, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
@@ -160,7 +165,7 @@ const About = () => (
                           value={skill.level}
                           sx={{
                             height: 4, borderRadius: 2,
-                            background: 'rgba(255,255,255,0.04)',
+                            background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.04)' : 'rgba(15, 23, 42, 0.04)',
                             '& .MuiLinearProgress-bar': {
                               background: `linear-gradient(90deg, ${skillGroup.color}, ${alpha(skillGroup.color, 0.6)})`,
                               borderRadius: 2,
@@ -179,7 +184,10 @@ const About = () => (
     </Box>
 
     {/* ── EXPERIENCE & MILESTONES (two-column timeline) ── */}
-    <Box component="section" id="experience" sx={{ py: { xs: 8, md: 12 } }}>
+    <Box component="section" id="experience" sx={{
+      py: { xs: 8, md: 12 },
+      background: (theme) => theme.palette.mode === 'dark' ? 'transparent' : 'linear-gradient(180deg, #FFFFFF 0%, #F9F8FF 100%)',
+    }}>
       <Container maxWidth="lg">
         <SectionHeader
           label="Experience"
@@ -226,7 +234,7 @@ const About = () => (
                     <Typography sx={{ fontSize: '0.78rem', color: exp.color, fontFamily: '"JetBrains Mono", monospace', mb: 0.5 }}>
                       {exp.org} · {exp.period}
                     </Typography>
-                    <Typography sx={{ fontSize: '0.83rem', color: '#64748B', lineHeight: 1.65 }}>
+                    <Typography sx={{ fontSize: '0.83rem', color: 'text.secondary', lineHeight: 1.65 }}>
                       {exp.desc}
                     </Typography>
                   </Box>
@@ -249,7 +257,7 @@ const About = () => (
                       width: 12, height: 12, borderRadius: '50%',
                       background: exp.color,
                       boxShadow: `0 0 14px ${alpha(exp.color, 0.75)}`,
-                      border: '2px solid rgba(5,5,8,1)',
+                      border: (theme) => `2px solid ${theme.palette.background.default}`,
                     }} />
                   </Box>
 
