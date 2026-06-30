@@ -17,6 +17,18 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 
 ---
 
+## ⚡ Performance & Optimization Measures
+
+To ensure a highly responsive user experience and instant page loads, the following optimizations have been implemented:
+
+- **Local Font Bundling:** Swapped remote render-blocking Google Fonts connections (`Inter`, `JetBrains Mono`) for local npm bundling via `@fontsource` packages. This reduces DNS/TLS overhead and prevents visual layout stutter on first paint.
+- **Route & Component Code-Splitting:** Implemented `React.lazy` and `<Suspense>` chunk splitting for the `/projects` archive route. This defers loading the full projects gallery and associated filters until requested, keeping the landing page bundle lightweight for fast initial paint.
+- **GPU-Accelerated Cursor Spotlight:** Refactored the custom cursor glow spotlight to use GPU compositor-friendly `translate3d` transforms and `willChange: transform` layout hints. This avoids document reflows (re-layouts) on mouse movement, yielding smooth interaction.
+- **Off-Main-Thread Scrollspy:** Swapped out the window scroll event listener (which ran expensive loop calculations calling `getBoundingClientRect()` on every scroll frame) for a browser-native `IntersectionObserver` Scrollspy, completely eliminating layout thrashing.
+- **CLS Prevention & Image Lazy Loading:** Configured native `loading="lazy"` on remote GitHub stats widgets and declared static height boxes to reserve space, preventing Cumulative Layout Shifts (CLS) when dynamic SVGs finish loading.
+
+---
+
 ## 📂 Curated Projects
 
 - **[Roomify](https://github.com/sahitya1903/roomify)** (`Full-Stack` | `Dockerized` | `Live`): Full-stack hotel booking and sharing platform built with MVC. Features Passport.js auth, Mapbox geocoding, Cloudinary image resizing, Docker containerization, and GitHub Actions CI/CD to Docker Hub.

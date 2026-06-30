@@ -33,13 +33,15 @@ const Logo = () => (
       src="/logo.png"
       alt="SK Logo"
       sx={{
-        width: 32,
-        height: 32,
+        width: 36,
+        height: 36,
+        imageRendering: '-webkit-optimize-contrast',
         filter: (theme) => theme.palette.mode === 'dark'
-          ? 'drop-shadow(0 0 8px rgba(157, 111, 255, 0.45))'
-          : 'drop-shadow(0 0 1px rgba(0, 0, 0, 0.3)) drop-shadow(0 1px 4px rgba(124, 58, 237, 0.3))',
+          ? 'brightness(1.15) contrast(1.1) drop-shadow(0 0 8px rgba(139, 92, 246, 0.5))'
+          : 'brightness(0.95) contrast(1.05) drop-shadow(0 2px 6px rgba(15, 23, 42, 0.22))',
         flexShrink: 0,
-        objectFit: 'contain'
+        objectFit: 'contain',
+        transition: 'all 0.3s ease',
       }}
     />
     <Box>
@@ -76,44 +78,63 @@ const Navbar = () => {
   // Scrollspy logic to automatically highlight section on scroll
   useEffect(() => {
     if (pathname !== '/') {
-      const timeoutId = setTimeout(() => setActiveSection(''), 0);
-      return () => clearTimeout(timeoutId);
+      const timer = setTimeout(() => setActiveSection(''), 0);
+      return () => clearTimeout(timer);
     }
 
     const sectionIds = ['skills', 'experience', 'projects', 'github', 'contact'];
+    
+    // Store intersection ratios for active visibility comparison
+    const visibilities = {};
 
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 160; // offset for navbar and breathing room
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          visibilities[entry.target.id] = entry.isIntersecting ? entry.intersectionRect.height : 0;
+        });
 
-      let currentSection = '';
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.getBoundingClientRect().top + window.scrollY;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            currentSection = id;
-            break;
+        // Find the section that has the maximum visible height on the screen
+        let maxVisibleHeight = 0;
+        let activeId = '';
+        
+        sectionIds.forEach((id) => {
+          if (visibilities[id] > maxVisibleHeight) {
+            maxVisibleHeight = visibilities[id];
+            activeId = id;
           }
+        });
+
+        // Handle case where we are at the bottom of the page (force active contact section)
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 120) {
+          activeId = 'contact';
         }
-      }
 
-      // Check if we are at the bottom of the page (within 50px tolerance)
-      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 50) {
-        currentSection = 'contact';
+        setActiveSection(activeId);
+      },
+      {
+        root: null, // viewport
+        rootMargin: '-10% 0px -20% 0px', // focused area: middle part of the screen
+        threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], // trigger at multiple steps
       }
+    );
 
-      setActiveSection((prev) => (prev !== currentSection ? currentSection : prev));
+    // Start observing sections
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    // Fallback: check scroll position at the bottom of page on window scroll
+    const handleScrollFallback = () => {
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        setActiveSection('contact');
+      }
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    // Defer initial run to avoid synchronous state update in effect body
-    const timeoutId = setTimeout(handleScroll, 0);
+    window.addEventListener('scroll', handleScrollFallback, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScrollFallback);
     };
   }, [pathname]);
 
@@ -132,10 +153,10 @@ const Navbar = () => {
           right: 0,
           zIndex: 1200,
           background: (theme) => scrolled
-            ? (theme.palette.mode === 'dark' ? 'rgba(5,5,8,0.88)' : 'rgba(255,255,255,0.88)')
+            ? (theme.palette.mode === 'dark' ? 'rgba(5,5,8,0.85)' : 'rgba(248,247,255,0.85)')
             : 'transparent',
-          backdropFilter: scrolled ? 'blur(24px) saturate(200%)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(200%)' : 'none',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
           borderBottom: scrolled ? '1px solid rgba(15,23,42,0.08)' : 'none',
           boxShadow: scrolled ? '0 1px 16px rgba(15,23,42,0.06)' : 'none',
           transition: 'all 0.4s cubic-bezier(0.22,1,0.36,1)',

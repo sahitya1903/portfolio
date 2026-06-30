@@ -1,6 +1,4 @@
 import { GlobalStyles as MuiGlobalStyles } from '@mui/material';
-import { alpha } from '@mui/material/styles';
-import { VIOLET } from './theme';
 
 const GlobalStyles = () => (
   <MuiGlobalStyles
@@ -13,6 +11,13 @@ const GlobalStyles = () => (
           '::view-transition-old(root), ::view-transition-new(root)': {
             animation: 'none',
             mixBlendMode: 'normal',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            height: '100vh',
+            width: '100vw',
+            objectFit: 'cover',
+            objectPosition: 'top',
           },
           ':root': {
             '--border-color': 'rgba(255,255,255,0.07)',
@@ -170,6 +175,13 @@ const GlobalStyles = () => (
           '::view-transition-old(root), ::view-transition-new(root)': {
             animation: 'none',
             mixBlendMode: 'normal',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            height: '100vh',
+            width: '100vw',
+            objectFit: 'cover',
+            objectPosition: 'top',
           },
           ':root': {
             '--border-color': 'rgba(15, 23, 42, 0.08)',

@@ -1,14 +1,16 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, useState, useMemo, createContext } from 'react';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+import { useEffect, useState, useMemo, createContext, lazy, Suspense } from 'react';
+import { ThemeProvider, CssBaseline, Box, CircularProgress } from '@mui/material';
 import { createAppTheme } from './theme/theme';
 import GlobalStyles from './theme/GlobalStyles';
 import CursorGlow from './components/ui/CursorGlow';
 import PageWrapper from './components/layout/PageWrapper';
 import Home from './pages/Home';
-import Projects from './pages/Projects';
 
-// Create Theme Mode Context
+// Route-level code splitting
+const Projects = lazy(() => import('./pages/Projects'));
+
+// eslint-disable-next-line react-refresh/only-export-components
 export const ThemeModeContext = createContext({ toggleColorMode: () => {}, mode: 'light' });
 
 // Scroll to hash element utility
@@ -102,7 +104,15 @@ function App() {
           <PageWrapper>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
+              <Route path="/projects" element={
+                <Suspense fallback={
+                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
+                    <CircularProgress size={40} />
+                  </Box>
+                }>
+                  <Projects />
+                </Suspense>
+              } />
             </Routes>
           </PageWrapper>
         </BrowserRouter>

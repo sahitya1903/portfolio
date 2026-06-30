@@ -9,7 +9,7 @@ import { alpha } from '@mui/material/styles';
 
 import GlowCard from '../components/ui/GlowCard';
 import SectionHeader from '../components/ui/SectionHeader';
-import { VIOLET, VIOLET_LIGHT, BORDER } from '../theme/theme';
+import { VIOLET, VIOLET_LIGHT } from '../theme/theme';
 
 /* ─────────────────────────────────────────────────────────────
    EMAILJS CONFIG  — set these in your .env file:
@@ -30,7 +30,7 @@ const FadeIn = ({ children, delay = 0, y = 24 }) => (
   <motion.div
     initial={{ opacity: 0, y }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: '-60px' }}
+    viewport={{ once: true, margin: '0px 0px 150px 0px' }}
     transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
   >
     {children}
@@ -92,10 +92,10 @@ const Contact = () => {
         component="section"
         id="contact"
         sx={{
-          py: { xs: 8, md: 12 },
+          py: { xs: 5, md: 7 },
           position: 'relative',
           overflow: 'hidden',
-          background: (theme) => theme.palette.mode === 'dark' ? 'transparent' : 'linear-gradient(180deg, #FFFFFF 0%, #F8F7FF 100%)',
+          background: 'transparent',
           borderTop: 'none',
         }}
       >        {/* Ambient orb */}

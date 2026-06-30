@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Button, Grid, Chip } from '@mui/material';
+import { Box, Container, Typography, Button, Grid, CircularProgress } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
@@ -7,12 +7,13 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import About from './About';
-import Contact from './Contact';
 import GlowCard from '../components/ui/GlowCard';
 import TechBadge from '../components/ui/TechBadge';
 import SectionHeader from '../components/ui/SectionHeader';
 import { VIOLET, VIOLET_LIGHT, VIOLET_DARK, BORDER } from '../theme/theme';
+
+import About from './About';
+import Contact from './Contact';
 
 /* ─────────────────────────────────────────────────────────────
    CONSTANTS
@@ -87,7 +88,7 @@ const FadeIn = ({ children, delay = 0, y = 24, sx = {} }) => (
   <motion.div
     initial={{ opacity: 0, y }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: '-60px' }}
+    viewport={{ once: true, margin: '0px 0px 150px 0px' }}
     transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
     style={{ ...sx }}
   >
@@ -102,7 +103,7 @@ const Section = ({ children, id, sx = {} }) => (
   <Box
     component="section"
     id={id}
-    sx={{ py: { xs: 8, md: 12 }, ...sx }}
+    sx={{ py: { xs: 5, md: 7 }, ...sx }}
   >
     <Container maxWidth="lg">
       {children}
@@ -127,42 +128,40 @@ const Hero = () => {
         alignItems: 'center',
         position: 'relative',
         overflow: 'hidden',
-        background: isDark
-          ? 'transparent'
-          : 'linear-gradient(160deg, #FAFAFF 0%, #FFFFFF 50%, #F8F5FF 100%)',
+        background: 'transparent',
       }}
     >
-    {/* Ambient orb — right */}
-    <Box sx={{
-      position: 'absolute', top: '10%', right: '-5%',
-      width: 650, height: 650,
-      borderRadius: '50%',
-      background: 'radial-gradient(circle, rgba(124,58,237,0.07) 0%, rgba(139,92,246,0.03) 45%, transparent 70%)',
-      filter: 'blur(50px)',
-      animation: 'float 9s ease-in-out infinite',
-      pointerEvents: 'none',
-    }} />
-    {/* Ambient orb — left */}
-    <Box sx={{
-      position: 'absolute', bottom: '5%', left: '-10%',
-      width: 500, height: 500,
-      borderRadius: '50%',
-      background: 'radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 65%)',
-      filter: 'blur(50px)',
-      animation: 'floatReverse 11s ease-in-out infinite',
-      pointerEvents: 'none',
-    }} />
+      {/* Ambient orb — right */}
+      <Box sx={{
+        position: 'absolute', top: '10%', right: '-5%',
+        width: 650, height: 650,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(124,58,237,0.07) 0%, rgba(139,92,246,0.03) 45%, transparent 70%)',
+        filter: 'blur(50px)',
+        animation: 'float 9s ease-in-out infinite',
+        pointerEvents: 'none',
+      }} />
+      {/* Ambient orb — left */}
+      <Box sx={{
+        position: 'absolute', bottom: '5%', left: '-10%',
+        width: 500, height: 500,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 65%)',
+        filter: 'blur(50px)',
+        animation: 'floatReverse 11s ease-in-out infinite',
+        pointerEvents: 'none',
+      }} />
 
-    <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, pt: { xs: 8, md: 0 } }}>
-      <Grid container spacing={4} alignItems="center">
-        <Grid size={{ xs: 12, md: 7 }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, pt: { xs: 8, md: 0 } }}>
+        <Grid container spacing={4} alignItems="center">
+          <Grid size={{ xs: 12, md: 7 }}>
 
-          {/* Status badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          >
+            {/* Status badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.02, ease: [0.22, 1, 0.36, 1] }}
+            >
             <Box sx={{
               display: 'inline-flex', alignItems: 'center', gap: 1,
               px: 2, py: 0.75, mb: 3,
@@ -186,12 +185,12 @@ const Hero = () => {
               </Typography>
             </Box>
           </motion.div>
-
+ 
           {/* Headline */}
           <motion.div
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           >
             <Typography
               component="h1"
@@ -217,12 +216,12 @@ const Hero = () => {
               <Box component="span" sx={{ color: VIOLET, opacity: 0.5 }}>..</Box>
             </Typography>
           </motion.div>
-
+ 
           {/* Sub headline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
             <Typography
               sx={{
@@ -245,7 +244,7 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.52, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
               <Button
@@ -270,7 +269,7 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, x: 40, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.85, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           >
             <Box sx={{ animation: 'float 7s ease-in-out infinite' }}>
               <GlowCard sx={{
@@ -345,7 +344,7 @@ const Hero = () => {
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.65, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
         <Box
           sx={{
@@ -407,7 +406,7 @@ const Hero = () => {
 ───────────────────────────────────────────────────────────── */
 const ProjectsSection = () => (
   <Section id="projects" sx={{
-    background: (theme) => theme.palette.mode === 'dark' ? 'transparent' : 'linear-gradient(180deg, #F8F7FF 0%, #FFFFFF 100%)',
+    background: 'transparent',
     borderTop: 'none',
   }}>
     <SectionHeader
@@ -532,7 +531,7 @@ const GitHubSection = () => {
 
   return (
     <Section id="github" sx={{
-      background: (theme) => theme.palette.mode === 'dark' ? 'transparent' : 'linear-gradient(180deg, #FAFAFA 0%, #F8F7FF 100%)',
+      background: 'transparent',
       borderTop: 'none',
     }}>
       <SectionHeader
@@ -543,7 +542,7 @@ const GitHubSection = () => {
       <Grid container spacing={3} sx={{ mb: 4 }}>
         {GITHUB_STATS.map((stat, i) => (
           <Grid key={stat.label} size={{ xs: 6, md: 3 }}>
-            <FadeIn delay={i * 0.08}>
+            <FadeIn delay={i * 0.04}>
               <GlowCard sx={{ p: 3, textAlign: 'center' }}>
                 <Typography sx={{
                   fontFamily: '"JetBrains Mono", monospace',
@@ -594,10 +593,12 @@ const GitHubSection = () => {
               background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(15, 23, 42, 0.02)',
               border: `1px solid ${BORDER}`,
               p: 2,
+              minHeight: '120px',
             }}
           >
             <Box
               component="img"
+              loading="lazy"
               src={`https://ghchart.rshah.org/7C3AED/${GITHUB_USERNAME}`}
               alt={`${GITHUB_USERNAME} GitHub contribution chart`}
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
@@ -609,23 +610,39 @@ const GitHubSection = () => {
           <Box sx={{ mt: 3, display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2 }}>
             <Box
               component="img"
+              loading="lazy"
               src={theme.palette.mode === 'dark'
-                ? `https://github-readme-stats-fast.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&hide_border=true&title_color=9D6FFF&text_color=94A3B8&icon_color=9D6FFF&bg_color=00000000`
-                : `https://github-readme-stats-fast.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&hide_border=true&title_color=7C3AED&text_color=475569&icon_color=7C3AED&bg_color=00000000`
+                ? `https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${GITHUB_USERNAME}&theme=transparent`
+                : `https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${GITHUB_USERNAME}&theme=transparent`
               }
               alt="GitHub Stats"
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
-              sx={{ width: '110%', height: '185px'}}
+              sx={{
+                width: '100%',
+                maxWidth: { xs: '380px', sm: '450px' },
+                height: { xs: '140px', sm: '185px' },
+                display: 'block',
+                margin: '0 auto',
+                objectFit: 'contain',
+              }}
             />
             <Box
               component="img"
+              loading="lazy"
               src={theme.palette.mode === 'dark'
-                ? `https://github-readme-stats-fast.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=9D6FFF&text_color=94A3B8&bg_color=00000000`
-                : `https://github-readme-stats-fast.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=7C3AED&text_color=475569&bg_color=00000000`
+                ? `https://github-readme-stats-fast.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=006AFF&text_color=94A3B8&bg_color=00000000`
+                : `https://github-readme-stats-fast.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=006AFF&text_color=475569&icon_color=006AFF&bg_color=00000000`
               }
               alt="Top Languages"
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
-              sx={{ width: '100%', height: '185px'}}
+              sx={{
+                width: '100%',
+                maxWidth: { xs: '380px', sm: '380px' },
+                height: { xs: '140px', sm: '185px' },
+                display: 'block',
+                margin: '0 auto',
+                objectFit: 'contain',
+              }}
             />
           </Box>
         </GlowCard>

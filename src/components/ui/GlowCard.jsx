@@ -7,19 +7,29 @@ import { VIOLET, BORDER } from '../../theme/theme';
  * GlowCard — glassmorphism card that dynamically swaps style behaviors
  * to keep the dark mode EXACTLY as it was initially, and premium light theme for light mode.
  */
-const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => (
-  <Box
-    component={motion.div}
-    whileHover={{ y: (theme) => theme.palette.mode === 'dark' ? -4 : -3 }}
-    transition={{ type: 'spring', stiffness: 320, damping: 20 }}
-    sx={{
+const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  return (
+    <Box
+      component={motion.div}
+      whileHover={{ y: (theme) => theme.palette.mode === 'dark' ? -4 : -3 }}
+      transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+      onMouseMove={handleMouseMove}
+      sx={{
       position: 'relative',
       borderRadius: '16px',
       border: `1px solid ${BORDER}`,
       background: (theme) =>
         theme.palette.mode === 'dark'
-          ? 'linear-gradient(145deg, rgba(13,13,20,0.95) 0%, rgba(9,9,15,0.98) 100%)'
-          : '#FFFFFF',
+          ? 'linear-gradient(145deg, rgba(10,10,15,0.8) 0%, rgba(5,5,8,0.9) 100%)'
+          : 'linear-gradient(145deg, rgba(255,255,255,0.85) 0%, rgba(248,247,255,0.75) 100%)',
       backdropFilter: 'blur(12px)',
       overflow: 'hidden',
       boxShadow: (theme) =>
@@ -77,6 +87,7 @@ const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => (
       {children}
     </Box>
   </Box>
-);
+  );
+};
 
 export default GlowCard;
