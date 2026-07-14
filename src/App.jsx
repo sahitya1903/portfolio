@@ -11,7 +11,7 @@ import Home from './pages/Home';
 const Projects = lazy(() => import('./pages/Projects'));
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const ThemeModeContext = createContext({ toggleColorMode: () => {}, mode: 'light' });
+export const ThemeModeContext = createContext({ toggleColorMode: () => { }, mode: 'light' });
 
 // Scroll to hash element utility
 function ScrollToHash() {
@@ -41,8 +41,8 @@ function App() {
     if (saved === 'light' || saved === 'dark') {
       return saved;
     }
-    // Default to light as approved by user
-    return 'light';
+    // Default to dark as approved by user
+    return 'dark';
   });
 
   const colorMode = useMemo(() => ({
