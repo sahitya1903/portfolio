@@ -1,5 +1,6 @@
-import { Box, Container, Typography, Grid, LinearProgress } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Box, Container, Typography, Grid } from '@mui/material';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import WorkIcon from '@mui/icons-material/Work';
@@ -49,7 +50,7 @@ const EXPERIENCES = [
   {
     type: 'achievement',
     icon: <StarIcon />,
-    title: '1000+ GitHub Contributions',
+    title: '1100+ GitHub Contributions',
     org: 'github.com/sahitya1903',
     period: '2024 – Present',
     desc: 'Consistent open-source contributor with an active streak spanning multiple projects — web, AI/ML, and tooling.',
@@ -93,6 +94,67 @@ const SKILLS = [
 ];
 
 /* ─────────────────────────────────────────────────────────────
+   ANIMATED SKILL BAR
+───────────────────────────────────────────────────────────── */
+const AnimatedSkillBar = ({ skill, color, delay = 0 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
+
+  return (
+    <Box ref={ref}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.75 }}>
+        <Typography sx={{ fontSize: '0.82rem', color: 'text.secondary', fontWeight: 500 }}>
+          {skill.name}
+        </Typography>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.4, delay: delay + 0.3 }}
+        >
+          <Typography sx={{ fontSize: '0.72rem', color, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
+            {skill.level}%
+          </Typography>
+        </motion.div>
+      </Box>
+      {/* Track */}
+      <Box sx={{ position: 'relative', height: '5px', borderRadius: '3px', background: 'rgba(255,255,255,0.04)' }}>
+        {/* Animated fill */}
+        <motion.div
+          initial={{ width: 0 }}
+          animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
+          transition={{ duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: '100%',
+            borderRadius: '3px',
+            background: `linear-gradient(90deg, ${color}, ${alpha(color, 0.6)})`,
+            boxShadow: `0 0 8px ${alpha(color, 0.4)}`,
+          }}
+        />
+        {/* Glow tip */}
+        <motion.div
+          initial={{ left: 0, opacity: 0 }}
+          animate={isInView ? { left: `calc(${skill.level}% - 4px)`, opacity: 1 } : { left: 0, opacity: 0 }}
+          transition={{ duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            background: color,
+            boxShadow: `0 0 10px ${alpha(color, 0.8)}`,
+          }}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+/* ─────────────────────────────────────────────────────────────
    FADE-IN WRAPPER
 ───────────────────────────────────────────────────────────── */
 const FadeIn = ({ children, delay = 0, y = 24 }) => (
@@ -125,7 +187,7 @@ const About = () => (
         <Grid container spacing={3}>
           {SKILLS.map((skillGroup, gi) => (
             <Grid key={skillGroup.category} size={{ xs: 12, sm: 6, md: 3 }}>
-              <FadeIn delay={gi * 0.15}>
+              <FadeIn delay={gi * 0.12}>
                 <GlowCard sx={{ p: 3, height: '100%' }} glowIntensity={0.6}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
                     <Box sx={{
@@ -150,29 +212,13 @@ const About = () => (
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-                    {skillGroup.items.map((skill) => (
-                      <Box key={skill.name}>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.75 }}>
-                          <Typography sx={{ fontSize: '0.82rem', color: 'text.secondary', fontWeight: 500 }}>
-                            {skill.name}
-                          </Typography>
-                          <Typography sx={{ fontSize: '0.72rem', color: skillGroup.color, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
-                            {skill.level}%
-                          </Typography>
-                        </Box>
-                        <LinearProgress
-                          variant="determinate"
-                          value={skill.level}
-                          sx={{
-                            height: 4, borderRadius: 2,
-                            background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.04)' : 'rgba(15, 23, 42, 0.04)',
-                            '& .MuiLinearProgress-bar': {
-                              background: `linear-gradient(90deg, ${skillGroup.color}, ${alpha(skillGroup.color, 0.6)})`,
-                              borderRadius: 2,
-                            },
-                          }}
-                        />
-                      </Box>
+                    {skillGroup.items.map((skill, si) => (
+                      <AnimatedSkillBar
+                        key={skill.name}
+                        skill={skill}
+                        color={skillGroup.color}
+                        delay={gi * 0.12 + si * 0.08}
+                      />
                     ))}
                   </Box>
                 </GlowCard>
@@ -194,16 +240,26 @@ const About = () => (
           title={<>Journey & <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #10B981)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Milestones..</Box></>}
         />
         <Box sx={{ position: 'relative' }}>
-          {/* Vertical timeline line — perfectly centred */}
-          <Box sx={{
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            top: 0, bottom: 0,
-            width: '1px',
-            background: `linear-gradient(to bottom, transparent, ${alpha(VIOLET, 0.5)}, transparent)`,
-            display: { xs: 'none', md: 'block' },
-          }} />
+          {/* Vertical timeline line — animated draw */}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: '0px 0px -100px 0px' }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              top: 0,
+              bottom: 0,
+              width: '1px',
+              transformOrigin: 'top',
+              background: `linear-gradient(to bottom, transparent, ${alpha(VIOLET, 0.6)}, ${alpha(VIOLET, 0.3)}, transparent)`,
+              display: 'block',
+            }}
+          />
+          {/* Hide line on mobile via wrapper */}
+          <Box sx={{ '& > div > div:first-of-type': { display: { xs: 'none', md: 'block' } } }} />
 
           {EXPERIENCES.map((exp, i) => {
             const isLeft = i % 2 === 0;
@@ -216,6 +272,7 @@ const About = () => (
                     border: `1px solid ${alpha(exp.color, 0.3)}`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: exp.color,
+                    boxShadow: `0 0 16px ${alpha(exp.color, 0.2)}`,
                   }}>
                     {exp.icon}
                   </Box>
@@ -246,18 +303,27 @@ const About = () => (
               <FadeIn key={i} delay={i * 0.1}>
                 {/* ── Desktop: two-column symmetric layout ── */}
                 <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', mb: 4 }}>
-                  {/* Left half — flex:1 ensures equal widths */}
+                  {/* Left half */}
                   <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', pr: 3 }}>
                     {isLeft ? card : null}
                   </Box>
 
-                  {/* Center dot — fixed 48px strip keeps line perfectly centred */}
-                  <Box sx={{ width: 48, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
+                  {/* Center dot with pulsing ring */}
+                  <Box sx={{ width: 48, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1, position: 'relative' }}>
+                    {/* Pulsing outer ring */}
+                    <Box sx={{
+                      position: 'absolute',
+                      width: 24, height: 24, borderRadius: '50%',
+                      border: `1px solid ${alpha(exp.color, 0.5)}`,
+                      animation: 'pulse-ring 2s ease-out infinite',
+                    }} />
+                    {/* Solid dot */}
                     <Box sx={{
                       width: 12, height: 12, borderRadius: '50%',
                       background: exp.color,
-                      boxShadow: `0 0 14px ${alpha(exp.color, 0.75)}`,
-                      border: (theme) => `2px solid ${theme.palette.background.default}`,
+                      boxShadow: `0 0 16px ${alpha(exp.color, 0.8)}, 0 0 4px ${exp.color}`,
+                      border: `2px solid #050508`,
+                      zIndex: 1,
                     }} />
                   </Box>
 
@@ -269,7 +335,17 @@ const About = () => (
 
                 {/* ── Mobile: single-column stack ── */}
                 <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 3 }}>
-                  {card}
+                  {/* Left colored border on mobile */}
+                  <Box sx={{ display: 'flex', gap: 0 }}>
+                    <Box sx={{
+                      width: '3px', flexShrink: 0,
+                      background: `linear-gradient(to bottom, ${exp.color}, ${alpha(exp.color, 0.2)})`,
+                      borderRadius: '4px',
+                      mr: 2,
+                      my: 0.5,
+                    }} />
+                    <Box sx={{ flex: 1 }}>{card}</Box>
+                  </Box>
                 </Box>
               </FadeIn>
             );

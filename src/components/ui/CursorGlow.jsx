@@ -37,17 +37,17 @@ const CursorGlow = () => {
         position: 'fixed',
         left: 0,
         top: 0,
-        width: '600px',
-        height: '600px',
+        width: '700px',
+        height: '700px',
         borderRadius: '50%',
-        background: `radial-gradient(circle, ${alpha(VIOLET, 0.06)} 0%, transparent 65%)`,
+        background: `radial-gradient(circle, ${alpha(VIOLET, 0.07)} 0%, transparent 65%)`,
         transform: 'translate3d(-50%, -50%, 0)',
         pointerEvents: 'none',
         zIndex: 9999,
         opacity: 0,
         transition: 'opacity 0.3s ease',
         willChange: 'transform',
-        mixBlendMode: (theme) => (theme.palette.mode === 'dark' ? 'screen' : 'multiply'),
+        mixBlendMode: 'screen',
       }}
     />
   );

@@ -7,7 +7,7 @@ import { alpha } from '@mui/material/styles';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 
 const SOCIAL_LINKS = [
-  { icon: <GitHubIcon sx={{ fontSize: 17 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub', color: '#0F172A' },
+  { icon: <GitHubIcon sx={{ fontSize: 17 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub', color: '#FFFFFF' },
   { icon: <LinkedInIcon sx={{ fontSize: 17 }} />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn', color: '#0A66C2' },
   { icon: <EmailIcon sx={{ fontSize: 17 }} />, href: 'mailto:sahitya7985@gmail.com', label: 'Email', color: VIOLET_LIGHT },
   {
@@ -35,27 +35,25 @@ const Footer = () => (
       position: 'relative',
       pb: 0,
       borderTop: `1px solid ${BORDER}`,
-      background: (theme) => theme.palette.mode === 'dark'
-        ? 'transparent'
-        : 'linear-gradient(180deg, #FFFFFF 0%, #F8F7FF 100%)',
+      background: 'transparent',
       overflow: 'hidden',
     }}
   >
-    {/* Ambient Glow */}
+    {/* Ambient Glow — stronger */}
     <Box sx={{
       position: 'absolute',
-      top: '-40px', left: '50%', transform: 'translateX(-50%)',
-      width: 400, height: 120,
+      top: '-60px', left: '50%', transform: 'translateX(-50%)',
+      width: 600, height: 200,
       borderRadius: '50%',
-      background: `radial-gradient(ellipse, ${alpha(VIOLET, 0.08)} 0%, transparent 70%)`,
-      filter: 'blur(30px)',
+      background: `radial-gradient(ellipse, ${alpha(VIOLET, 0.12)} 0%, transparent 70%)`,
+      filter: 'blur(40px)',
       pointerEvents: 'none',
     }} />
 
     <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
 
       {/* ── Main footer content ── */}
-      <Box sx={{ pt: 1.5, pb: 0, textAlign: 'center' }}>
+      <Box sx={{ pt: 2, pb: 0, textAlign: 'center' }}>
 
         {/* Brand mark */}
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, mb: 0.5 }}>
@@ -63,7 +61,7 @@ const Footer = () => (
           <Box sx={{
             width: 8, height: 8, borderRadius: '50%',
             background: VIOLET_LIGHT,
-            boxShadow: `0 0 10px ${alpha(VIOLET_LIGHT, 0.7)}`,
+            boxShadow: `0 0 12px ${alpha(VIOLET_LIGHT, 0.8)}`,
             animation: 'pulse-glow 2.5s ease infinite',
           }} />
           <Typography sx={{
@@ -83,7 +81,7 @@ const Footer = () => (
           sx={{
             fontFamily: '"JetBrains Mono", monospace',
             fontSize: '0.75rem',
-            color: alpha(VIOLET_LIGHT, 0.6),
+            color: alpha(VIOLET_LIGHT, 0.55),
             textDecoration: 'none',
             letterSpacing: '0.06em',
             transition: 'color 0.2s',
@@ -95,9 +93,9 @@ const Footer = () => (
 
         {/* Social links row */}
         <Box sx={{
-          display: 'flex', gap: 1.5, justifyContent: 'center', mt: 1.25, flexWrap: 'wrap',
+          display: 'flex', gap: 1.5, justifyContent: 'center', mt: 1.5, flexWrap: 'wrap',
         }}>
-           {SOCIAL_LINKS.map(({ icon, href, label, color }) => (
+          {SOCIAL_LINKS.map(({ icon, href, label, color }) => (
             <Box
               key={label}
               component="a"
@@ -110,28 +108,17 @@ const Footer = () => (
                 px: 1.5, py: 0.6,
                 borderRadius: '8px',
                 border: `1px solid ${BORDER}`,
-                background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(15, 23, 42, 0.02)',
+                background: 'rgba(255,255,255,0.02)',
                 textDecoration: 'none',
                 transition: 'all 0.25s ease',
                 cursor: 'pointer',
                 color: 'text.secondary',
                 '&:hover': {
-                  borderColor: (theme) => {
-                    const resolvedColor = label === 'GitHub' && theme.palette.mode === 'dark' ? '#FFFFFF' : color;
-                    return alpha(resolvedColor, 0.4);
-                  },
-                  background: (theme) => {
-                    const resolvedColor = label === 'GitHub' && theme.palette.mode === 'dark' ? '#FFFFFF' : color;
-                    return alpha(resolvedColor, 0.08);
-                  },
-                  color: (theme) => {
-                    return label === 'GitHub' && theme.palette.mode === 'dark' ? '#FFFFFF' : color;
-                  },
+                  borderColor: alpha(color, 0.45),
+                  background: alpha(color, 0.08),
+                  color,
                   transform: 'translateY(-2px)',
-                  boxShadow: (theme) => {
-                    const resolvedColor = label === 'GitHub' && theme.palette.mode === 'dark' ? '#FFFFFF' : color;
-                    return `0 4px 20px ${alpha(resolvedColor, 0.15)}`;
-                  },
+                  boxShadow: `0 4px 20px ${alpha(color, 0.18)}`,
                 },
               }}
             >
@@ -165,6 +152,7 @@ const Footer = () => (
           fontFamily: '"Playfair Display", serif',
           display: 'flex', alignItems: 'center', gap: 0.5,
           textAlign: 'center',
+          opacity: 0.6,
         }}>
           © {new Date().getFullYear()} · Designed & built with
           <FavoriteIcon sx={{ fontSize: 11, color: '#EF4444', mx: 0.25 }} />

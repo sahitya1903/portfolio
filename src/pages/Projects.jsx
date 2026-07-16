@@ -204,7 +204,7 @@ const ALL_PROJECTS = [
   }
 ];
 
-const FILTERS = ['All', 'Full-Stack', 'AI / ML', 'DevOps', 'Frontend', 'DSA', 'Mini Projects'];
+const FILTER_KEYS = ['All', 'Full-Stack', 'AI / ML', 'DevOps', 'Frontend', 'DSA', 'Mini Projects'];
 
 /* ─────────────────────────────────────────────────────────────
    PROJECT CARD
@@ -233,8 +233,22 @@ const ProjectCard = ({ project, index }) => (
             >
               {project.title}
             </Typography>
+            {/* Index badge */}
+            <Box component="span" sx={{
+              fontFamily: '"JetBrains Mono", monospace',
+              fontSize: '0.62rem',
+              color: project.accent,
+              border: `1px solid ${alpha(project.accent, 0.3)}`,
+              background: alpha(project.accent, 0.06),
+              px: 1, py: 0.25,
+              borderRadius: '4px',
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+            }}>
+              {String(index + 1).padStart(2, '0')}
+            </Box>
           </Box>
-          <Typography sx={{ fontSize: '0.78rem', color: (theme) => theme.palette.mode === 'dark' ? project.accentLight : project.accent, fontFamily: '"JetBrains Mono", monospace', mb: 1.5 }}>
+          <Typography sx={{ fontSize: '0.78rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', mb: 1.5 }}>
             {project.subtitle}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2.5, lineHeight: 1.75, fontSize: '0.88rem' }}>
@@ -280,7 +294,7 @@ const ProjectCard = ({ project, index }) => (
         {/* Right: Stats */}
         <Grid size={{ xs: 12, md: 4 }}>
           <Box sx={{
-            background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(15, 23, 42, 0.02)',
+            background: 'rgba(255,255,255,0.02)',
             border: `1px solid ${BORDER}`,
             borderRadius: '10px',
             p: 2.5,
@@ -297,7 +311,7 @@ const ProjectCard = ({ project, index }) => (
                 <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', fontFamily: '"JetBrains Mono", monospace' }}>
                   {label}
                 </Typography>
-                <Typography sx={{ fontSize: '0.75rem', color: (theme) => theme.palette.mode === 'dark' ? project.accentLight : project.accent, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
+                <Typography sx={{ fontSize: '0.75rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
                   {value}
                 </Typography>
               </Box>
@@ -319,6 +333,14 @@ const Projects = () => {
     ? ALL_PROJECTS
     : ALL_PROJECTS.filter((p) => p.category.includes(activeFilter));
 
+  // Count projects per filter for badges
+  const filterCounts = FILTER_KEYS.reduce((acc, key) => {
+    acc[key] = key === 'All'
+      ? ALL_PROJECTS.length
+      : ALL_PROJECTS.filter((p) => p.category.includes(key)).length;
+    return acc;
+  }, {});
+
   return (
     <Box component="main">
       <Box
@@ -332,8 +354,14 @@ const Projects = () => {
         {/* Ambient orb */}
         <Box sx={{
           position: 'absolute', top: '10%', right: '-5%',
-          width: 500, height: 500, borderRadius: '50%',
-          background: (theme) => `radial-gradient(circle, ${alpha(VIOLET, theme.palette.mode === 'dark' ? 0.1 : 0.05)} 0%, transparent 65%)`,
+          width: 600, height: 600, borderRadius: '50%',
+          background: `radial-gradient(circle, ${alpha(VIOLET, 0.1)} 0%, transparent 65%)`,
+          filter: 'blur(60px)', pointerEvents: 'none',
+        }} />
+        <Box sx={{
+          position: 'absolute', bottom: '5%', left: '-8%',
+          width: 450, height: 450, borderRadius: '50%',
+          background: `radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 65%)`,
           filter: 'blur(60px)', pointerEvents: 'none',
         }} />
 
@@ -341,22 +369,39 @@ const Projects = () => {
           <SectionHeader
             label="All Work"
             title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value..</Box></>}
-            // subtitle="A complete showcase of everything I've built — from full-stack web apps to AI/ML systems."
           />
 
-          {/* Filter chips */}
+          {/* Filter chips with count badges */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, justifyContent: 'center', mb: 6 }}>
-              {FILTERS.map((filter) => {
+              {FILTER_KEYS.map((filter) => {
                 const isActive = activeFilter === filter;
+                const count = filterCounts[filter];
                 return (
                   <Chip
                     key={filter}
-                    label={filter}
+                    label={
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                        <span>{filter}</span>
+                        <Box component="span" sx={{
+                          fontSize: '0.6rem',
+                          background: isActive ? alpha(VIOLET, 0.3) : 'rgba(255,255,255,0.06)',
+                          color: isActive ? VIOLET_LIGHT : 'text.secondary',
+                          px: 0.75, py: 0.1,
+                          borderRadius: '4px',
+                          fontWeight: 700,
+                          minWidth: '18px',
+                          textAlign: 'center',
+                          lineHeight: 1.5,
+                        }}>
+                          {count}
+                        </Box>
+                      </Box>
+                    }
                     onClick={() => setActiveFilter(filter)}
                     sx={{
                       fontFamily: '"JetBrains Mono", monospace',
@@ -364,16 +409,17 @@ const Projects = () => {
                       fontWeight: isActive ? 600 : 400,
                       cursor: 'pointer',
                       background: isActive ? alpha(VIOLET, 0.2) : 'transparent',
-                      color: (theme) => isActive ? (theme.palette.mode === 'dark' ? VIOLET_LIGHT : VIOLET) : theme.palette.text.secondary,
-                      border: (theme) => `1px solid ${isActive ? alpha(VIOLET, 0.6) : theme.palette.divider}`,
+                      color: isActive ? VIOLET_LIGHT : 'text.secondary',
+                      border: `1px solid ${isActive ? alpha(VIOLET, 0.6) : 'rgba(255,255,255,0.07)'}`,
                       borderRadius: '8px',
-                      height: 32,
+                      height: 34,
                       transition: 'all 0.2s ease',
-                      boxShadow: isActive ? `0 0 12px ${alpha(VIOLET, 0.25)}` : 'none',
+                      boxShadow: isActive ? `0 0 16px ${alpha(VIOLET, 0.3)}` : 'none',
                       '&:hover': {
-                        background: alpha(VIOLET, 0.1),
+                        background: alpha(VIOLET, 0.12),
                         color: VIOLET_LIGHT,
-                        borderColor: alpha(VIOLET, 0.4),
+                        borderColor: alpha(VIOLET, 0.45),
+                        transform: 'translateY(-1px)',
                       },
                     }}
                   />
@@ -421,6 +467,14 @@ const Projects = () => {
                   exit={{ opacity: 0 }}
                 >
                   <GlowCard sx={{ p: 6, textAlign: 'center' }}>
+                    <Typography sx={{
+                      fontFamily: '"JetBrains Mono", monospace',
+                      fontSize: '2rem',
+                      mb: 1.5,
+                      opacity: 0.3,
+                    }}>
+                      ¯\_(ツ)_/¯
+                    </Typography>
                     <Typography sx={{ color: 'text.secondary', fontFamily: '"JetBrains Mono", monospace', fontSize: '0.85rem' }}>
                       No projects match this filter.
                     </Typography>

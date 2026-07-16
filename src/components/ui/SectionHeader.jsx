@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import { alpha } from '@mui/material/styles';
-import { VIOLET, VIOLET_LIGHT, VIOLET_DARK } from '../../theme/theme';
+import { VIOLET, VIOLET_LIGHT } from '../../theme/theme';
 
 /**
  * SectionHeader — animated label + heading + optional subtext.
@@ -31,12 +31,8 @@ const SectionHeader = ({ label, title, subtitle, align = 'center', sx = {} }) =>
             px: 2,
             py: 0.6,
             borderRadius: '100px',
-            border: (theme) => theme.palette.mode === 'dark'
-              ? `1px solid ${alpha(VIOLET, 0.3)}`
-              : `1px solid ${alpha(VIOLET, 0.2)}`,
-            background: (theme) => theme.palette.mode === 'dark'
-              ? alpha(VIOLET, 0.08)
-              : alpha(VIOLET, 0.06),
+            border: `1px solid ${alpha(VIOLET, 0.3)}`,
+            background: alpha(VIOLET, 0.08),
           }}
         >
           <Box
@@ -44,15 +40,14 @@ const SectionHeader = ({ label, title, subtitle, align = 'center', sx = {} }) =>
               width: 5,
               height: 5,
               borderRadius: '50%',
-              background: (theme) => theme.palette.mode === 'dark' ? VIOLET_LIGHT : VIOLET,
-              animation: (theme) => theme.palette.mode === 'dark' ? 'pulse-glow 2s ease-in-out infinite' : 'none',
-              opacity: (theme) => theme.palette.mode === 'dark' ? 1 : 0.8,
+              background: VIOLET_LIGHT,
+              animation: 'pulse-glow 2s ease-in-out infinite',
             }}
           />
           <Typography
             variant="caption"
             sx={{
-              color: (theme) => theme.palette.mode === 'dark' ? VIOLET_LIGHT : VIOLET_DARK,
+              color: VIOLET_LIGHT,
               fontFamily: '"JetBrains Mono", monospace',
               fontSize: '0.68rem',
               letterSpacing: '0.12em',
@@ -68,8 +63,8 @@ const SectionHeader = ({ label, title, subtitle, align = 'center', sx = {} }) =>
       <Typography
         variant="h2"
         sx={{
-          color: (theme) => theme.palette.mode === 'dark' ? 'text.primary' : '#0F172A',
-          mb: subtitle ? (theme => theme.palette.mode === 'dark' ? 2 : 2.5) : 0,
+          color: 'text.primary',
+          mb: subtitle ? 2 : 0,
           ...(isCenter && { textAlign: 'center' }),
         }}
       >
@@ -80,11 +75,11 @@ const SectionHeader = ({ label, title, subtitle, align = 'center', sx = {} }) =>
         <Typography
           variant="body1"
           sx={{
-            color: (theme) => theme.palette.mode === 'dark' ? 'text.secondary' : '#64748B',
+            color: 'text.secondary',
             maxWidth: isCenter ? 560 : '100%',
             ...(isCenter && { mx: 'auto' }),
             lineHeight: 1.8,
-            fontSize: (theme) => theme.palette.mode === 'dark' ? '1rem' : '1.05rem',
+            fontSize: '1rem',
           }}
         >
           {subtitle}
