@@ -1,6 +1,6 @@
-# 🌌 Premium Full-Stack Developer Portfolio
+# 🌌 Developer Portfolio
 
-A modern, highly interactive personal portfolio built with **React 19**, **Vite 8**, **Material UI (v9)**, **Framer Motion**, and **React Router DOM (v7)**. Designed with a dark mode glassmorphism SaaS aesthetic, structured as a single-page landing flow with a separate Projects archive, and deployed to **Azure Static Web Apps**.
+A modern, highly interactive personal portfolio built with **React 19**, **Vite 8**, **Material UI (v9)**, **Framer Motion (v12)**, and **React Router DOM (v7)**. Dark-mode glassmorphism aesthetic, structured as a single continuous landing page (`/`) with a separate filterable Projects archive (`/projects`), and deployed to **Azure Static Web Apps**.
 
 🔗 **Live:** [www.sahitya.codes](https://www.sahitya.codes)
 
@@ -8,46 +8,50 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 
 ## ✨ Features
 
-- **Landing Flow & Subpages:** Continuous scroll landing page (`/`) with scroll-spy navbar highlighting, custom hash routing, and a separate interactive filterable Projects archive (`/projects`).
-- **Personalized Sections:** Integrated bio introduction, alternate-column experience timeline, **4-category skill progress grid**, and dynamic GitHub activity/stats embedding.
-- **Resume Integration:** Downloadable resume linked directly to Google Drive, ensuring it is always up-to-date.
-- **SaaS Glassmorphism Aesthetics:** Premium dark-mode design system with custom typography (Playfair Display serif for headings), radial hover glow, border gradients, smooth micro-animations, and interactive mouse-tracking cursor glow.
-- **Functional Contact Form:** Responsive contact form integrated with EmailJS for direct inbox delivery and client-side validation.
-- **Fully Responsive:** Fluid layouts with slide-out mobile navigation drawer optimized for all screen sizes.
+- **Landing flow + archive:** One continuous scroll page (`/`) — Hero → Projects → Experience → GitHub → Contact — with an `IntersectionObserver` scroll-spy navbar, hash routing to each section, and a separate interactive, filterable Projects archive (`/projects`).
+- **Hero:** Serif headline, a floating "code editor" card, an animated stat row, and an auto-scrolling **skill-logo marquee** (brand icons that desaturate at rest and light up on hover).
+- **Experience timeline:** Alternating two-column timeline with an animated spine and pulsing milestone nodes, in reverse-chronological order.
+- **GitHub activity:** Stat cards plus lazily-loaded contribution graph / language widgets.
+- **Contact:** Two-column form (details + message) wired to **EmailJS** with client-side validation and a success state.
+- **Résumé:** Linked straight to Google Drive so it's always current.
+- **Responsive:** Fluid layouts down to mobile, with a slide-out navigation drawer.
 
 ---
 
-## ⚡ Performance & Optimization Measures
+## ⚡ Performance & robustness
 
-To ensure a highly responsive user experience and instant page loads, the following optimizations have been implemented:
-
-- **Local Font Bundling:** Swapped remote render-blocking Google Fonts connections (`Inter`, `JetBrains Mono`) for local npm bundling via `@fontsource` packages. This reduces DNS/TLS overhead and prevents visual layout stutter on first paint.
-- **Route & Component Code-Splitting:** Implemented `React.lazy` and `<Suspense>` chunk splitting for the `/projects` archive route. This defers loading the full projects gallery and associated filters until requested, keeping the landing page bundle lightweight for fast initial paint.
-- **GPU-Accelerated Cursor Spotlight:** Refactored the custom cursor glow spotlight to use GPU compositor-friendly `translate3d` transforms and `willChange: transform` layout hints. This avoids document reflows (re-layouts) on mouse movement, yielding smooth interaction.
-- **Off-Main-Thread Scrollspy:** Swapped out the window scroll event listener (which ran expensive loop calculations calling `getBoundingClientRect()` on every scroll frame) for a browser-native `IntersectionObserver` Scrollspy, completely eliminating layout thrashing.
-- **CLS Prevention & Image Lazy Loading:** Configured native `loading="lazy"` on remote GitHub stats widgets and declared static height boxes to reserve space, preventing Cumulative Layout Shifts (CLS) when dynamic SVGs finish loading.
+- **Local font bundling:** All three families (`Playfair Display`, `Inter`, `JetBrains Mono`) are bundled via `@fontsource` and imported in `main.jsx` — there are **no** render-blocking Google Fonts requests.
+- **Route code-splitting:** The `/projects` archive is loaded with `React.lazy` + `<Suspense>`, keeping the landing bundle light.
+- **GPU-friendly cursor glow:** The cursor spotlight moves with `translate3d` + `will-change: transform`, so mouse movement never triggers layout.
+- **Off-main-thread scroll-spy:** Section highlighting uses a native `IntersectionObserver` instead of a per-frame scroll loop.
+- **Scroll-safe reveals:** Section/element reveals are driven by the `useInView` hook (`once: true` latches), and cards use an opaque fill (no `backdrop-filter` drop-out), so nothing can get stuck invisible on a fast scroll.
+- **CLS prevention:** Remote GitHub widgets use `loading="lazy"` inside fixed-height containers.
 
 ---
 
 ## 📂 Curated Projects
 
-- **[Roomify](https://github.com/sahitya1903/roomify)** (`Full-Stack` | `Dockerized` | `Live`): Full-stack hotel booking and sharing platform built with MVC. Features Passport.js auth, Mapbox geocoding, Cloudinary image resizing, Docker containerization, and GitHub Actions CI/CD to Docker Hub.
-- **[Resume Syncer](https://github.com/sahitya1903/resume-syncer)** (`DevOps` | `Marketplace`): Published GitHub Actions Marketplace action automating a 5-stage Overleaf-to-Google Drive resume synchronization pipeline using Selenium, Git commits, and Google Drive API.
-- **[Alert Drive](https://github.com/sahitya1903/alert-drive)** (`AI/ML` | `Live`): Real-time driver drowsiness detection system using computer vision. Features OpenCV Haar Cascades for face/eye localization and a MobileNet model to classify eye states and trigger visual alerts.
-- **[Dev Portfolio V2](https://github.com/sahitya1903/portfolio)** (`Frontend` | `Live`): This portfolio site built with React 19, Vite 8, Material UI, and Framer Motion.
+- **[Roomify](https://github.com/sahitya1903/roomify)** — Full-stack hotel booking & sharing platform (MVC): Passport.js auth, Mapbox geocoding, Cloudinary uploads, Docker, GitHub Actions CI/CD to Docker Hub.
+- **[Resume Syncer](https://github.com/sahitya1903/resume-syncer)** — Published GitHub Actions Marketplace action automating a 5-stage Overleaf → Google Drive résumé sync (Selenium, Git, Google Drive API).
+- **[Alert Drive](https://github.com/sahitya1903/alert-drive)** — Real-time driver drowsiness detection: OpenCV Haar Cascades + a MobileNet eye-state classifier.
+- **[Dev Portfolio V2](https://github.com/sahitya1903/portfolio)** — This site.
 
-*Visit the `/projects` route for the complete archive of 10 curated projects (MERN + SQL experiments, JavaDSA, automation, etc.).*
+*The `/projects` route holds the full archive of 11 projects (MERN + SQL experiments, JavaDSA, automation, etc.), filterable by focus area.*
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework & Tooling:** [React 19](https://react.dev/), [Vite 8](https://vite.dev/)
-- **UI & Styling:** [Material UI v9](https://mui.com/), [Emotion](https://emotion.sh/)
-- **Animations:** [Framer Motion v12](https://www.framer.com/motion/)
-- **Routing:** [React Router DOM v7](https://reactrouter.com/)
-- **Contact Form:** [EmailJS](https://www.emailjs.com/)
-- **Deployment:** [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static)
+| Area | Tools |
+| --- | --- |
+| Framework & tooling | [React 19](https://react.dev/), [Vite 8](https://vite.dev/) |
+| UI & styling | [Material UI v9](https://mui.com/), [Emotion](https://emotion.sh/) |
+| Animation | [Framer Motion v12](https://www.framer.com/motion/) |
+| Routing | [React Router DOM v7](https://reactrouter.com/) |
+| Icons | [`@mui/icons-material`](https://mui.com/material-ui/material-icons/), [`react-icons`](https://react-icons.github.io/react-icons/) (skill logos) |
+| Fonts | [`@fontsource`](https://fontsource.org/) — Playfair Display, Inter, JetBrains Mono |
+| Contact form | [EmailJS](https://www.emailjs.com/) |
+| Deployment | [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static) |
 
 ---
 
@@ -56,27 +60,28 @@ To ensure a highly responsive user experience and instant page loads, the follow
 ```text
 src/
 ├── components/
-│   ├── layout/                 # Main layout components
-│   │   ├── Footer.jsx          # Styled site footer with social links & site map
-│   │   ├── Navbar.jsx          # Navigation bar with responsive drawer and section routing
-│   │   └── PageWrapper.jsx     # Global wrapper for page-level formatting
-│   └── ui/                     # Reusable premium UI elements
-│       ├── CursorGlow.jsx      # Interactive mouse glow tracker
-│       ├── GlowCard.jsx        # Card with hover-based radial glow
-│       ├── SectionHeader.jsx   # Unified section title & subtitle header
-│       └── TechBadge.jsx       # Pill-shaped chip for tech items
-├── pages/                      # Page & Section components
-│   ├── Home.jsx                # Landing page — Hero, GitHub, and layout orchestration
-│   ├── About.jsx               # Refactored to hold Skills and Experience sub-sections
-│   ├── Projects.jsx            # Separate route page showing full projects gallery
-│   └── Contact.jsx             # Refactored centered Contact form
-├── theme/                      # Theme styling tokens
-│   ├── GlobalStyles.jsx        # Reset style rules and custom scrollbar overrides
-│   └── theme.js                # Custom Material UI theme definition (violet/cyan palette)
-├── App.jsx                     # Route manager, ScrollToHash utility, and entry layout mapping
-└── main.jsx                    # DOM mounting & rendering
+│   ├── layout/
+│   │   ├── Footer.jsx          # Footer with brand-coloured social links
+│   │   ├── Navbar.jsx          # Fixed navbar, scroll-spy, mobile drawer
+│   │   └── PageWrapper.jsx     # Navbar + <main> + Footer shell
+│   └── ui/
+│       ├── CursorGlow.jsx      # Mouse-following spotlight overlay
+│       ├── FadeIn.jsx          # Scroll-into-view reveal wrapper (useInView)
+│       ├── GlowCard.jsx        # Glass card with radial hover glow
+│       ├── SectionHeader.jsx   # Animated section heading + subtitle
+│       └── TechBadge.jsx       # Accent-tinted tech chip
+├── pages/
+│   ├── Home.jsx                # Hero, skills strip, featured projects, GitHub — plus section order
+│   ├── About.jsx               # Experience & Milestones timeline (#experience)
+│   ├── Projects.jsx            # /projects archive with live filters
+│   └── Contact.jsx             # Two-column EmailJS contact form
+├── theme/
+│   ├── GlobalStyles.jsx        # Body layers, scrollbar, keyframes
+│   └── theme.js                # MUI theme (violet/cyan dark palette)
+├── App.jsx                     # Routes, scroll-progress bar, ScrollToHash
+└── main.jsx                    # Font imports + DOM mount
 public/
-└── logo.png            # Favicon/Logo
+└── logo.png
 ```
 
 ---
@@ -84,49 +89,53 @@ public/
 ## 🚀 Getting Started
 
 ```bash
-# 1. Clone & install dependencies
 git clone https://github.com/sahitya1903/portfolio.git
 cd portfolio
 npm install
+```
 
-# 2. Add EmailJS variables to a .env file (Optional)
+```bash
+# Optional — EmailJS (contact form). The site runs fine without these;
+# the form just won't send. Put them in a .env file:
 VITE_EMAILJS_SERVICE_ID=your_service_id
 VITE_EMAILJS_TEMPLATE_ID=your_template_id
 VITE_EMAILJS_PUBLIC_KEY=your_public_key
 ```
-> These are optional — the portfolio works without them, but the contact form will not send emails.
 
 ```bash
-# 3. Start local development server
-npm run dev
-
-# 4. Lint and build for production
-npm run lint
-npm run build
+npm run dev      # local dev server
+npm run lint     # eslint
+npm run build    # production build -> dist/
+npm run preview  # preview the production build
 ```
 
 ---
 
 ## 🎨 Customization Guide
 
-1. **Branding:** Update metadata `<title>` and `<meta>` tags in [index.html](index.html).
-2. **Bio & Hero:** Modify copy inside the `Hero` component in [src/pages/Home.jsx](src/pages/Home.jsx).
-3. **Skills & Experience:** Edit timeline/skills datasets in [src/pages/About.jsx](src/pages/About.jsx).
-4. **Projects Gallery:** Manage the `ALL_PROJECTS` list in [src/pages/Projects.jsx](src/pages/Projects.jsx).
-5. **Contact Form:** Configure EmailJS inside [src/pages/Contact.jsx](src/pages/Contact.jsx).
-6. **Typography:** Customize loaded fonts in [index.html](index.html) and adjust theme overrides inside [src/theme/theme.js](src/theme/theme.js).
+| What | Where |
+| --- | --- |
+| Title / SEO meta | [index.html](index.html) |
+| Hero copy | `Hero` in [src/pages/Home.jsx](src/pages/Home.jsx) |
+| Skills marquee | `SKILLS` array in [src/pages/Home.jsx](src/pages/Home.jsx) |
+| Hero stats / featured projects | `STATS` / `PROJECTS` in [src/pages/Home.jsx](src/pages/Home.jsx) |
+| Experience timeline | `EXPERIENCES` in [src/pages/About.jsx](src/pages/About.jsx) |
+| Full projects archive | `ALL_PROJECTS` in [src/pages/Projects.jsx](src/pages/Projects.jsx) |
+| GitHub username / stats | `GitHubSection` in [src/pages/Home.jsx](src/pages/Home.jsx) |
+| EmailJS | [src/pages/Contact.jsx](src/pages/Contact.jsx) |
+| Palette & typography | [src/theme/theme.js](src/theme/theme.js); font weights in [src/main.jsx](src/main.jsx) |
 
 ---
 
 ## 🌐 Deployment
 
-This project is deployed to **Azure Static Web Apps** via a GitHub Actions pipeline.
+Deployed to **Azure Static Web Apps** via GitHub Actions.
 
 - **Workflow:** [.github/workflows/azure-static-web-apps-gentle-desert-01876f000.yml](.github/workflows/azure-static-web-apps-gentle-desert-01876f000.yml)
-- **Secrets Required:** `AZURE_STATIC_WEB_APPS_API_TOKEN_*`, plus optional EmailJS env vars.
+- **Secrets:** `AZURE_STATIC_WEB_APPS_API_TOKEN_*`, plus the optional `VITE_EMAILJS_*` values.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+MIT — see [LICENSE](LICENSE).
