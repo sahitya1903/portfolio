@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Container, Typography, Button, Chip, Grid } from '@mui/material';
+import { Box, Container, Typography, Chip } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -11,7 +11,7 @@ import SectionHeader from '../components/ui/SectionHeader';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../theme/theme';
 
 /* ─────────────────────────────────────────────────────────────
-   DATA
+   DATA — one vivid accent per project (high contrast on the dark bg)
 ───────────────────────────────────────────────────────────── */
 const ALL_PROJECTS = [
   {
@@ -20,15 +20,9 @@ const ALL_PROJECTS = [
     subtitle: 'Hotel Booking Platform',
     desc: 'Full-stack hotel booking and sharing platform built with MVC. Features Passport.js auth, Mapbox geocoding, Cloudinary image resizing, Docker containerization, and GitHub Actions CI/CD to Docker Hub.',
     tags: ['Node.js', 'Express.js', 'MongoDB', 'EJS', 'Bootstrap', 'Docker', 'Mapbox', 'Cloudinary'],
-    accent: VIOLET,
-    accentLight: VIOLET_LIGHT,
+    accent: '#2DD4BF',
     github: 'https://github.com/sahitya1903/roomify',
     live: 'https://roomify-1gzx.onrender.com',
-    stats: [
-      { label: 'Type', value: 'Full-Stack (MVC)' },
-      { label: 'Stack', value: 'Express + MongoDB' },
-      { label: 'Status', value: 'Dockerized & Live' },
-    ],
     category: ['Full-Stack', 'Node.js'],
   },
   {
@@ -37,16 +31,10 @@ const ALL_PROJECTS = [
     subtitle: 'Automated Overleaf Resume Syncer',
     desc: 'Published GitHub Actions Marketplace action automating a 5-stage pipeline: Selenium Overleaf scraping, Git commits, Google Drive sync, and portfolio updates using Service Account credentials.',
     tags: ['Python', 'GitHub Actions', 'Selenium', 'Google Drive API', 'Git', 'Bash'],
-    accent: '#10B981',
-    accentLight: '#34D399',
+    accent: '#A3E635',
     github: 'https://github.com/sahitya1903/resume-syncer',
     live: 'https://github.com/marketplace/actions/overleaf-resume-syncer',
     liveLabel: 'Marketplace',
-    stats: [
-      { label: 'Type', value: 'Automation / DevOps' },
-      { label: 'Platform', value: 'GitHub Actions' },
-      { label: 'Status', value: 'Published' },
-    ],
     category: ['DevOps'],
   },
   {
@@ -55,15 +43,9 @@ const ALL_PROJECTS = [
     subtitle: 'Real-time Driver Drowsiness Detection & Alert System',
     desc: 'Real-time driver drowsiness detection system using computer vision. Features OpenCV Haar Cascades for face/eye localization and a MobileNet model to classify eye states and trigger visual alerts.',
     tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
-    accent: '#D97706',
-    accentLight: '#FBBF24',
+    accent: '#FBBF24',
     github: 'https://github.com/sahitya1903/alert-drive',
     live: 'https://alert-drive.streamlit.app',
-    stats: [
-      { label: 'Type', value: 'AI / ML' },
-      { label: 'Model', value: 'MobileNet' },
-      { label: 'Status', value: 'Live' },
-    ],
     category: ['Python', 'AI / ML'],
   },
   {
@@ -72,15 +54,9 @@ const ALL_PROJECTS = [
     subtitle: 'This Website',
     desc: 'Current iteration of my personal portfolio. Built with React, Vite, and Material UI — featuring glassmorphism cards, Framer Motion animations, cursor glow, and a custom violet dark theme.',
     tags: ['React', 'Vite', 'MUI', 'Framer Motion'],
-    accent: '#06B6D4',
-    accentLight: '#67E8F9',
+    accent: '#22D3EE',
     github: 'https://github.com/sahitya1903/portfolio',
     live: 'https://sahitya.codes',
-    stats: [
-      { label: 'Type', value: 'Frontend' },
-      { label: 'Stack', value: 'React + Vite' },
-      { label: 'Status', value: 'Live' },
-    ],
     category: ['React', 'Frontend'],
   },
   {
@@ -89,15 +65,9 @@ const ALL_PROJECTS = [
     subtitle: 'Real-time Weather Dashboard',
     desc: 'Real-time weather application built with React and MUI, powered by the OpenWeatherMap API. Features location-based search and dynamic card backgrounds reflecting the current weather conditions.',
     tags: ['React', 'Vite', 'MUI', 'OpenWeather API'],
-    accent: '#0284C7',
-    accentLight: '#38BDF8',
+    accent: '#38BDF8',
     github: 'https://github.com/sahitya1903/weather',
     live: 'https://sahitya1903.github.io/weather',
-    stats: [
-      { label: 'Type', value: 'Frontend' },
-      { label: 'Stack', value: 'React + Vite' },
-      { label: 'Status', value: 'Live' },
-    ],
     category: ['React', 'Frontend'],
   },
   {
@@ -106,15 +76,9 @@ const ALL_PROJECTS = [
     subtitle: 'YOLO-based Security System',
     desc: 'Real-time animal detection system powered by YOLOv12x and OpenCV. Processes video streams to detect animals and trigger automated SMS alerts via Twilio API.',
     tags: ['Python', 'YOLO', 'OpenCV', 'Twilio'],
-    accent: '#15803D',
-    accentLight: '#4ADE80',
+    accent: '#4ADE80',
     github: 'https://github.com/sahitya1903/animal-detection',
     live: null,
-    stats: [
-      { label: 'Type', value: 'AI / ML' },
-      { label: 'Model', value: 'YOLOv12x' },
-      { label: 'Status', value: 'Completed' },
-    ],
     category: ['Python', 'AI / ML'],
   },
   {
@@ -123,15 +87,9 @@ const ALL_PROJECTS = [
     subtitle: 'MERN stack experiments',
     desc: 'Curated collection of MERN stack and SQL practice projects. Covers core HTML/CSS, styling frameworks (Tailwind/Bootstrap), REST APIs, SQL, MongoDB relations, and React/Redux Toolkit.',
     tags: ['MongoDB', 'Express.js', 'React', 'Node.js', 'SQL', 'Redux Toolkit'],
-    accent: '#DB2777',
-    accentLight: '#F472B6',
+    accent: '#F472B6',
     github: 'https://github.com/sahitya1903/webdev-MERN',
     live: null,
-    stats: [
-      { label: 'Type', value: 'Mini Projects' },
-      { label: 'Stack', value: 'MERN + SQL' },
-      { label: 'Status', value: 'Ongoing' },
-    ],
     category: ['Mini Projects'],
   },
   {
@@ -140,15 +98,9 @@ const ALL_PROJECTS = [
     subtitle: 'Simple & Responsive Task Manager',
     desc: 'A simple, responsive, and intuitive task manager application built using React, Vite, and custom CSS for styling.',
     tags: ['React', 'Vite', 'JavaScript', 'CSS'],
-    accent: '#4F46E5',
-    accentLight: '#818CF8',
+    accent: '#FB7185',
     github: 'https://github.com/sahitya1903/todo-list',
     live: null,
-    stats: [
-      { label: 'Type', value: 'Frontend' },
-      { label: 'Stack', value: 'React + Vite' },
-      { label: 'Status', value: 'Completed' },
-    ],
     category: ['React', 'Vite', 'Frontend'],
   },
   {
@@ -157,15 +109,9 @@ const ALL_PROJECTS = [
     subtitle: 'Automated Sync Repository',
     desc: 'Daily automated sync repository of solutions to various LeetCode problems, configured with a GitHub Actions workflow.',
     tags: ['DSA', 'Java', 'Python', 'JavaScript', 'SQL', 'GitHub Actions'],
-    accent: '#FFA116',
-    accentLight: '#FFB84D',
+    accent: '#FB923C',
     github: 'https://github.com/sahitya1903/leetcode-practice',
     live: null,
-    stats: [
-      { label: 'Type', value: 'Automation / DSA Practice' },
-      { label: 'Sync Tool', value: 'leetcode-sync' },
-      { label: 'Status', value: 'Ongoing' },
-    ],
     category: ['DSA'],
   },
   {
@@ -174,15 +120,9 @@ const ALL_PROJECTS = [
     subtitle: 'Data Structures & Algorithms',
     desc: 'Collection of Java implementations of classic data structures, sorting/searching algorithms, and object-oriented programming concepts.',
     tags: ['Java', 'DSA'],
-    accent: '#EA580C',
-    accentLight: '#FB923C',
+    accent: '#EF4444',
     github: 'https://github.com/sahitya1903/java-dsa',
     live: null,
-    stats: [
-      { label: 'Type', value: 'DSA Practice' },
-      { label: 'Language', value: 'Java' },
-      { label: 'Status', value: 'Ongoing' },
-    ],
     category: ['Java', 'DSA'],
   },
   {
@@ -191,15 +131,9 @@ const ALL_PROJECTS = [
     subtitle: 'DSA & Mini Projects',
     desc: 'Curated collection of Python programs ranging from fundamentals and data structures to CLI mini-projects and university assignments.',
     tags: ['Python', 'DSA'],
-    accent: '#EAB308',
-    accentLight: '#FDE047',
+    accent: '#FACC15',
     github: 'https://github.com/sahitya1903/python-practice',
     live: null,
-    stats: [
-      { label: 'Type', value: 'DSA Practice' },
-      { label: 'Language', value: 'Python 3.x' },
-      { label: 'Status', value: 'Ongoing' },
-    ],
     category: ['Python', 'DSA', 'Mini Projects'],
   }
 ];
@@ -217,108 +151,91 @@ const ProjectCard = ({ project, index }) => (
     exit={{ opacity: 0, scale: 0.96 }}
     transition={{ duration: 0.4, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
   >
-    <GlowCard sx={{ p: { xs: 3, md: 4 }, height: '100%' }} glowIntensity={0.7}>
-      <Grid container spacing={3} alignItems="flex-start">
-        {/* Left: Content */}
-        <Grid size={{ xs: 12, md: 8 }}>
-          {/* Header */}
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1, flexWrap: 'wrap' }}>
-            <Typography
-              sx={{
-                fontFamily: '"Playfair Display", serif',
+    <GlowCard sx={{ p: { xs: 2.5, md: 3 }, height: '100%' }} glowIntensity={0.7}>
+      <Box sx={{ display: 'flex', gap: { xs: 2, md: 2.5 }, height: '100%' }}>
+        {/* Inset rail — the project's accent colour */}
+        <Box sx={{
+          flexShrink: 0, width: '4px', alignSelf: 'stretch', borderRadius: '999px',
+          background: project.accent,
+        }} />
+
+        <Box sx={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+          {/* Title + index, subtitle underneath */}
+          <Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
+              <Typography sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 600, fontSize: '1.2rem', color: 'text.primary' }}>
+                {project.title}
+              </Typography>
+              <Box component="span" sx={{
+                fontFamily: '"JetBrains Mono", monospace',
+                fontSize: '0.62rem',
+                color: project.accent,
+                border: `1px solid ${alpha(project.accent, 0.3)}`,
+                background: alpha(project.accent, 0.06),
+                px: 1, py: 0.25,
+                borderRadius: '4px',
                 fontWeight: 600,
-                fontSize: '1.25rem',
-                color: 'text.primary',
-              }}
-            >
-              {project.title}
-            </Typography>
-            {/* Index badge */}
-            <Box component="span" sx={{
-              fontFamily: '"JetBrains Mono", monospace',
-              fontSize: '0.62rem',
-              color: project.accent,
-              border: `1px solid ${alpha(project.accent, 0.3)}`,
-              background: alpha(project.accent, 0.06),
-              px: 1, py: 0.25,
-              borderRadius: '4px',
-              fontWeight: 600,
-              letterSpacing: '0.04em',
-            }}>
-              {String(index + 1).padStart(2, '0')}
+                letterSpacing: '0.04em',
+              }}>
+                {String(index + 1).padStart(2, '0')}
+              </Box>
             </Box>
+            <Typography sx={{ mt: 0.5, fontSize: '0.75rem', color: project.accent, fontFamily: '"JetBrains Mono", monospace' }}>
+              {project.subtitle}
+            </Typography>
           </Box>
-          <Typography sx={{ fontSize: '0.78rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', mb: 1.5 }}>
-            {project.subtitle}
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2.5, lineHeight: 1.75, fontSize: '0.88rem' }}>
+
+          <Typography sx={{
+            fontSize: '0.87rem', color: 'text.secondary', lineHeight: 1.6, maxWidth: 780,
+            display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+          }}>
             {project.desc}
           </Typography>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
-            {project.tags.map((tag) => (
+
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+            {project.tags.slice(0, 6).map((tag) => (
               <TechBadge key={tag} label={tag} color={project.accent} />
             ))}
           </Box>
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button
-              id={`project-${project.id}-github`}
-              variant="outlined"
-              size="small"
-              startIcon={<GitHubIcon sx={{ fontSize: '15px !important' }} />}
+
+          {/* Footer — links only */}
+          <Box sx={{
+            display: 'flex', gap: 2.5, flexWrap: 'wrap',
+            mt: 0.5, pt: 1.75, borderTop: `1px solid ${BORDER}`,
+          }}>
+            <Box
               component="a"
+              id={`project-${project.id}-github`}
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              sx={{ fontSize: '0.78rem' }}
+              sx={{
+                display: 'inline-flex', alignItems: 'center', gap: 0.6, textDecoration: 'none',
+                fontFamily: '"JetBrains Mono", monospace', fontSize: '0.76rem', color: 'text.secondary',
+                transition: 'color 0.2s ease', '&:hover': { color: 'text.primary' },
+              }}
             >
-              Code
-            </Button>
+              <GitHubIcon sx={{ fontSize: 14 }} /> Code
+            </Box>
             {project.live && (
-              <Button
-                id={`project-${project.id}-live`}
-                variant="contained"
-                size="small"
-                endIcon={<OpenInNewIcon sx={{ fontSize: '13px !important' }} />}
+              <Box
                 component="a"
+                id={`project-${project.id}-live`}
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{ fontSize: '0.78rem' }}
-              >
-                {project.liveLabel || 'Live Demo'}
-              </Button>
-            )}
-          </Box>
-        </Grid>
-
-        {/* Right: Stats */}
-        <Grid size={{ xs: 12, md: 4 }}>
-          <Box sx={{
-            background: 'rgba(255,255,255,0.02)',
-            border: `1px solid ${BORDER}`,
-            borderRadius: '10px',
-            p: 2.5,
-          }}>
-            {project.stats.map(({ label, value }) => (
-              <Box
-                key={label}
                 sx={{
-                  display: 'flex', justifyContent: 'space-between', py: 1,
-                  borderBottom: `1px solid ${BORDER}`,
-                  '&:last-child': { borderBottom: 'none', pb: 0 },
+                  display: 'inline-flex', alignItems: 'center', gap: 0.6, textDecoration: 'none',
+                  fontFamily: '"JetBrains Mono", monospace', fontSize: '0.76rem', color: project.accent,
+                  transition: 'color 0.2s ease', '&:hover': { color: 'text.primary' },
                 }}
               >
-                <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', fontFamily: '"JetBrains Mono", monospace' }}>
-                  {label}
-                </Typography>
-                <Typography sx={{ fontSize: '0.75rem', color: project.accentLight, fontFamily: '"JetBrains Mono", monospace', fontWeight: 600 }}>
-                  {value}
-                </Typography>
+                {project.liveLabel || 'Live Demo'} <OpenInNewIcon sx={{ fontSize: 12 }} />
               </Box>
-            ))}
+            )}
           </Box>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </GlowCard>
   </motion.div>
 );
@@ -367,7 +284,6 @@ const Projects = () => {
 
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
           <SectionHeader
-            label="All Work"
             title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value..</Box></>}
           />
 
