@@ -25,8 +25,9 @@ const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
         position: 'relative',
         borderRadius: '16px',
         border: `1px solid ${BORDER}`,
-        background: 'linear-gradient(145deg, rgba(10,10,15,0.85) 0%, rgba(5,5,8,0.92) 100%)',
-        backdropFilter: 'blur(12px)',
+        // Opaque fill — a translucent bg + backdrop-filter drops out during fast
+        // scroll on some browsers, making the whole card render invisible.
+        background: 'linear-gradient(145deg, #0D0D15 0%, #0A0A11 100%)',
         overflow: 'hidden',
         boxShadow: 'none',
         transition: 'border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease',

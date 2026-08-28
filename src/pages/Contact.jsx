@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { Box, Container, Typography, Button, TextField, Grid, CircularProgress, Alert } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 import SendIcon from '@mui/icons-material/Send';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutlined';
@@ -24,18 +24,23 @@ const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
 
 
 /* ─────────────────────────────────────────────────────────────
-   FADE-IN WRAPPER
+   FADE-IN WRAPPER — useInView hook (once:true latches), so a revealed
+   element can't get stuck invisible on a fast scroll-past.
 ───────────────────────────────────────────────────────────── */
-const FadeIn = ({ children, delay = 0, y = 24 }) => (
-  <motion.div
-    initial={{ opacity: 0, y }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: '0px 0px 150px 0px' }}
-    transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-  >
-    {children}
-  </motion.div>
-);
+const FadeIn = ({ children, delay = 0, y = 24 }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 /* ─────────────────────────────────────────────────────────────
    CONTACT PAGE

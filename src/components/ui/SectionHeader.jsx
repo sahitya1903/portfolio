@@ -1,5 +1,6 @@
+import { useRef } from 'react';
 import { Box, Typography } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 /**
  * SectionHeader — animated heading + optional subtext.
@@ -8,13 +9,15 @@ import { motion } from 'framer-motion';
  */
 const SectionHeader = ({ title, subtitle, align = 'center', sx = {} }) => {
   const isCenter = align === 'center';
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
 
   return (
     <Box
+      ref={ref}
       component={motion.div}
       initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '0px 0px 150px 0px' }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       sx={{ mb: { xs: 6, md: 8 }, textAlign: align, ...sx }}
     >
