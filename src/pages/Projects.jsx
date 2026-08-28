@@ -145,11 +145,10 @@ const FILTER_KEYS = ['All', 'Full-Stack', 'AI / ML', 'DevOps', 'Frontend', 'DSA'
 ───────────────────────────────────────────────────────────── */
 const ProjectCard = ({ project, index }) => (
   <motion.div
-    layout
     initial={{ opacity: 0, y: 24 }}
     animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, scale: 0.96 }}
-    transition={{ duration: 0.4, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.4, delay: Math.min(index, 8) * 0.05, ease: [0.22, 1, 0.36, 1] }}
   >
     <GlowCard sx={{ p: { xs: 2.5, md: 3 }, height: '100%' }} glowIntensity={0.7}>
       <Box sx={{ display: 'flex', gap: { xs: 2, md: 2.5 }, height: '100%' }}>
@@ -186,7 +185,7 @@ const ProjectCard = ({ project, index }) => (
           </Box>
 
           <Typography sx={{
-            fontSize: '0.87rem', color: 'text.secondary', lineHeight: 1.6, maxWidth: 780,
+            fontSize: '0.87rem', color: 'text.secondary', lineHeight: 1.6,
             display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
           }}>
             {project.desc}
@@ -370,7 +369,7 @@ const Projects = () => {
 
           {/* Project cards */}
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence>
               {filtered.length > 0 ? (
                 filtered.map((project, i) => (
                   <ProjectCard key={project.id} project={project} index={i} />
