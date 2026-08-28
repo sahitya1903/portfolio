@@ -92,7 +92,7 @@ const Contact = () => {
         component="section"
         id="contact"
         sx={{
-          py: { xs: 5, md: 7 },
+          py: { xs: 3.5, md: 4.5 },
           position: 'relative',
           overflow: 'hidden',
           background: 'transparent',

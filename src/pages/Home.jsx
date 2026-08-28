@@ -192,7 +192,7 @@ const Section = ({ children, id, sx = {} }) => (
   <Box
     component="section"
     id={id}
-    sx={{ py: { xs: 5, md: 7 }, ...sx }}
+    sx={{ py: { xs: 3.5, md: 4.5 }, ...sx }}
   >
     <Container maxWidth="lg">
       {children}

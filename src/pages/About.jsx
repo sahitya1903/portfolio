@@ -62,7 +62,7 @@ const FadeIn = ({ children, delay = 0, y = 24 }) => (
 ───────────────────────────────────────────────────────────── */
 const About = () => (
   <Box component="section" id="experience" sx={{
-    py: { xs: 5, md: 7 },
+    py: { xs: 3.5, md: 4.5 },
     background: 'transparent',
   }}>
     <Container maxWidth="lg">
@@ -133,7 +133,7 @@ const About = () => (
           return (
             <FadeIn key={i} delay={i * 0.1}>
               {/* ── Desktop: two-column symmetric layout ── */}
-              <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', mb: 4 }}>
+              <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', mb: i === EXPERIENCES.length - 1 ? 0 : 4 }}>
                 {/* Left half */}
                 <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', pr: 3 }}>
                   {isLeft ? card : null}
@@ -165,7 +165,7 @@ const About = () => (
               </Box>
 
               {/* ── Mobile: single-column stack ── */}
-              <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 3 }}>
+              <Box sx={{ display: { xs: 'block', md: 'none' }, mb: i === EXPERIENCES.length - 1 ? 0 : 3 }}>
                 <Box sx={{ display: 'flex', gap: 0 }}>
                   <Box sx={{
                     width: '3px', flexShrink: 0,
