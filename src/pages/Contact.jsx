@@ -106,14 +106,13 @@ const Contact = () => {
           filter: 'blur(60px)', pointerEvents: 'none',
         }} />
 
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
           <SectionHeader
-            label="Contact"
             title={<>Let's build something <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>great together..</Box></>}
           />
 
           <FadeIn delay={0.15}>
-            <Box sx={{ maxWidth: 760, mx: 'auto' }}>
+            <Box>
               <GlowCard sx={{ p: { xs: 3, md: 4 } }} glowIntensity={0.7}>
                 {status === 'success' ? (
                   /* ── Success state ── */
@@ -153,9 +152,7 @@ const Contact = () => {
                     >
                       Send a message
                     </Typography>
-                    <Typography sx={{ fontSize: '0.82rem', color: 'text.secondary', mb: 3.5 }}>
-                      Fill in the details below and I'll get back to you soon.
-                    </Typography>
+                
 
                     {status !== 'idle' && status !== 'sending' && status !== 'success' && (
                       <Alert
@@ -170,71 +167,85 @@ const Contact = () => {
                       component="form"
                       ref={formRef}
                       onSubmit={handleSubmit}
-                      sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}
                       noValidate
                     >
-                      <Grid container spacing={2}>
-                        <Grid size={{ xs: 12, sm: 6 }}>
+                      <Grid container spacing={2.5} alignItems="stretch">
+                        {/* Left column — short fields */}
+                        <Grid size={{ xs: 12, md: 5 }}>
+                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, height: '100%' }}>
+                            <TextField
+                              fullWidth
+                              label="Your Name"
+                              name="from_name"
+                              value={fields.from_name}
+                              onChange={handleChange}
+                              error={!!errors.from_name}
+                              helperText={errors.from_name}
+                              autoComplete="name"
+                            />
+                            <TextField
+                              fullWidth
+                              label="Email Address"
+                              name="from_email"
+                              type="email"
+                              value={fields.from_email}
+                              onChange={handleChange}
+                              error={!!errors.from_email}
+                              helperText={errors.from_email}
+                              autoComplete="email"
+                            />
+                            <TextField
+                              fullWidth
+                              label="Subject"
+                              name="subject"
+                              value={fields.subject}
+                              onChange={handleChange}
+                              error={!!errors.subject}
+                              helperText={errors.subject}
+                            />
+                          </Box>
+                        </Grid>
+
+                        {/* Right column — message (fills to match left column height) */}
+                        <Grid size={{ xs: 12, md: 7 }} sx={{ display: 'flex' }}>
                           <TextField
                             fullWidth
-                            label="Your Name"
-                            name="from_name"
-                            value={fields.from_name}
+                            label="Message"
+                            name="message"
+                            multiline
+                            minRows={7}
+                            value={fields.message}
                             onChange={handleChange}
-                            error={!!errors.from_name}
-                            helperText={errors.from_name}
-                            autoComplete="name"
+                            error={!!errors.message}
+                            helperText={errors.message || `${fields.message.length} / 2000`}
+                            inputProps={{ maxLength: 2000 }}
+                            sx={{
+                              flex: 1,
+                              display: 'flex',
+                              flexDirection: 'column',
+                              '& .MuiInputBase-root': { flexGrow: 1, alignItems: 'flex-start' },
+                              '& .MuiInputBase-inputMultiline': {
+                                boxSizing: 'border-box',
+                                height: { xs: 'auto', md: '100% !important' },
+                              },
+                            }}
                           />
                         </Grid>
-                        <Grid size={{ xs: 12, sm: 6 }}>
-                          <TextField
-                            fullWidth
-                            label="Email Address"
-                            name="from_email"
-                            type="email"
-                            value={fields.from_email}
-                            onChange={handleChange}
-                            error={!!errors.from_email}
-                            helperText={errors.from_email}
-                            autoComplete="email"
-                          />
+
+                        <Grid size={12}>
+                          <Button
+                            id="contact-submit"
+                            type="submit"
+                            variant="contained"
+                            size="large"
+                            disabled={status === 'sending'}
+                            endIcon={status === 'sending' ? <CircularProgress size={16} color="inherit" /> : <SendIcon sx={{ fontSize: '16px !important' }} />}
+                            sx={{ px: 4, py: 1.4, fontSize: '0.95rem', fontFamily: '"Playfair Display", serif' }}
+                          >
+                            {status === 'sending' ? 'Sending…' : 'Send'}
+                          </Button>
                         </Grid>
                       </Grid>
-
-                      <TextField
-                        fullWidth
-                        label="Subject"
-                        name="subject"
-                        value={fields.subject}
-                        onChange={handleChange}
-                        error={!!errors.subject}
-                        helperText={errors.subject}
-                      />
-
-                      <TextField
-                        fullWidth
-                        label="Message"
-                        name="message"
-                        multiline
-                        rows={6}
-                        value={fields.message}
-                        onChange={handleChange}
-                        error={!!errors.message}
-                        helperText={errors.message || `${fields.message.length} / 2000`}
-                        inputProps={{ maxLength: 2000 }}
-                      />
-
-                      <Button
-                        id="contact-submit"
-                        type="submit"
-                        variant="contained"
-                        size="large"
-                        disabled={status === 'sending'}
-                        endIcon={status === 'sending' ? <CircularProgress size={16} color="inherit" /> : <SendIcon sx={{ fontSize: '16px !important' }} />}
-                        sx={{ alignSelf: 'flex-start', px: 4, py: 1.4, fontSize: '0.95rem', fontFamily: '"Playfair Display", serif' }}
-                      >
-                        {status === 'sending' ? 'Sending…' : 'Send Message'}
-                      </Button>
                     </Box>
                   </>
                 )}
