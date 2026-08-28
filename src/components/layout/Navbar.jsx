@@ -12,13 +12,12 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { alpha } from '@mui/material/styles';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 
 const NAV_LINKS = [
-  { label: 'Skills', path: '/#skills' },
-  { label: 'Experience', path: '/#experience' },
   { label: 'Projects', path: '/#projects' },
+  { label: 'Experience', path: '/#experience' },
   { label: 'GitHub', path: '/#github' },
   { label: 'Contact', path: '/#contact' },
 ];
@@ -79,7 +78,7 @@ const Navbar = () => {
       return () => clearTimeout(timer);
     }
 
-    const sectionIds = ['skills', 'experience', 'projects', 'github', 'contact'];
+    const sectionIds = ['projects', 'experience', 'github', 'contact'];
     const visibilities = {};
 
     const observer = new IntersectionObserver(
@@ -215,29 +214,24 @@ const Navbar = () => {
                       }}
                     >
                       {label}
-                      {/* Animated active dot indicator */}
-                      <AnimatePresence>
-                        {isActive && (
-                          <motion.div
-                            layoutId="nav-active-dot"
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0 }}
-                            transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-                            style={{
-                              position: 'absolute',
-                              bottom: 2,
-                              left: '50%',
-                              transform: 'translateX(-50%)',
-                              width: 4,
-                              height: 4,
-                              borderRadius: '50%',
-                              background: VIOLET_LIGHT,
-                              boxShadow: `0 0 8px ${alpha(VIOLET_LIGHT, 0.8)}`,
-                            }}
-                          />
-                        )}
-                      </AnimatePresence>
+                      {/* Animated active dot indicator — one persistent node that
+                         slides between links via the shared layoutId */}
+                      {isActive && (
+                        <motion.div
+                          layoutId="nav-active-dot"
+                          transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                          style={{
+                            position: 'absolute',
+                            bottom: 2,
+                            left: 'calc(50% - 2px)',
+                            width: 4,
+                            height: 4,
+                            borderRadius: '50%',
+                            background: VIOLET_LIGHT,
+                            boxShadow: `0 0 8px ${alpha(VIOLET_LIGHT, 0.8)}`,
+                          }}
+                        />
+                      )}
                     </Box>
                   );
                 })}
