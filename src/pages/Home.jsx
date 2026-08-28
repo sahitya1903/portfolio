@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Button, Grid } from '@mui/material';
+import { Box, Container, Typography, Button, Grid, Tooltip } from '@mui/material';
 import { motion, useMotionValue, useInView, animate } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
@@ -7,6 +7,14 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import { alpha } from '@mui/material/styles';
+import { FaJava, FaDatabase } from 'react-icons/fa';
+import { TbApi } from 'react-icons/tb';
+import { VscAzure } from 'react-icons/vsc';
+import {
+  SiPython, SiJavascript, SiReact, SiNextdotjs, SiTailwindcss, SiBootstrap,
+  SiMui, SiNodedotjs, SiExpress, SiMongoose, SiMongodb, SiMysql, SiDocker,
+  SiGit, SiGithubactions, SiTensorflow, SiOpencv,
+} from 'react-icons/si';
 
 import GlowCard from '../components/ui/GlowCard';
 import TechBadge from '../components/ui/TechBadge';
@@ -64,80 +72,29 @@ const STATS = [
   { value: 15, label: 'Tech Stack Tools', suffix: '+' },
 ];
 
-const ROLES = [
-  'Full-Stack Developer',
-  'DevOps Engineer',
-  'Open Source Contributor',
-  'ML Enthusiast',
-];
-
 const SKILLS = [
-  'Java', 'Python', 'JavaScript', 'SQL', 'Bash',
-  'React', 'Redux Toolkit', 'Tailwind', 'Bootstrap', 'Material UI', 'Framer Motion',
-  'Node.js', 'Express.js', 'Passport.js', 'Mongoose', 'REST APIs',
-  'MongoDB', 'MySQL', 'Azure', 'Docker', 'Git', 'GitHub Actions',
-  'TensorFlow', 'OpenCV', 'WebRTC', 'Streamlit',
+  { label: 'Java', Icon: FaJava, color: '#E76F00' },
+  { label: 'Python', Icon: SiPython, color: '#4B8BBE' },
+  { label: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
+  { label: 'SQL', Icon: FaDatabase, color: '#9AA7B8' },
+  { label: 'React', Icon: SiReact, color: '#61DAFB' },
+  { label: 'Next.js', Icon: SiNextdotjs, color: '#F8FAFC' },
+  { label: 'Tailwind', Icon: SiTailwindcss, color: '#38BDF8' },
+  { label: 'Bootstrap', Icon: SiBootstrap, color: '#8B6FD6' },
+  { label: 'Material UI', Icon: SiMui, color: '#2E9BFF' },
+  { label: 'Node.js', Icon: SiNodedotjs, color: '#5FA04E' },
+  { label: 'Express.js', Icon: SiExpress, color: '#F8FAFC' },
+  { label: 'Mongoose', Icon: SiMongoose, color: '#C0554F' },
+  { label: 'REST APIs', Icon: TbApi, color: '#9AA7B8' },
+  { label: 'MongoDB', Icon: SiMongodb, color: '#4FB65B' },
+  { label: 'MySQL', Icon: SiMysql, color: '#5C93C4' },
+  { label: 'Azure', Icon: VscAzure, color: '#3DA0EA' },
+  { label: 'Docker', Icon: SiDocker, color: '#2496ED' },
+  { label: 'Git', Icon: SiGit, color: '#F05032' },
+  { label: 'GitHub Actions', Icon: SiGithubactions, color: '#3B8EFF' },
+  { label: 'TensorFlow', Icon: SiTensorflow, color: '#FF8F1F' },
+  { label: 'OpenCV', Icon: SiOpencv, color: '#8C7BF2' },
 ];
-
-/* ─────────────────────────────────────────────────────────────
-   TYPEWRITER ROLES
-───────────────────────────────────────────────────────────── */
-const TypedRoles = () => {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const timeoutRef = useRef(null);
-
-  useEffect(() => {
-    const currentRole = ROLES[roleIndex];
-
-    if (!isDeleting && displayed.length < currentRole.length) {
-      timeoutRef.current = setTimeout(() => {
-        setDisplayed(currentRole.slice(0, displayed.length + 1));
-      }, 60);
-    } else if (!isDeleting && displayed.length === currentRole.length) {
-      timeoutRef.current = setTimeout(() => setIsDeleting(true), 1800);
-    } else if (isDeleting && displayed.length > 0) {
-      timeoutRef.current = setTimeout(() => {
-        setDisplayed(currentRole.slice(0, displayed.length - 1));
-      }, 35);
-    } else if (isDeleting && displayed.length === 0) {
-      setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % ROLES.length);
-    }
-
-    return () => clearTimeout(timeoutRef.current);
-  }, [displayed, isDeleting, roleIndex]);
-
-  return (
-    <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
-      <Typography
-        component="span"
-        sx={{
-          fontFamily: '"JetBrains Mono", monospace',
-          fontSize: { xs: '0.95rem', md: '1.1rem' },
-          fontWeight: 500,
-          color: VIOLET_LIGHT,
-          letterSpacing: '0.02em',
-        }}
-      >
-        {displayed}
-      </Typography>
-      <Box
-        sx={{
-          display: 'inline-block',
-          width: '2px',
-          height: { xs: '1rem', md: '1.15rem' },
-          background: VIOLET_LIGHT,
-          animation: 'cursor-blink 1s step-end infinite',
-          borderRadius: '1px',
-          verticalAlign: 'middle',
-          ml: 0.25,
-        }}
-      />
-    </Box>
-  );
-};
 
 /* ─────────────────────────────────────────────────────────────
    ANIMATED COUNTER
@@ -172,18 +129,25 @@ const AnimatedCounter = ({ value, suffix = '' }) => {
 
 /* ─────────────────────────────────────────────────────────────
    FADE-IN WRAPPER
+   Uses the useInView hook (once:true latches permanently) rather than
+   the whileInView prop, so a revealed element can never get stuck
+   invisible on a fast scroll-past.
 ───────────────────────────────────────────────────────────── */
-const FadeIn = ({ children, delay = 0, y = 24, sx = {} }) => (
-  <motion.div
-    initial={{ opacity: 0, y }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: '0px 0px 150px 0px' }}
-    transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-    style={{ ...sx }}
-  >
-    {children}
-  </motion.div>
-);
+const FadeIn = ({ children, delay = 0, y = 24, sx = {} }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      style={{ ...sx }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 /* ─────────────────────────────────────────────────────────────
    SECTION WRAPPER
@@ -201,8 +165,91 @@ const Section = ({ children, id, sx = {} }) => (
 );
 
 /* ─────────────────────────────────────────────────────────────
-   SKILLS STRIP — floating auto-scrolling marquee (names only)
+   SKILLS STRIP — auto-scrolling row of floating skill logos
 ───────────────────────────────────────────────────────────── */
+const SkillIcon = ({ Icon, color, label }) => (
+  <Tooltip
+    title={label}
+    arrow
+    placement="top"
+    disableInteractive
+    enterDelay={0}
+    enterNextDelay={0}
+    enterTouchDelay={0}
+    leaveDelay={0}
+    slotProps={{
+      tooltip: {
+        sx: {
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: '0.72rem',
+          fontWeight: 500,
+          letterSpacing: '0.02em',
+          px: 1.1,
+          py: 0.55,
+          background: '#1B1B27',
+          border: '1px solid rgba(255,255,255,0.14)',
+          color: '#F8FAFC',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.55)',
+        },
+      },
+      arrow: { sx: { color: '#1B1B27' } },
+      transition: { timeout: { enter: 120, exit: 0 } },
+    }}
+  >
+    <Box
+      component="span"
+      role="img"
+      aria-label={label}
+      sx={{
+        flexShrink: 0,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 40,
+        height: 40,
+        color,
+        filter: 'grayscale(1) opacity(0.45)',
+        transition: 'filter .28s ease, transform .28s ease',
+        '& svg': { width: 26, height: 26 },
+        '&:hover': {
+          filter: 'grayscale(0) opacity(1)',
+          transform: 'translateY(-3px) scale(1.18)',
+        },
+      }}
+    >
+      <Icon />
+    </Box>
+  </Tooltip>
+);
+
+const MarqueeRow = ({ items, reverse = false, duration = 46 }) => {
+  const group = (key) => (
+    <Box
+      key={key}
+      aria-hidden={key === 'b'}
+      sx={{ display: 'flex', alignItems: 'center', gap: 3, pr: 3, flexShrink: 0 }}
+    >
+      {items.map((s, i) => (
+        <SkillIcon key={i} Icon={s.Icon} color={s.color} label={s.label} />
+      ))}
+    </Box>
+  );
+  return (
+    <Box
+      className="marquee-row"
+      sx={{
+        display: 'flex',
+        width: 'max-content',
+        animation: `marquee ${duration}s linear infinite${reverse ? ' reverse' : ''}`,
+        '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
+      }}
+    >
+      {group('a')}
+      {group('b')}
+    </Box>
+  );
+};
+
 const SkillsStrip = () => (
   <Box
     component={motion.div}
@@ -210,41 +257,28 @@ const SkillsStrip = () => (
     animate={{ opacity: 1 }}
     transition={{ duration: 0.6, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
     sx={{
-      mt: { xs: 5, md: 7 },
+      mt: { xs: 4, md: 5 },
       position: 'relative',
       overflow: 'hidden',
-      py: 1.75,
+      py: 1.25,
       borderTop: `1px solid ${BORDER}`,
       borderBottom: `1px solid ${BORDER}`,
-      background: 'rgba(255,255,255,0.015)',
-      WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)',
-      maskImage: 'linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)',
-      '&:hover .marquee-track': { animationPlayState: 'paused' },
+      background: 'linear-gradient(180deg, rgba(139,92,246,0.045) 0%, rgba(255,255,255,0.012) 100%)',
+      WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)',
+      maskImage: 'linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: '12%',
+        right: '12%',
+        height: '1px',
+        background: `linear-gradient(90deg, transparent, ${alpha(VIOLET, 0.35)}, transparent)`,
+      },
+      '&:hover .marquee-row': { animationPlayState: 'paused' },
     }}
   >
-    <Box
-      className="marquee-track"
-      sx={{ display: 'flex', gap: 1.25, width: 'max-content', animation: 'marquee 42s linear infinite' }}
-    >
-      {[...SKILLS, ...SKILLS].map((skill, i) => (
-        <Box
-          key={i}
-          sx={{
-            flexShrink: 0,
-            fontFamily: '"JetBrains Mono", monospace',
-            fontSize: '0.73rem',
-            color: 'text.secondary',
-            border: `1px solid ${BORDER}`,
-            background: 'rgba(255,255,255,0.02)',
-            px: 1.5,
-            py: 0.75,
-            borderRadius: '8px',
-          }}
-        >
-          {skill}
-        </Box>
-      ))}
-    </Box>
+    <MarqueeRow items={SKILLS} duration={50} />
   </Box>
 );
 
@@ -330,17 +364,6 @@ const Hero = () => (
           </Typography>
         </motion.div>
 
-        {/* Typed roles sub-headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <Box sx={{ mb: 1.5 }}>
-            <TypedRoles />
-          </Box>
-        </motion.div>
-
         {/* Sub headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -389,15 +412,15 @@ const Hero = () => (
       </Grid>
 
       {/* Right column — floating code card */}
-      <Grid size={{ xs: 12, md: 5 }}>
+      <Grid size={{ xs: 12, md: 4 }}>
         <motion.div
           initial={{ opacity: 0, x: 40, scale: 0.95 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Box sx={{ animation: 'float 7s ease-in-out infinite' }}>
+          <Box sx={{ animation: 'float 7s ease-in-out infinite', maxWidth: 380, ml: { md: 'auto' } }}>
             <GlowCard sx={{
-              p: 3,
+              p: 2.5,
               background: 'linear-gradient(160deg, #0D0D18 0%, #090912 100%)',
               borderColor: BORDER,
               boxShadow: '0 24px 64px rgba(0,0,0,0.32), 0 8px 24px rgba(124,58,237,0.18)',
@@ -565,7 +588,7 @@ const ProjectsSection = () => (
                 </Box>
 
                 <Typography sx={{
-                  fontSize: '0.87rem', color: 'text.secondary', lineHeight: 1.6, maxWidth: 780,
+                  fontSize: '0.87rem', color: 'text.secondary', lineHeight: 1.6,
                   display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
                 }}>
                   {project.desc}
