@@ -7,9 +7,9 @@ import { alpha } from '@mui/material/styles';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 
 const SOCIAL_LINKS = [
-  { icon: <GitHubIcon sx={{ fontSize: 17 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub', color: '#FFFFFF' },
-  { icon: <LinkedInIcon sx={{ fontSize: 17 }} />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn', color: '#0A66C2' },
-  { icon: <EmailIcon sx={{ fontSize: 17 }} />, href: 'mailto:sahitya7985@gmail.com', label: 'Email', color: VIOLET_LIGHT },
+  { icon: <GitHubIcon sx={{ fontSize: 17 }} />, href: 'https://github.com/sahitya1903', label: 'GitHub', color: '#F0F6FC' },
+  { icon: <LinkedInIcon sx={{ fontSize: 17 }} />, href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn', color: '#4DABF7' },
+  { icon: <EmailIcon sx={{ fontSize: 17 }} />, href: 'mailto:sahitya7985@gmail.com', label: 'Email', color: '#A78BFA' },
   {
     icon: (
       <Box
@@ -68,28 +68,12 @@ const Footer = () => (
             fontFamily: '"Playfair Display", serif',
             fontSize: '1rem',
             fontWeight: 600,
-            color: 'text.secondary',
+            color: 'text.primary',
             letterSpacing: '0.05em',
           }}>
             Sahitya Kushwaha
           </Typography>
         </Box>
-
-        <Typography
-          component="a"
-          href="https://www.sahitya.codes"
-          sx={{
-            fontFamily: '"JetBrains Mono", monospace',
-            fontSize: '0.75rem',
-            color: alpha(VIOLET_LIGHT, 0.55),
-            textDecoration: 'none',
-            letterSpacing: '0.06em',
-            transition: 'color 0.2s',
-            '&:hover': { color: VIOLET_LIGHT },
-          }}
-        >
-          www.sahitya.codes
-        </Typography>
 
         {/* Social links row */}
         <Box sx={{
@@ -107,18 +91,18 @@ const Footer = () => (
                 display: 'flex', alignItems: 'center', gap: 0.75,
                 px: 1.5, py: 0.6,
                 borderRadius: '8px',
-                border: `1px solid ${BORDER}`,
-                background: 'rgba(255,255,255,0.02)',
+                border: `1px solid ${alpha(color, 0.3)}`,
+                background: alpha(color, 0.07),
                 textDecoration: 'none',
                 transition: 'all 0.25s ease',
                 cursor: 'pointer',
-                color: 'text.secondary',
+                color,
                 '&:hover': {
-                  borderColor: alpha(color, 0.45),
-                  background: alpha(color, 0.08),
+                  borderColor: alpha(color, 0.65),
+                  background: alpha(color, 0.16),
                   color,
                   transform: 'translateY(-2px)',
-                  boxShadow: `0 4px 20px ${alpha(color, 0.18)}`,
+                  boxShadow: `0 6px 22px ${alpha(color, 0.3)}`,
                 },
               }}
             >
@@ -152,7 +136,6 @@ const Footer = () => (
           fontFamily: '"Playfair Display", serif',
           display: 'flex', alignItems: 'center', gap: 0.5,
           textAlign: 'center',
-          opacity: 0.6,
         }}>
           © {new Date().getFullYear()} · Designed & built with
           <FavoriteIcon sx={{ fontSize: 11, color: '#EF4444', mx: 0.25 }} />
