@@ -339,4 +339,4 @@ const darkTheme = createTheme({
 
 export default darkTheme;
 
-export { VIOLET, VIOLET_LIGHT, VIOLET_DARK, BORDER };
+export { VIOLET, VIOLET_LIGHT, BORDER };
