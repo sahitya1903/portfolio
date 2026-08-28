@@ -19,6 +19,7 @@ import {
 import GlowCard from '../components/ui/GlowCard';
 import TechBadge from '../components/ui/TechBadge';
 import SectionHeader from '../components/ui/SectionHeader';
+import FadeIn from '../components/ui/FadeIn';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../theme/theme';
 
 import About from './About';
@@ -124,28 +125,6 @@ const AnimatedCounter = ({ value, suffix = '' }) => {
     <Box ref={ref} sx={{ fontFamily: '"JetBrains Mono", monospace' }}>
       {display}{suffix}
     </Box>
-  );
-};
-
-/* ─────────────────────────────────────────────────────────────
-   FADE-IN WRAPPER
-   Uses the useInView hook (once:true latches permanently) rather than
-   the whileInView prop, so a revealed element can never get stuck
-   invisible on a fast scroll-past.
-───────────────────────────────────────────────────────────── */
-const FadeIn = ({ children, delay = 0, y = 24, sx = {} }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      style={{ ...sx }}
-    >
-      {children}
-    </motion.div>
   );
 };
 

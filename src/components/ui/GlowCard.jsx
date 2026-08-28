@@ -30,7 +30,8 @@ const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
         background: 'linear-gradient(145deg, #0D0D15 0%, #0A0A11 100%)',
         overflow: 'hidden',
         boxShadow: 'none',
-        transition: 'border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease',
+        // transform is animated by framer-motion's whileHover — keep it off the CSS transition
+        transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
         /* Ambient hover light */
         '&::before': {
           content: '""',

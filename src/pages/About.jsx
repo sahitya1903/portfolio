@@ -8,6 +8,7 @@ import { alpha } from '@mui/material/styles';
 
 import GlowCard from '../components/ui/GlowCard';
 import SectionHeader from '../components/ui/SectionHeader';
+import FadeIn from '../components/ui/FadeIn';
 import { VIOLET, VIOLET_LIGHT } from '../theme/theme';
 
 /* ─────────────────────────────────────────────────────────────
@@ -43,25 +44,6 @@ const EXPERIENCES = [
     color: '#06B6D4',
   },
 ];
-
-/* ─────────────────────────────────────────────────────────────
-   FADE-IN WRAPPER — useInView hook (once:true latches), so a revealed
-   element can't get stuck invisible on a fast scroll-past.
-───────────────────────────────────────────────────────────── */
-const FadeIn = ({ children, delay = 0, y = 24 }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-};
 
 /* Vertical timeline spine — draws once when scrolled into view */
 const TimelineLine = () => {
