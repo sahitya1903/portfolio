@@ -543,11 +543,12 @@ const ProjectsSection = () => (
               <Box sx={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                 {/* Title + index, subtitle underneath */}
                 <Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
-                    <Typography sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 600, fontSize: '1.2rem', color: 'text.primary' }}>
-                      {project.title}
-                    </Typography>
+                  <Typography sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 600, fontSize: '1.2rem', color: 'text.primary' }}>
+                    {project.title}
                     <Box component="span" sx={{
+                      display: 'inline-block',
+                      ml: 1,
+                      verticalAlign: 'middle',
                       fontFamily: '"JetBrains Mono", monospace',
                       fontSize: '0.62rem',
                       color: project.accent,
@@ -560,7 +561,7 @@ const ProjectsSection = () => (
                     }}>
                       {String(i + 1).padStart(2, '0')}
                     </Box>
-                  </Box>
+                  </Typography>
                   <Typography sx={{ mt: 0.5, fontSize: '0.75rem', color: project.accent, fontFamily: '"JetBrains Mono", monospace' }}>
                     {project.subtitle}
                   </Typography>
