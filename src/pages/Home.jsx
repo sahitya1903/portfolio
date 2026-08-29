@@ -46,7 +46,7 @@ const PROJECTS = [
     title: 'Resume Syncer',
     subtitle: 'Automated Overleaf Resume Syncer',
     desc: 'Published GitHub Actions Marketplace action automating a 5-stage pipeline: Selenium Overleaf scraping, Git commits, Google Drive sync, and portfolio updates using Service Account credentials.',
-    tags: ['Python', 'GitHub Actions', 'Selenium', 'Google Drive API', 'Git', 'Bash'],
+    tags: ['Python', 'GitHub Actions', 'Selenium', 'Google Drive API', 'Git'],
     accent: '#A3E635',
     github: 'https://github.com/sahitya1903/resume-syncer',
     live: 'https://github.com/marketplace/actions/overleaf-resume-syncer',
@@ -58,7 +58,7 @@ const PROJECTS = [
     title: 'Alert Drive',
     subtitle: 'Real-time Driver Drowsiness Detection & Alert System',
     desc: 'Real-time driver drowsiness detection system using computer vision. Features OpenCV Haar Cascades for face/eye localization and a MobileNet model to classify eye states and trigger visual alerts.',
-    tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
+    tags: ['Python', 'TensorFlow', 'OpenCV'],
     accent: '#FBBF24',
     github: 'https://github.com/sahitya1903/alert-drive',
     live: 'https://alert-drive.streamlit.app',
@@ -122,7 +122,7 @@ const AnimatedCounter = ({ value, suffix = '' }) => {
   }, [isInView, motionValue, value]);
 
   return (
-    <Box ref={ref} sx={{ fontFamily: '"JetBrains Mono", monospace' }}>
+    <Box component="span" ref={ref} sx={{ fontFamily: '"JetBrains Mono", monospace' }}>
       {display}{suffix}
     </Box>
   );
@@ -568,7 +568,7 @@ const ProjectsSection = () => (
 
                 <Typography sx={{
                   fontSize: '0.87rem', color: 'text.secondary', lineHeight: 1.6,
-                  display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+                  display: '-webkit-box', WebkitLineClamp: { xs: 3, md: 2 }, WebkitBoxOrient: 'vertical', overflow: 'hidden',
                 }}>
                   {project.desc}
                 </Typography>
@@ -644,10 +644,10 @@ const ProjectsSection = () => (
 const GitHubSection = () => {
   const GITHUB_USERNAME = 'sahitya1903';
   const GITHUB_STATS = [
-    { label: 'Contributions', value: '1200+', color: '#10B981' },
-    { label: 'Public Repos', value: '15+', color: VIOLET_LIGHT },
-    { label: 'Stars Earned', value: '70+', color: '#F59E0B' },
-    { label: 'Followers', value: '20+', color: '#06B6D4' },
+    { label: 'Contributions', value: 1200, suffix: '+', color: '#10B981' },
+    { label: 'Public Repos', value: 15, suffix: '+', color: VIOLET_LIGHT },
+    { label: 'Stars Earned', value: 70, suffix: '+', color: '#F59E0B' },
+    { label: 'Followers', value: 20, suffix: '+', color: '#06B6D4' },
   ];
 
   return (
@@ -671,7 +671,7 @@ const GitHubSection = () => {
                   mb: 0.5,
                   textShadow: `0 0 20px ${alpha(stat.color, 0.4)}`,
                 }}>
-                  {stat.value}
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </Typography>
                 <Typography sx={{ fontSize: '0.78rem', color: 'text.secondary' }}>
                   {stat.label}
@@ -710,20 +710,30 @@ const GitHubSection = () => {
           <Box
             sx={{
               borderRadius: '8px',
-              overflow: 'hidden',
               background: 'rgba(255,255,255,0.02)',
               border: `1px solid ${BORDER}`,
-              p: 2,
-              minHeight: '120px',
+              p: { xs: 1.25, md: 1.75 },
+              display: 'flex',
+              overflowX: 'auto',
+              '&::-webkit-scrollbar': { height: 5 },
+              '&::-webkit-scrollbar-thumb': { background: 'rgba(124,58,237,0.35)', borderRadius: 3 },
             }}
           >
             <Box
               component="img"
               loading="lazy"
-              src={`https://ghchart.rshah.org/7C3AED/${GITHUB_USERNAME}`}
+              src={`https://ghchart.rshah.org/8B5CF6/${GITHUB_USERNAME}`}
               alt={`${GITHUB_USERNAME} GitHub contribution chart`}
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
-              sx={{ width: '100%', height: 'auto', display: 'block', filter: 'opacity(0.9)', borderRadius: '4px' }}
+              sx={{
+                width: '100%',
+                minWidth: { xs: 560, sm: 'auto' },
+                height: 'auto',
+                display: 'block',
+                aspectRatio: '740 / 112',
+                filter: 'opacity(0.92)',
+                borderRadius: '4px',
+              }}
             />
           </Box>
 
