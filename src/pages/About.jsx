@@ -20,9 +20,9 @@ const EXPERIENCES = [
     type: 'work',
     icon: <WorkIcon />,
     title: 'Software Development Intern',
-    org: 'Humora Technologies',
-    period: 'August 2026 – Present',
-    desc: 'Building and shipping features across the web platform — Next.js front end, backend services, and CI/CD delivery.',
+    org: 'Humora Technologies Private Limited',
+    period: 'Aug 2026 – Present',
+    desc: 'Building and shipping web platform features across Next.js, backend services, and CI/CD.',
     color: '#34D399',
   },
   {
@@ -30,7 +30,7 @@ const EXPERIENCES = [
     icon: <EmojiEventsIcon />,
     title: 'Open Source Contributor',
     org: 'Hacktoberfest',
-    period: '2025',
+    period: 'Oct 2025 - Nov 2025',
     desc: 'Ranked Top 10,000 globally in Hacktoberfest 2025 and earned the Supercontributor badge.',
     color: '#F59E0B',
   },
@@ -38,9 +38,9 @@ const EXPERIENCES = [
     type: 'education',
     icon: <SchoolIcon />,
     title: 'B.Tech in Electronics and Communication Engineering',
-    org: 'NIT Andhra Pradesh',
-    period: '2023 - Present',
-    desc: 'Final-year ECE student pursuing a Minor in Software Engineering, and an active open-source contributor.',
+    org: 'National Institute of Technology Andhra Pradesh',
+    period: 'Aug 2023 - Present',
+    desc: 'Final-year ECE student pursuing a Minor in Software Engineering.',
     color: '#06B6D4',
   },
 ];
@@ -114,10 +114,7 @@ const About = () => (
                   <Typography sx={{ fontSize: '0.78rem', color: exp.color, fontFamily: '"JetBrains Mono", monospace', mb: 0.5 }}>
                     {exp.org} · {exp.period}
                   </Typography>
-                  <Typography sx={{
-                    fontSize: '0.83rem', color: 'text.secondary', lineHeight: 1.6,
-                    display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
-                  }}>
+                  <Typography sx={{ fontSize: '0.83rem', color: 'text.secondary', lineHeight: 1.6 }}>
                     {exp.desc}
                   </Typography>
                 </Box>
