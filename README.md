@@ -11,7 +11,7 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 - **Landing flow + archive:** One continuous scroll page (`/`) — Hero → Projects → Experience → GitHub → Contact — with an `IntersectionObserver` scroll-spy navbar, hash routing to each section, and a separate interactive, filterable Projects archive (`/projects`).
 - **Hero:** Serif headline, a floating "code editor" card, an animated stat row, and an auto-scrolling **skill-logo marquee** (brand icons that desaturate at rest and light up on hover).
 - **Experience timeline:** Alternating two-column timeline with an animated spine and pulsing milestone nodes, in reverse-chronological order.
-- **GitHub activity:** Stat cards plus lazily-loaded contribution graph / language widgets.
+- **GitHub activity:** Count-up stat cards (contributions, repos, stars, followers) plus lazily-loaded contribution graph and language widgets — the graph scrolls horizontally on mobile so it stays legible.
 - **Contact:** Two-column form (details + message) wired to **EmailJS** with client-side validation and a success state.
 - **Résumé:** Linked straight to Google Drive so it's always current.
 - **Responsive:** Fluid layouts down to mobile, with a slide-out navigation drawer.
@@ -25,7 +25,8 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 - **GPU-friendly cursor glow:** The cursor spotlight moves with `translate3d` + `will-change: transform`, so mouse movement never triggers layout.
 - **Off-main-thread scroll-spy:** Section highlighting uses a native `IntersectionObserver` instead of a per-frame scroll loop.
 - **Scroll-safe reveals:** Section/element reveals are driven by the `useInView` hook (`once: true` latches), and cards use an opaque fill (no `backdrop-filter` drop-out), so nothing can get stuck invisible on a fast scroll.
-- **CLS prevention:** Remote GitHub widgets use `loading="lazy"` inside fixed-height containers.
+- **CLS prevention:** Remote GitHub widgets use `loading="lazy"` and reserve their space up front (`aspect-ratio` / fixed heights) so nothing shifts when the SVGs land.
+- **Mobile readability:** Card descriptions clamp to 3 lines on phones (2 on desktop); experience entries show in full.
 
 ---
 

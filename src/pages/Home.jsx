@@ -269,7 +269,7 @@ const Hero = () => (
     component="section"
     id="hero"
     sx={{
-      minHeight: '92vh',
+      minHeight: { xs: 'auto', md: '92vh' },
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
@@ -308,7 +308,7 @@ const Hero = () => (
       pointerEvents: 'none',
     }} />
 
-    <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, pt: { xs: 8, md: 0 } }}>
+    <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, pt: { xs: 2, md: 0 } }}>
       <Grid container spacing={4} alignItems="center">
         <Grid size={{ xs: 12, md: 7 }}>
 

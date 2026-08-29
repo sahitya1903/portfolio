@@ -22,7 +22,7 @@ const ALL_PROJECTS = [
     tags: ['Node.js', 'Express.js', 'MongoDB', 'EJS', 'Bootstrap', 'Docker', 'Mapbox', 'Cloudinary'],
     accent: '#2DD4BF',
     github: 'https://github.com/sahitya1903/roomify',
-    live: 'https://roomify-1gzx.onrender.com',
+    live: 'https://roomify.azurewebsites.net/',
     category: ['Full-Stack', 'Node.js'],
   },
   {
