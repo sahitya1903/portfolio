@@ -30,7 +30,7 @@ const ALL_PROJECTS = [
     title: 'Resume Syncer',
     subtitle: 'Automated Overleaf Resume Syncer',
     desc: 'Published GitHub Actions Marketplace action automating a 5-stage pipeline: Selenium Overleaf scraping, Git commits, Google Drive sync, and portfolio updates using Service Account credentials.',
-    tags: ['Python', 'GitHub Actions', 'Selenium', 'Google Drive API', 'Git', 'Bash'],
+    tags: ['Python', 'GitHub Actions', 'Selenium', 'Google Drive API', 'Git'],
     accent: '#A3E635',
     github: 'https://github.com/sahitya1903/resume-syncer',
     live: 'https://github.com/marketplace/actions/overleaf-resume-syncer',
@@ -42,7 +42,7 @@ const ALL_PROJECTS = [
     title: 'Alert Drive',
     subtitle: 'Real-time Driver Drowsiness Detection & Alert System',
     desc: 'Real-time driver drowsiness detection system using computer vision. Features OpenCV Haar Cascades for face/eye localization and a MobileNet model to classify eye states and trigger visual alerts.',
-    tags: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
+    tags: ['Python', 'TensorFlow', 'OpenCV'],
     accent: '#FBBF24',
     github: 'https://github.com/sahitya1903/alert-drive',
     live: 'https://alert-drive.streamlit.app',
@@ -186,7 +186,7 @@ const ProjectCard = ({ project, index }) => (
 
           <Typography sx={{
             fontSize: '0.87rem', color: 'text.secondary', lineHeight: 1.6,
-            display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+            display: '-webkit-box', WebkitLineClamp: { xs: 3, md: 2 }, WebkitBoxOrient: 'vertical', overflow: 'hidden',
           }}>
             {project.desc}
           </Typography>
