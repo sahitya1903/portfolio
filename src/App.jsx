@@ -16,6 +16,7 @@ const Projects = lazy(() => import('./pages/Projects'));
 const Experience = lazy(() => import('./pages/Experience'));
 const GitHub = lazy(() => import('./pages/GitHub'));
 const Contact = lazy(() => import('./pages/Contact'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               <Route path="/experience" element={<Experience />} />
               <Route path="/github" element={<GitHub />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </PageWrapper>
