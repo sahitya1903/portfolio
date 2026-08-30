@@ -67,10 +67,16 @@ src/
 │   │   └── PageWrapper.jsx     # Navbar + <main> + Footer shell
 │   └── ui/
 │       ├── CursorGlow.jsx      # Mouse-following spotlight overlay
-│       ├── FadeIn.jsx          # Scroll-into-view reveal wrapper (useInView)
+│       ├── FadeIn.jsx          # Scroll-into-view reveal wrapper (useRevealOnce)
+│       ├── FilterChip.jsx      # Category toggle + count badge (Projects)
 │       ├── GlowCard.jsx        # Glass card with radial hover glow
+│       ├── ProjectCard.jsx     # One /projects archive entry
 │       ├── SectionHeader.jsx   # Animated section heading + subtitle
 │       └── TechBadge.jsx       # Accent-tinted tech chip
+├── data/
+│   └── projects.js             # ALL_PROJECTS + filter helpers
+├── hooks/
+│   └── useRevealOnce.js        # Shared useRef + useInView reveal primitive + REVEAL_EASE
 ├── pages/
 │   ├── Home.jsx                # Hero, skills strip, featured projects, GitHub — plus section order
 │   ├── About.jsx               # Experience & Milestones timeline (#experience)
@@ -121,7 +127,7 @@ npm run preview  # preview the production build
 | Skills marquee | `SKILLS` array in [src/pages/Home.jsx](src/pages/Home.jsx) |
 | Hero stats / featured projects | `STATS` / `PROJECTS` in [src/pages/Home.jsx](src/pages/Home.jsx) |
 | Experience timeline | `EXPERIENCES` in [src/pages/About.jsx](src/pages/About.jsx) |
-| Full projects archive | `ALL_PROJECTS` in [src/pages/Projects.jsx](src/pages/Projects.jsx) |
+| Full projects archive | `ALL_PROJECTS` in [src/data/projects.js](src/data/projects.js) |
 | GitHub username / stats | `GitHubSection` in [src/pages/Home.jsx](src/pages/Home.jsx) |
 | EmailJS | [src/pages/Contact.jsx](src/pages/Contact.jsx) |
 | Palette & typography | [src/theme/theme.js](src/theme/theme.js); font weights in [src/main.jsx](src/main.jsx) |
