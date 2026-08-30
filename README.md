@@ -24,7 +24,7 @@ A modern, highly interactive personal portfolio built with **React 19**, **Vite 
 - **Route code-splitting:** The `/projects` archive is loaded with `React.lazy` + `<Suspense>`, keeping the landing bundle light.
 - **GPU-friendly cursor glow:** The cursor spotlight moves with `translate3d` + `will-change: transform`, so mouse movement never triggers layout.
 - **Off-main-thread scroll-spy:** Section highlighting uses a native `IntersectionObserver` instead of a per-frame scroll loop.
-- **Scroll-safe reveals:** Section/element reveals are driven by the `useInView` hook (`once: true` latches), and cards use an opaque fill (no `backdrop-filter` drop-out), so nothing can get stuck invisible on a fast scroll.
+- **Scroll-safe reveals:** Section/element reveals are driven by the shared `useRevealOnce` hook (`useInView` with `once: true` latches), and cards use an opaque fill (no `backdrop-filter` drop-out), so nothing can get stuck invisible on a fast scroll.
 - **CLS prevention:** Remote GitHub widgets use `loading="lazy"` and reserve their space up front (`aspect-ratio` / fixed heights) so nothing shifts when the SVGs land.
 - **Mobile readability:** Card descriptions clamp to 3 lines on phones (2 on desktop); experience entries show in full.
 

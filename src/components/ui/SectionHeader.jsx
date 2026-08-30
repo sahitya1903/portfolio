@@ -1,6 +1,6 @@
-import { useRef } from 'react';
 import { Box, Typography } from '@mui/material';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
+import useRevealOnce, { REVEAL_EASE } from '../../hooks/useRevealOnce';
 
 /**
  * SectionHeader — animated heading + optional subtext.
@@ -9,8 +9,7 @@ import { motion, useInView } from 'framer-motion';
  */
 const SectionHeader = ({ title, subtitle, align = 'center', sx = {} }) => {
   const isCenter = align === 'center';
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
+  const [ref, inView] = useRevealOnce();
 
   return (
     <Box
@@ -18,7 +17,7 @@ const SectionHeader = ({ title, subtitle, align = 'center', sx = {} }) => {
       component={motion.div}
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, ease: REVEAL_EASE }}
       sx={{ mb: { xs: 6, md: 8 }, textAlign: align, ...sx }}
     >
       <Typography

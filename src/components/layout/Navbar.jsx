@@ -13,6 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { alpha } from '@mui/material/styles';
 import { motion } from 'framer-motion';
+import { REVEAL_EASE } from '../../hooks/useRevealOnce';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../../theme/theme';
 
 const NAV_LINKS = [
@@ -136,7 +137,7 @@ const Navbar = () => {
         component={motion.header}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: REVEAL_EASE }}
         sx={{
           top: 0,
           left: 0,

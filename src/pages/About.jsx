@@ -1,6 +1,5 @@
-import { useRef } from 'react';
 import { Box, Container, Typography } from '@mui/material';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import WorkIcon from '@mui/icons-material/Work';
@@ -9,6 +8,7 @@ import { alpha } from '@mui/material/styles';
 import GlowCard from '../components/ui/GlowCard';
 import SectionHeader from '../components/ui/SectionHeader';
 import FadeIn from '../components/ui/FadeIn';
+import useRevealOnce, { REVEAL_EASE } from '../hooks/useRevealOnce';
 import { VIOLET, VIOLET_LIGHT } from '../theme/theme';
 
 /* ─────────────────────────────────────────────────────────────
@@ -47,14 +47,13 @@ const EXPERIENCES = [
 
 /* Vertical timeline spine — draws once when scrolled into view */
 const TimelineLine = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -100px 0px' });
+  const [ref, inView] = useRevealOnce('0px 0px -100px 0px');
   return (
     <motion.div
       ref={ref}
       initial={{ scaleY: 0 }}
       animate={{ scaleY: inView ? 1 : 0 }}
-      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.2, ease: REVEAL_EASE }}
       style={{
         position: 'absolute',
         left: '50%',

@@ -1,7 +1,7 @@
 import { Box, Container, Typography, Button, Grid, Tooltip } from '@mui/material';
-import { motion, useMotionValue, useInView, animate } from 'framer-motion';
+import { motion, useMotionValue, animate } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -20,6 +20,7 @@ import GlowCard from '../components/ui/GlowCard';
 import TechBadge from '../components/ui/TechBadge';
 import SectionHeader from '../components/ui/SectionHeader';
 import FadeIn from '../components/ui/FadeIn';
+import useRevealOnce, { REVEAL_EASE } from '../hooks/useRevealOnce';
 import { VIOLET, VIOLET_LIGHT, BORDER } from '../theme/theme';
 
 import About from './About';
@@ -101,16 +102,15 @@ const SKILLS = [
    ANIMATED COUNTER
 ───────────────────────────────────────────────────────────── */
 const AnimatedCounter = ({ value, suffix = '' }) => {
-  const ref = useRef(null);
+  const [ref, isInView] = useRevealOnce('0px 0px -60px 0px');
   const motionValue = useMotionValue(0);
-  const isInView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     if (!isInView) return;
     const controls = animate(motionValue, value, {
       duration: 1.8,
-      ease: [0.22, 1, 0.36, 1],
+      ease: REVEAL_EASE,
     });
     const unsubscribe = motionValue.on('change', (v) => {
       setDisplay(Math.round(v));
@@ -234,7 +234,7 @@ const SkillsStrip = () => (
     component={motion.div}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ duration: 0.6, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+    transition={{ duration: 0.6, delay: 0.28, ease: REVEAL_EASE }}
     sx={{
       mt: { xs: 4, md: 5 },
       position: 'relative',
@@ -316,7 +316,7 @@ const Hero = () => (
         <motion.div
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.05, ease: REVEAL_EASE }}
         >
           <Typography
             component="h1"
@@ -347,7 +347,7 @@ const Hero = () => (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, delay: 0.1, ease: REVEAL_EASE }}
         >
           <Typography
             sx={{
@@ -370,7 +370,7 @@ const Hero = () => (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, delay: 0.15, ease: REVEAL_EASE }}
         >
           <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
             <Button
@@ -395,7 +395,7 @@ const Hero = () => (
         <motion.div
           initial={{ opacity: 0, x: 40, scale: 0.95 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.65, delay: 0.12, ease: REVEAL_EASE }}
         >
           <Box sx={{ animation: 'float 7s ease-in-out infinite', maxWidth: 380, ml: { md: 'auto' } }}>
             <GlowCard sx={{
@@ -466,7 +466,7 @@ const Hero = () => (
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.55, delay: 0.2, ease: REVEAL_EASE }}
       >
         <Box
           sx={{
