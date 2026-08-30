@@ -1,64 +1,21 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, lazy, Suspense } from 'react';
-import { ThemeProvider, CssBaseline, Box, CircularProgress } from '@mui/material';
-import { useScroll, useSpring, motion } from 'framer-motion';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+
 import theme from './theme/theme';
 import GlobalStyles from './theme/GlobalStyles';
 import CursorGlow from './components/ui/CursorGlow';
+import ScrollProgressBar from './components/ui/ScrollProgressBar';
+import ScrollToHash from './components/ui/ScrollToHash';
 import PageWrapper from './components/layout/PageWrapper';
+import PageLoader from './components/layout/PageLoader';
 import Home from './pages/Home';
 
-// Route-level code splitting
+// Route-level code splitting — keep the landing bundle light.
 const Projects = lazy(() => import('./pages/Projects'));
-
-// Scroll to hash element utility
-function ScrollToHash() {
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.slice(1);
-      const element = document.getElementById(id);
-      if (element) {
-        const timer = setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-        return () => clearTimeout(timer);
-      }
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [location]);
-
-  return null;
-}
-
-// Scroll progress bar — thin violet→cyan gradient line along top of viewport
-function ScrollProgressBar() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  return (
-    <motion.div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: '3px',
-        background: 'linear-gradient(90deg, #7C3AED, #8B5CF6, #06B6D4)',
-        transformOrigin: '0%',
-        scaleX,
-        zIndex: 9999,
-        pointerEvents: 'none',
-      }}
-    />
-  );
-}
+const Experience = lazy(() => import('./pages/Experience'));
+const GitHub = lazy(() => import('./pages/GitHub'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
   return (
@@ -70,18 +27,15 @@ function App() {
       <BrowserRouter>
         <ScrollToHash />
         <PageWrapper>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={
-              <Suspense fallback={
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
-                  <CircularProgress size={40} />
-                </Box>
-              }>
-                <Projects />
-              </Suspense>
-            } />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/github" element={<GitHub />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </Suspense>
         </PageWrapper>
       </BrowserRouter>
     </ThemeProvider>
