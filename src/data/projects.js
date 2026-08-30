@@ -127,6 +127,13 @@ export const ALL_PROJECTS = [
   },
 ];
 
+/* Projects surfaced in the Home "featured" teaser, in display order. */
+export const FEATURED_IDS = ['roomify', 'resume-syncer', 'drowsiness-detection'];
+
+/** The featured subset, resolved from ALL_PROJECTS (keeps one source of truth). */
+export const featuredProjects = () =>
+  FEATURED_IDS.map((id) => ALL_PROJECTS.find((p) => p.id === id)).filter(Boolean);
+
 export const FILTER_KEYS = ['All', 'Full-Stack', 'AI / ML', 'DevOps', 'Frontend', 'DSA', 'Mini Projects'];
 
 /** Projects visible for a given filter key. */

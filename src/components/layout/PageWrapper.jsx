@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from './navbar/Navbar';
+import Footer from './footer/Footer';
 
 const PageWrapper = ({ children }) => {
   return (
