@@ -2,7 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
-import theme from './theme/theme';
+import ThemeModeProvider from './theme/ThemeModeProvider';
+import useThemeMode from './theme/useThemeMode';
+import { getAppTheme } from './theme/theme';
 import GlobalStyles from './theme/GlobalStyles';
 import CursorGlow from './components/ui/CursorGlow';
 import ScrollProgressBar from './components/ui/ScrollProgressBar';
@@ -18,9 +20,12 @@ const GitHub = lazy(() => import('./pages/GitHub'));
 const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
-function App() {
+function AppContent() {
+  const { mode } = useThemeMode();
+  const currentTheme = getAppTheme(mode);
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={currentTheme}>
       <CssBaseline />
       <GlobalStyles />
       <CursorGlow />
@@ -41,6 +46,14 @@ function App() {
         </PageWrapper>
       </BrowserRouter>
     </ThemeProvider>
+  );
+}
+
+function App() {
+  return (
+    <ThemeModeProvider>
+      <AppContent />
+    </ThemeModeProvider>
   );
 }
 
