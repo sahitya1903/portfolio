@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppBar, Box, Container, IconButton, useScrollTrigger } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 
 import { SPY_SECTION_IDS } from '../../../config/site';
 import useScrollSpy from '../../../hooks/useScrollSpy';
 import { REVEAL_EASE } from '../../../hooks/useRevealOnce';
-import { VIOLET, VIOLET_LIGHT, BORDER } from '../../../theme/theme';
 
 import Logo from './Logo';
 import DesktopNav from './DesktopNav';
@@ -20,6 +19,9 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 20 });
   const activeSection = useScrollSpy(SPY_SECTION_IDS, { enabled: pathname === '/' });
+  const theme = useTheme();
+  const isLight = theme.palette.mode === 'light';
+  const primaryColor = theme.palette.primary.main;
 
   // Close drawer on route change
   useEffect(() => {
@@ -41,35 +43,49 @@ const Navbar = () => {
           left: 0,
           right: 0,
           zIndex: 1200,
-          background: scrolled ? 'rgba(5,5,8,0.88)' : 'transparent',
+          background: scrolled
+            ? isLight
+              ? 'rgba(248, 250, 252, 0.88)'
+              : 'rgba(5, 5, 8, 0.88)'
+            : 'transparent',
           backdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(124,58,237,0.12)' : 'none',
-          boxShadow: scrolled ? '0 1px 32px rgba(124,58,237,0.08), 0 1px 4px rgba(0,0,0,0.3)' : 'none',
-          transition: 'all 0.4s cubic-bezier(0.22,1,0.36,1)',
+          borderBottom: scrolled
+            ? `1px solid ${alpha(primaryColor, 0.12)}`
+            : 'none',
+          boxShadow: scrolled
+            ? isLight
+              ? '0 4px 24px rgba(37, 99, 235, 0.06)'
+              : '0 1px 32px rgba(124, 58, 237, 0.08), 0 1px 4px rgba(0, 0, 0, 0.3)'
+            : 'none',
+          transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
         }}
       >
         <Container maxWidth="lg">
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', py: 1.5 }}>
             <Logo />
 
-            <DesktopNav pathname={pathname} activeSection={activeSection} />
+            {/* Desktop Navigation */}
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1.5 }}>
+              <DesktopNav pathname={pathname} activeSection={activeSection} />
+            </Box>
 
-            {/* Mobile — hamburger only */}
+            {/* Mobile — hamburger */}
             <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
               <IconButton
                 id="nav-menu-toggle"
                 onClick={() => setDrawerOpen(true)}
+                aria-label="Open navigation menu"
                 sx={{
                   color: 'text.secondary',
-                  border: `1px solid ${BORDER}`,
+                  border: `1px solid ${theme.palette.divider}`,
                   borderRadius: '10px',
                   width: 38,
                   height: 38,
                   '&:hover': {
-                    borderColor: alpha(VIOLET, 0.5),
-                    color: VIOLET_LIGHT,
-                    background: alpha(VIOLET, 0.08),
+                    borderColor: alpha(primaryColor, 0.5),
+                    color: primaryColor,
+                    background: alpha(primaryColor, 0.08),
                   },
                 }}
               >

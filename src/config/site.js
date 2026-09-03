@@ -44,8 +44,8 @@ export const NAV_LINKS = [
 
 /* Footer social links. `icon` is a key resolved to an element in SocialLinks. */
 export const SOCIAL_LINKS = [
-  { icon: 'github', href: GITHUB_URL, label: 'GitHub', color: '#F0F6FC' },
-  { icon: 'linkedin', href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn', color: '#4DABF7' },
-  { icon: 'email', href: `mailto:${SITE.email}`, label: 'Email', color: '#A78BFA' },
-  { icon: 'leetcode', href: 'https://leetcode.com/u/sahitya1903/', label: 'LeetCode', color: '#FFA116' },
+  { icon: 'github', href: GITHUB_URL, label: 'GitHub', color: '#181717' },
+  { icon: 'linkedin', href: 'https://linkedin.com/in/sahityakushwaha', label: 'LinkedIn', color: '#0A66C2' },
+  { icon: 'email', href: `mailto:${SITE.email}`, label: 'Email', color: '#6D28D9' },
+  { icon: 'leetcode', href: 'https://leetcode.com/u/sahitya1903/', label: 'LeetCode', color: '#C2410C' },
 ];
