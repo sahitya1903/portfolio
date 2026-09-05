@@ -1,12 +1,15 @@
 import { Box } from '@mui/material';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import { motion } from 'framer-motion';
-import { VIOLET, BORDER } from '../../theme/theme';
 
 /**
- * GlowCard — glassmorphism card with ambient hover glow for dark theme.
+ * GlowCard — glassmorphism card with ambient hover glow for light & dark themes.
  */
 const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
+  const theme = useTheme();
+  const isLight = theme.palette.mode === 'light';
+  const primaryColor = theme.palette.primary.main;
+
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -24,13 +27,14 @@ const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
       sx={{
         position: 'relative',
         borderRadius: '16px',
-        border: `1px solid ${BORDER}`,
-        // Opaque fill — a translucent bg + backdrop-filter drops out during fast
-        // scroll on some browsers, making the whole card render invisible.
-        background: 'linear-gradient(145deg, #0D0D15 0%, #0A0A11 100%)',
+        border: `1px solid ${theme.palette.divider}`,
+        background: isLight
+          ? '#FFFFFF'
+          : 'linear-gradient(145deg, #0D0D15 0%, #0A0A11 100%)',
         overflow: 'hidden',
-        boxShadow: 'none',
-        // transform is animated by framer-motion's whileHover — keep it off the CSS transition
+        boxShadow: isLight
+          ? '0 4px 20px -4px rgba(0, 0, 0, 0.05)'
+          : 'none',
         transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
         /* Ambient hover light */
         '&::before': {
@@ -38,7 +42,7 @@ const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
           position: 'absolute',
           inset: 0,
           borderRadius: 'inherit',
-          background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${alpha(VIOLET, 0.07)}, transparent 40%)`,
+          background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${alpha(primaryColor, isLight ? 0.08 : 0.07)}, transparent 40%)`,
           pointerEvents: 'none',
           transition: 'opacity 0.3s',
           opacity: 0,
@@ -52,13 +56,15 @@ const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
           left: '10%',
           right: '10%',
           height: '1px',
-          background: 'linear-gradient(90deg, transparent, rgba(139,92,246,0.15), transparent)',
+          background: `linear-gradient(90deg, transparent, ${alpha(primaryColor, isLight ? 0.25 : 0.15)}, transparent)`,
           pointerEvents: 'none',
           zIndex: 1,
         },
         '&:hover': {
-          borderColor: alpha(VIOLET, glowIntensity),
-          boxShadow: `0 0 0 1px ${alpha(VIOLET, glowIntensity * 0.4)}, 0 20px 60px ${alpha(VIOLET, glowIntensity * 0.12)}, inset 0 1px 0 rgba(255,255,255,0.05)`,
+          borderColor: alpha(primaryColor, glowIntensity),
+          boxShadow: isLight
+            ? `0 0 0 1px ${alpha(primaryColor, glowIntensity * 0.3)}, 0 20px 40px -10px ${alpha(primaryColor, glowIntensity * 0.15)}`
+            : `0 0 0 1px ${alpha(primaryColor, glowIntensity * 0.4)}, 0 20px 60px ${alpha(primaryColor, glowIntensity * 0.12)}, inset 0 1px 0 rgba(255,255,255,0.05)`,
           '&::before': { opacity: 1 },
         },
         ...sx,

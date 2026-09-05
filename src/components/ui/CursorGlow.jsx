@@ -1,14 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
-import { alpha } from '@mui/material/styles';
-import { VIOLET } from '../../theme/theme';
+import { alpha, useTheme } from '@mui/material/styles';
 
 /**
- * CursorGlow — follows the mouse cursor with a soft violet radial spotlight.
+ * CursorGlow — follows the mouse cursor with a soft radial spotlight.
  * Rendered as a fixed-position overlay so it appears across the whole page.
  */
 const CursorGlow = () => {
   const glowRef = useRef(null);
+  const theme = useTheme();
+  const isLight = theme.palette.mode === 'light';
+  const primaryColor = theme.palette.primary.main;
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -40,14 +42,14 @@ const CursorGlow = () => {
         width: '700px',
         height: '700px',
         borderRadius: '50%',
-        background: `radial-gradient(circle, ${alpha(VIOLET, 0.07)} 0%, transparent 65%)`,
+        background: `radial-gradient(circle, ${alpha(primaryColor, isLight ? 0.05 : 0.07)} 0%, transparent 65%)`,
         transform: 'translate3d(-50%, -50%, 0)',
         pointerEvents: 'none',
         zIndex: 9999,
         opacity: 0,
         transition: 'opacity 0.3s ease',
         willChange: 'transform',
-        mixBlendMode: 'screen',
+        mixBlendMode: isLight ? 'multiply' : 'screen',
       }}
     />
   );

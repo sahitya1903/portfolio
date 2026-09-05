@@ -1,9 +1,9 @@
 import { Chip } from '@mui/material';
-import { alpha } from '@mui/material/styles';
-import { VIOLET, VIOLET_LIGHT } from '../../theme/theme';
+import { alpha, useTheme } from '@mui/material/styles';
 
 const TechBadge = ({ label, icon, color, sx = {} }) => {
-  const accentColor = color || VIOLET;
+  const theme = useTheme();
+  const accentColor = color || theme.palette.primary.main;
 
   return (
     <Chip
@@ -16,8 +16,8 @@ const TechBadge = ({ label, icon, color, sx = {} }) => {
         fontSize: '0.72rem',
         fontWeight: 500,
         borderColor: alpha(accentColor, 0.3),
-        color: alpha(accentColor === VIOLET ? VIOLET_LIGHT : accentColor, 0.9),
-        background: alpha(accentColor, 0.06),
+        color: accentColor,
+        background: alpha(accentColor, 0.07),
         borderRadius: '6px',
         height: '26px',
         transition: 'all 0.2s ease',
@@ -28,8 +28,8 @@ const TechBadge = ({ label, icon, color, sx = {} }) => {
         },
         '&:hover': {
           borderColor: alpha(accentColor, 0.7),
-          background: alpha(accentColor, 0.12),
-          color: accentColor === VIOLET ? VIOLET_LIGHT : accentColor,
+          background: alpha(accentColor, 0.14),
+          color: accentColor,
           transform: 'translateY(-1px)',
           boxShadow: `0 4px 12px ${alpha(accentColor, 0.2)}`,
         },
