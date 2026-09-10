@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import useRevealOnce, { REVEAL_EASE } from '../../hooks/useRevealOnce';
-import { VIOLET } from '../../theme/theme';
 
 /** TimelineLine — the vertical spine; draws itself once on scroll-in. */
 const TimelineLine = () => {
   const [ref, inView] = useRevealOnce('0px 0px -100px 0px');
+  const theme = useTheme();
+  const primaryColor = theme.palette.primary.main;
+
   return (
     <motion.div
       ref={ref}
@@ -21,7 +23,7 @@ const TimelineLine = () => {
         bottom: 0,
         width: '1px',
         transformOrigin: 'top',
-        background: `linear-gradient(to bottom, transparent, ${alpha(VIOLET, 0.6)}, ${alpha(VIOLET, 0.3)}, transparent)`,
+        background: `linear-gradient(to bottom, transparent, ${alpha(primaryColor, 0.6)}, ${alpha(primaryColor, 0.3)}, transparent)`,
       }}
     />
   );

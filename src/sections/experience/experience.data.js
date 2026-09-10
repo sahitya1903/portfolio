@@ -11,7 +11,7 @@ export const EXPERIENCES = [
     org: 'Humora Technologies Private Limited',
     period: 'Aug 2026 – Present',
     desc: 'Building and shipping web platform features across Next.js, backend services, and CI/CD.',
-    color: '#34D399',
+    color: '#059669',
   },
   {
     type: 'achievement',
@@ -20,7 +20,7 @@ export const EXPERIENCES = [
     org: 'Hacktoberfest',
     period: 'Oct 2025 - Nov 2025',
     desc: 'Ranked Top 10,000 globally in Hacktoberfest 2025 and earned the Supercontributor badge.',
-    color: '#F59E0B',
+    color: '#B45309',
   },
   {
     type: 'education',
@@ -29,6 +29,6 @@ export const EXPERIENCES = [
     org: 'National Institute of Technology Andhra Pradesh',
     period: 'Aug 2023 - Present',
     desc: 'Final-year ECE student pursuing a Minor in Software Engineering.',
-    color: '#06B6D4',
+    color: '#0E7490',
   },
 ];

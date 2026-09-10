@@ -1,4 +1,5 @@
 import { Box, Button } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
@@ -8,16 +9,33 @@ import FadeIn from '../../components/ui/FadeIn';
 import ProjectCard from '../../components/ui/ProjectCard';
 import { featuredProjects } from '../../data/projects';
 import { SECTION_IDS } from '../../config/site';
-import { VIOLET_LIGHT } from '../../theme/theme';
 
 /** ProjectsPreview — the Home "featured work" teaser + link to the full archive. */
 const ProjectsPreview = () => {
   const featured = featuredProjects();
+  const theme = useTheme();
+  const primaryColor = theme.palette.primary.main;
+  const secondaryColor = theme.palette.secondary.main;
 
   return (
     <Section id={SECTION_IDS.projects}>
       <SectionHeader
-        title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value..</Box></>}
+        title={
+          <>
+            Projects that{' '}
+            <Box
+              component="span"
+              sx={{
+                background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              ship value..
+            </Box>
+          </>
+        }
       />
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>

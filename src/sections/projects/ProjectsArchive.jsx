@@ -1,18 +1,20 @@
 import { useMemo, useState } from 'react';
 import { Box, Container, Typography, Chip } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import GlowCard from '../../components/ui/GlowCard';
 import SectionHeader from '../../components/ui/SectionHeader';
 import ProjectCard from '../../components/ui/ProjectCard';
 import FilterChip from '../../components/ui/FilterChip';
 import { FILTER_KEYS, filterCounts, projectsForFilter } from '../../data/projects';
-import { VIOLET, VIOLET_LIGHT } from '../../theme/theme';
 
 /** ProjectsArchive — the full, filterable project list (body of the /projects route). */
 const ProjectsArchive = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const theme = useTheme();
+  const primaryColor = theme.palette.primary.main;
+  const secondaryColor = theme.palette.secondary.main;
 
   const filtered = useMemo(() => projectsForFilter(activeFilter), [activeFilter]);
   const counts = useMemo(() => filterCounts(), []);
@@ -20,7 +22,22 @@ const ProjectsArchive = () => {
   return (
     <Container maxWidth="lg">
       <SectionHeader
-        title={<>Projects that <Box component="span" sx={{ background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ship value..</Box></>}
+        title={
+          <>
+            Projects that{' '}
+            <Box
+              component="span"
+              sx={{
+                background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              ship value..
+            </Box>
+          </>
+        }
       />
 
       {/* Filter chips with count badges */}
@@ -56,11 +73,15 @@ const ProjectsArchive = () => {
               fontFamily: '"JetBrains Mono", monospace',
               fontSize: '0.65rem',
               height: 20,
-              background: alpha(VIOLET, 0.12),
-              color: VIOLET_LIGHT,
-              border: `1px solid ${alpha(VIOLET, 0.3)}`,
+              background: alpha(primaryColor, 0.12),
+              color: primaryColor,
+              border: `1px solid ${alpha(primaryColor, 0.3)}`,
               borderRadius: '4px',
-              '& .MuiChip-deleteIcon': { color: VIOLET_LIGHT, fontSize: '14px', '&:hover': { color: '#fff' } },
+              '& .MuiChip-deleteIcon': {
+                color: primaryColor,
+                fontSize: '14px',
+                '&:hover': { color: 'text.primary' },
+              },
             }}
           />
         )}
