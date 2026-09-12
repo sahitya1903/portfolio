@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 /** GitHubWidgets — the remote stat-summary + top-languages cards. */
 const GitHubWidgets = ({ username }) => (
