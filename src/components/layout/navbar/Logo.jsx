@@ -12,12 +12,12 @@ const Logo = () => (
         width: 36,
         height: 36,
         imageRendering: '-webkit-optimize-contrast',
-        filter: 'brightness(1.15) contrast(1.1) drop-shadow(0 0 8px rgba(139, 92, 246, 0.5))',
+        filter: 'brightness(1.15) contrast(1.1) drop-shadow(0 0 8px rgba(37, 99, 235, 0.5))',
         flexShrink: 0,
         objectFit: 'contain',
         transition: 'all 0.3s ease',
         '&:hover': {
-          filter: 'brightness(1.3) contrast(1.15) drop-shadow(0 0 14px rgba(139, 92, 246, 0.8))',
+          filter: 'brightness(1.3) contrast(1.15) drop-shadow(0 0 14px rgba(37, 99, 235, 0.8))',
           transform: 'scale(1.05)',
         },
       }}

@@ -1,7 +1,7 @@
 import { useScroll, useSpring, motion } from 'framer-motion';
 
 /**
- * ScrollProgressBar — thin violet→cyan gradient line pinned to the top of the
+ * ScrollProgressBar — thin cobalt→cyan gradient line pinned to the top of the
  * viewport, scaling with page scroll progress.
  */
 const ScrollProgressBar = () => {
@@ -20,7 +20,7 @@ const ScrollProgressBar = () => {
         left: 0,
         right: 0,
         height: '3px',
-        background: 'linear-gradient(90deg, #7C3AED, #8B5CF6, #06B6D4)',
+        background: 'linear-gradient(90deg, #2563EB, #3B82F6, #06B6D4)',
         transformOrigin: '0%',
         scaleX,
         zIndex: 9999,
