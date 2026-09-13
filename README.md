@@ -1,6 +1,6 @@
 # 🌌 Developer Portfolio
 
-A modern, highly interactive personal portfolio built with **React 19**, **Vite 8**, **Material UI (v9)**, **Framer Motion (v12)**, and **React Router DOM (v7)**. Dark-mode glassmorphism aesthetic, structured as a single continuous landing page (`/`) with every section also reachable as its own lazy route (`/projects`, `/experience`, `/github`, `/contact`), and deployed to **Azure Static Web Apps**.
+A modern, highly interactive personal portfolio built with **React 19**, **Vite 8**, **Material UI (v9)**, **Framer Motion (v12)**, and **React Router DOM (v7)**. Light, glassmorphism aesthetic, structured as a single continuous landing page (`/`) with every section also reachable as its own lazy route (`/projects`, `/experience`, `/github`, `/contact`), and deployed to **Azure Static Web Apps**.
 
 🔗 **Live:** [www.sahitya.codes](https://www.sahitya.codes)
 
@@ -97,7 +97,7 @@ src/
 │   └── useScrollSpy.js         # IntersectionObserver section-tracking hook
 ├── theme/
 │   ├── GlobalStyles.jsx        # Body layers, scrollbar, keyframes
-│   └── theme.js                # MUI theme (violet/cyan dark palette)
+│   └── theme.js                # MUI theme (cobalt/cyan light palette)
 ├── App.jsx                     # ThemeProvider + Router + <Routes>
 └── main.jsx                    # Font imports + DOM mount
 public/
