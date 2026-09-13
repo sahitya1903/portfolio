@@ -6,7 +6,8 @@ import { SITE } from '../../config/site';
 
 /** ContactForm — the message form itself (fields, validation display, submit). */
 const ContactForm = ({ formRef, fields, errors, status, onChange, onSubmit }) => {
-  const isError = status !== 'idle' && status !== 'sending' && status !== 'success';
+  const isRateLimited = status.startsWith('RATE_LIMIT: ');
+  const isError = status !== 'idle' && status !== 'sending' && status !== 'success' && !isRateLimited;
 
   return (
     <>
@@ -20,10 +21,19 @@ const ContactForm = ({ formRef, fields, errors, status, onChange, onSubmit }) =>
         Send a message
       </Typography>
 
+      {isRateLimited && (
+        <Alert
+          severity="warning"
+          sx={{ mb: 3, background: alpha('#B45309', 0.08), border: `1px solid ${alpha('#B45309', 0.3)}`, color: '#92400E', borderRadius: '8px' }}
+        >
+          {status.slice('RATE_LIMIT: '.length)}
+        </Alert>
+      )}
+
       {isError && (
         <Alert
           severity="error"
-          sx={{ mb: 3, background: alpha('#EF4444', 0.08), border: `1px solid ${alpha('#EF4444', 0.3)}`, color: '#FCA5A5', borderRadius: '8px' }}
+          sx={{ mb: 3, background: alpha('#EF4444', 0.08), border: `1px solid ${alpha('#EF4444', 0.3)}`, color: '#B91C1C', borderRadius: '8px' }}
         >
           Error: {status}. Please try emailing me directly at {SITE.email}
         </Alert>

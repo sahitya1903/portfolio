@@ -5,6 +5,20 @@ import { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY } from './emailjs.config';
 
 const EMPTY = { from_name: '', from_email: '', subject: '', message: '' };
 
+const RATE_LIMIT_MS = 60 * 1000;
+const RATE_LIMIT_KEY = 'portfolio-contact-last-sent';
+
+/** Seconds left before another send is allowed, or 0 if none. */
+const getCooldownSeconds = () => {
+  try {
+    const lastSent = Number(localStorage.getItem(RATE_LIMIT_KEY)) || 0;
+    const remaining = RATE_LIMIT_MS - (Date.now() - lastSent);
+    return remaining > 0 ? Math.ceil(remaining / 1000) : 0;
+  } catch {
+    return 0;
+  }
+};
+
 const validate = (fields) => {
   const e = {};
   if (!fields.from_name.trim()) e.from_name = 'Name is required';
@@ -18,7 +32,8 @@ const validate = (fields) => {
 
 /**
  * useContactForm — owns the contact form's field state, client-side validation,
- * and EmailJS submit. `status` is one of: idle | sending | success | <error text>.
+ * a 1-message-per-minute rate limit (persisted in localStorage), and the
+ * EmailJS submit. `status` is one of: idle | sending | success | <error text>.
  */
 const useContactForm = () => {
   const formRef = useRef(null);
@@ -39,9 +54,19 @@ const useContactForm = () => {
       setErrors(validationErrors);
       return;
     }
+    const cooldown = getCooldownSeconds();
+    if (cooldown > 0) {
+      setStatus(`RATE_LIMIT: Please wait ${cooldown}s before sending another message.`);
+      return;
+    }
     setStatus('sending');
     try {
       await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY);
+      try {
+        localStorage.setItem(RATE_LIMIT_KEY, String(Date.now()));
+      } catch {
+        // Ignore storage errors — rate limit just won't persist across reloads.
+      }
       setStatus('success');
       setFields(EMPTY);
     } catch (err) {
