@@ -9,7 +9,6 @@ import MarqueeRow from './MarqueeRow';
 /** SkillsStrip — bordered band housing the auto-scrolling skill-logo marquee. */
 const SkillsStrip = () => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
   return (
@@ -25,9 +24,7 @@ const SkillsStrip = () => {
         py: 1.25,
         borderTop: `1px solid ${theme.palette.divider}`,
         borderBottom: `1px solid ${theme.palette.divider}`,
-        background: isLight
-          ? 'linear-gradient(180deg, rgba(37,99,235,0.035) 0%, rgba(15,23,42,0.01) 100%)'
-          : 'linear-gradient(180deg, rgba(139,92,246,0.045) 0%, rgba(255,255,255,0.012) 100%)',
+        background: 'linear-gradient(180deg, rgba(37,99,235,0.035) 0%, rgba(15,23,42,0.01) 100%)',
         WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)',
         maskImage: 'linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)',
         '&::before': {

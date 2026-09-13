@@ -5,7 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import SectionPage from '../components/layout/SectionPage';
 import { REVEAL_EASE } from '../hooks/useRevealOnce';
-import { VIOLET_LIGHT } from '../theme/theme';
+import { COBALT, CYAN } from '../theme/theme';
 
 /** 404 — shown for any unmatched route. */
 const NotFound = () => (
@@ -22,7 +22,7 @@ const NotFound = () => (
             fontSize: { xs: '4.5rem', md: '6rem' },
             fontWeight: 700,
             lineHeight: 1,
-            background: `linear-gradient(135deg, ${VIOLET_LIGHT}, #06B6D4)`,
+            background: `linear-gradient(135deg, ${COBALT}, ${CYAN})`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',

@@ -9,7 +9,6 @@ import { REVEAL_EASE } from '../../hooks/useRevealOnce';
 /** HeroIntro — headline, italic subhead, and the résumé CTA (hero left column). */
 const HeroIntro = () => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
   return (
@@ -35,9 +34,7 @@ const HeroIntro = () => {
           <Box
             component="span"
             sx={{
-              background: isLight
-                ? 'linear-gradient(125deg, #2563EB 0%, #3B82F6 45%, #06B6D4 100%)'
-                : 'linear-gradient(125deg, #7C3AED 0%, #8B5CF6 45%, #06B6D4 100%)',
+              background: 'linear-gradient(125deg, #2563EB 0%, #3B82F6 45%, #06B6D4 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',

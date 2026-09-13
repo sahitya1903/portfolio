@@ -7,7 +7,6 @@ import { alpha, useTheme } from '@mui/material/styles';
  */
 const FilterChip = ({ label, count, isActive, onClick }) => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
   return (
@@ -21,10 +20,8 @@ const FilterChip = ({ label, count, isActive, onClick }) => {
             sx={{
               fontSize: '0.6rem',
               background: isActive
-                ? alpha(primaryColor, isLight ? 0.15 : 0.3)
-                : isLight
-                ? 'rgba(15, 23, 42, 0.06)'
-                : 'rgba(255, 255, 255, 0.06)',
+                ? alpha(primaryColor, 0.15)
+                : 'rgba(15, 23, 42, 0.06)',
               color: isActive ? primaryColor : 'text.secondary',
               px: 0.75,
               py: 0.1,
@@ -44,11 +41,7 @@ const FilterChip = ({ label, count, isActive, onClick }) => {
         fontSize: '0.75rem',
         fontWeight: isActive ? 600 : 400,
         cursor: 'pointer',
-        background: isActive
-          ? alpha(primaryColor, isLight ? 0.1 : 0.2)
-          : isLight
-          ? '#FFFFFF'
-          : 'transparent',
+        background: isActive ? alpha(primaryColor, 0.1) : '#FFFFFF',
         color: isActive ? primaryColor : 'text.secondary',
         border: `1px solid ${
           isActive
@@ -58,9 +51,7 @@ const FilterChip = ({ label, count, isActive, onClick }) => {
         borderRadius: '8px',
         height: 34,
         transition: 'all 0.2s ease',
-        boxShadow: isActive
-          ? `0 0 16px ${alpha(primaryColor, isLight ? 0.18 : 0.3)}`
-          : 'none',
+        boxShadow: isActive ? `0 0 16px ${alpha(primaryColor, 0.18)}` : 'none',
         '&:hover': {
           background: alpha(primaryColor, 0.1),
           color: primaryColor,

@@ -8,24 +8,15 @@ import { REVEAL_EASE } from '../../hooks/useRevealOnce';
 /** CodeCard — the floating "editor" card in the hero's right column. */
 const CodeCard = () => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
-  const codeTokens = isLight
-    ? {
-        keyword: '#2563EB', // Cobalt
-        identifier: '#0369A1', // Sky Blue (darker for contrast)
-        string: '#047857', // Emerald (darker for contrast)
-        text: '#334155', // Slate
-        gutter: '#64748B',
-      }
-    : {
-        keyword: '#A78BFA', // Violet light
-        identifier: '#7DD3FC', // Light cyan
-        string: '#86EFAC', // Light green
-        text: '#94A3B8',
-        gutter: '#334155',
-      };
+  const codeTokens = {
+    keyword: '#2563EB', // Cobalt
+    identifier: '#0369A1', // Sky Blue
+    string: '#047857', // Emerald
+    text: '#334155', // Slate
+    gutter: '#64748B',
+  };
 
   const codeLines = [
     { indent: 0, color: codeTokens.keyword, text: 'const developer = {' },
@@ -87,15 +78,11 @@ const CodeCard = () => {
         <GlowCard
           sx={{
             p: 2.5,
-            background: isLight
-              ? 'linear-gradient(160deg, #FFFFFF 0%, #F8FAFC 100%)'
-              : 'linear-gradient(160deg, #0D0D18 0%, #090912 100%)',
-            borderColor: isLight ? 'rgba(15, 23, 42, 0.08)' : 'var(--border-color)',
-            boxShadow: isLight
-              ? '0 20px 48px rgba(37,99,235,0.08), 0 4px 12px rgba(0,0,0,0.04)'
-              : '0 24px 64px rgba(0,0,0,0.32), 0 8px 24px rgba(124,58,237,0.18)',
+            background: 'linear-gradient(160deg, #FFFFFF 0%, #F8FAFC 100%)',
+            borderColor: 'rgba(15, 23, 42, 0.08)',
+            boxShadow: '0 20px 48px rgba(37,99,235,0.08), 0 4px 12px rgba(0,0,0,0.04)',
             '&:hover': {
-              borderColor: isLight ? 'rgba(37,99,235,0.45)' : 'rgba(124,58,237,0.45)',
+              borderColor: 'rgba(37,99,235,0.45)',
             },
           }}
         >
@@ -108,7 +95,7 @@ const CodeCard = () => {
               sx={{
                 fontFamily: '"JetBrains Mono", monospace',
                 fontSize: '0.63rem',
-                color: isLight ? '#64748B' : '#475569',
+                color: '#64748B',
                 ml: 1.5,
               }}
             >

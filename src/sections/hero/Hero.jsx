@@ -1,5 +1,4 @@
 import { Box, Container, Grid } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 
 import { SECTION_IDS } from '../../config/site';
 import HeroIntro from './HeroIntro';
@@ -9,9 +8,6 @@ import StatsBar from './StatsBar';
 
 /** Hero — the landing band: intro + code card, then skills marquee + stat row. */
 const Hero = () => {
-  const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
-
   return (
     <Box
       component="section"
@@ -34,9 +30,7 @@ const Hero = () => {
           width: 750,
           height: 750,
           borderRadius: '50%',
-          background: isLight
-            ? 'radial-gradient(circle, rgba(37,99,235,0.11) 0%, rgba(59,130,246,0.05) 45%, transparent 70%)'
-            : 'radial-gradient(circle, rgba(124,58,237,0.1) 0%, rgba(139,92,246,0.04) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(37,99,235,0.11) 0%, rgba(59,130,246,0.05) 45%, transparent 70%)',
           filter: 'blur(60px)',
           animation: 'float 10s ease-in-out infinite',
           pointerEvents: 'none',
@@ -51,9 +45,7 @@ const Hero = () => {
           width: 600,
           height: 600,
           borderRadius: '50%',
-          background: isLight
-            ? 'radial-gradient(circle, rgba(6,182,212,0.09) 0%, transparent 65%)'
-            : 'radial-gradient(circle, rgba(6,182,212,0.07) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(6,182,212,0.09) 0%, transparent 65%)',
           filter: 'blur(55px)',
           animation: 'floatReverse 12s ease-in-out infinite',
           pointerEvents: 'none',
@@ -68,9 +60,7 @@ const Hero = () => {
           width: 500,
           height: 500,
           borderRadius: '50%',
-          background: isLight
-            ? 'radial-gradient(circle, rgba(29,78,216,0.07) 0%, transparent 65%)'
-            : 'radial-gradient(circle, rgba(91,33,182,0.06) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(29,78,216,0.07) 0%, transparent 65%)',
           filter: 'blur(70px)',
           animation: 'floatSlow 15s ease-in-out infinite',
           pointerEvents: 'none',

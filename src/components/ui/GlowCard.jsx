@@ -3,11 +3,10 @@ import { alpha, useTheme } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 
 /**
- * GlowCard — glassmorphism card with ambient hover glow for light & dark themes.
+ * GlowCard — glassmorphism card with an ambient hover glow.
  */
 const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
   const handleMouseMove = (e) => {
@@ -28,13 +27,9 @@ const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
         position: 'relative',
         borderRadius: '16px',
         border: `1px solid ${theme.palette.divider}`,
-        background: isLight
-          ? '#FFFFFF'
-          : 'linear-gradient(145deg, #0D0D15 0%, #0A0A11 100%)',
+        background: '#FFFFFF',
         overflow: 'hidden',
-        boxShadow: isLight
-          ? '0 4px 20px -4px rgba(0, 0, 0, 0.05)'
-          : 'none',
+        boxShadow: '0 4px 20px -4px rgba(0, 0, 0, 0.05)',
         transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
         /* Ambient hover light */
         '&::before': {
@@ -42,7 +37,7 @@ const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
           position: 'absolute',
           inset: 0,
           borderRadius: 'inherit',
-          background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${alpha(primaryColor, isLight ? 0.08 : 0.07)}, transparent 40%)`,
+          background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${alpha(primaryColor, 0.08)}, transparent 40%)`,
           pointerEvents: 'none',
           transition: 'opacity 0.3s',
           opacity: 0,
@@ -56,15 +51,13 @@ const GlowCard = ({ children, glowIntensity = 0.5, sx = {}, ...props }) => {
           left: '10%',
           right: '10%',
           height: '1px',
-          background: `linear-gradient(90deg, transparent, ${alpha(primaryColor, isLight ? 0.25 : 0.15)}, transparent)`,
+          background: `linear-gradient(90deg, transparent, ${alpha(primaryColor, 0.25)}, transparent)`,
           pointerEvents: 'none',
           zIndex: 1,
         },
         '&:hover': {
           borderColor: alpha(primaryColor, glowIntensity),
-          boxShadow: isLight
-            ? `0 0 0 1px ${alpha(primaryColor, glowIntensity * 0.3)}, 0 20px 40px -10px ${alpha(primaryColor, glowIntensity * 0.15)}`
-            : `0 0 0 1px ${alpha(primaryColor, glowIntensity * 0.4)}, 0 20px 60px ${alpha(primaryColor, glowIntensity * 0.12)}, inset 0 1px 0 rgba(255,255,255,0.05)`,
+          boxShadow: `0 0 0 1px ${alpha(primaryColor, glowIntensity * 0.3)}, 0 20px 40px -10px ${alpha(primaryColor, glowIntensity * 0.15)}`,
           '&::before': { opacity: 1 },
         },
         ...sx,

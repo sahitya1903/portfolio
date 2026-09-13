@@ -20,7 +20,6 @@ const Navbar = () => {
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 20 });
   const activeSection = useScrollSpy(SPY_SECTION_IDS, { enabled: pathname === '/' });
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
   // Close drawer on route change
@@ -43,21 +42,13 @@ const Navbar = () => {
           left: 0,
           right: 0,
           zIndex: 1200,
-          background: scrolled
-            ? isLight
-              ? 'rgba(248, 250, 252, 0.88)'
-              : 'rgba(5, 5, 8, 0.88)'
-            : 'transparent',
+          background: scrolled ? 'rgba(248, 250, 252, 0.88)' : 'transparent',
           backdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
           borderBottom: scrolled
             ? `1px solid ${alpha(primaryColor, 0.12)}`
             : 'none',
-          boxShadow: scrolled
-            ? isLight
-              ? '0 4px 24px rgba(37, 99, 235, 0.06)'
-              : '0 1px 32px rgba(124, 58, 237, 0.08), 0 1px 4px rgba(0, 0, 0, 0.3)'
-            : 'none',
+          boxShadow: scrolled ? '0 4px 24px rgba(37, 99, 235, 0.06)' : 'none',
           transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
         }}
       >

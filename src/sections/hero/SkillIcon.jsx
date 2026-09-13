@@ -1,11 +1,9 @@
 import { Box, Tooltip } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+
+const REST_COLOR = '#64748B';
 
 /** SkillIcon — one marquee glyph: uniform neutral tone at rest, lifts + colours on hover. */
 const SkillIcon = ({ Icon, color, label }) => {
-  const theme = useTheme();
-  const restColor = theme.palette.mode === 'light' ? '#64748B' : '#94A3B8';
-
   return (
     <Tooltip
       title={label}
@@ -46,7 +44,7 @@ const SkillIcon = ({ Icon, color, label }) => {
           justifyContent: 'center',
           width: 40,
           height: 40,
-          color: restColor,
+          color: REST_COLOR,
           opacity: 0.65,
           transition: 'color .28s ease, opacity .28s ease, transform .28s ease',
           '& svg': { width: 26, height: 26 },

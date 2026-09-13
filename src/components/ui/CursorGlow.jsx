@@ -9,7 +9,6 @@ import { alpha, useTheme } from '@mui/material/styles';
 const CursorGlow = () => {
   const glowRef = useRef(null);
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
   useEffect(() => {
@@ -42,14 +41,14 @@ const CursorGlow = () => {
         width: '700px',
         height: '700px',
         borderRadius: '50%',
-        background: `radial-gradient(circle, ${alpha(primaryColor, isLight ? 0.05 : 0.07)} 0%, transparent 65%)`,
+        background: `radial-gradient(circle, ${alpha(primaryColor, 0.05)} 0%, transparent 65%)`,
         transform: 'translate3d(-50%, -50%, 0)',
         pointerEvents: 'none',
         zIndex: 9999,
         opacity: 0,
         transition: 'opacity 0.3s ease',
         willChange: 'transform',
-        mixBlendMode: isLight ? 'multiply' : 'screen',
+        mixBlendMode: 'multiply',
       }}
     />
   );

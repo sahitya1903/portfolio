@@ -9,7 +9,6 @@ import { HERO_STATS } from './hero.data';
 /** StatsBar — the four count-up stat cells beneath the hero. */
 const StatsBar = () => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
   return (
@@ -34,17 +33,13 @@ const StatsBar = () => {
               py: 2.5,
               px: 2,
               borderRadius: '12px',
-              background: isLight ? '#FFFFFF' : '#10101A',
+              background: '#FFFFFF',
               border: `1px solid ${theme.palette.divider}`,
-              boxShadow: isLight
-                ? '0 4px 20px -4px rgba(0,0,0,0.05)'
-                : '0 4px 16px rgba(0,0,0,0.4)',
+              boxShadow: '0 4px 20px -4px rgba(0,0,0,0.05)',
               transition: 'all 0.25s ease',
               '&:hover': {
                 borderColor: alpha(primaryColor, 0.4),
-                boxShadow: isLight
-                  ? `0 10px 28px -6px ${alpha(primaryColor, 0.15)}`
-                  : `0 8px 28px ${alpha(primaryColor, 0.18)}`,
+                boxShadow: `0 10px 28px -6px ${alpha(primaryColor, 0.15)}`,
                 transform: 'translateY(-3px)',
               },
             }}
@@ -54,9 +49,7 @@ const StatsBar = () => {
                 fontFamily: '"JetBrains Mono", monospace',
                 fontSize: { xs: '1.6rem', md: '2rem' },
                 fontWeight: 700,
-                background: isLight
-                  ? `linear-gradient(135deg, ${primaryColor}, #0F172A)`
-                  : 'linear-gradient(135deg, #8B5CF6, #fff)',
+                background: `linear-gradient(135deg, ${primaryColor}, #0F172A)`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',

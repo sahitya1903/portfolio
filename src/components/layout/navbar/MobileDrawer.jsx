@@ -9,7 +9,6 @@ import { isNavLinkActive } from './navActive';
 /** MobileDrawer — slide-out nav for `< md`. */
 const MobileDrawer = ({ open, onClose, pathname, activeSection }) => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
   return (
@@ -21,13 +20,11 @@ const MobileDrawer = ({ open, onClose, pathname, activeSection }) => {
         paper: {
           sx: {
             width: 300,
-            background: isLight ? 'rgba(255, 255, 255, 0.95)' : 'rgba(13, 13, 20, 0.75)',
+            background: 'rgba(255, 255, 255, 0.95)',
             backdropFilter: 'blur(28px)',
             WebkitBackdropFilter: 'blur(28px)',
             borderLeft: `1px solid ${alpha(primaryColor, 0.15)}`,
-            boxShadow: isLight
-              ? '0 10px 40px rgba(0, 0, 0, 0.12)'
-              : '-16px 0 48px rgba(0, 0, 0, 0.4)',
+            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.12)',
           },
         },
       }}

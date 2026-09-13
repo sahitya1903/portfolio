@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { alpha } from '@mui/material/styles';
-import { VIOLET } from '../../theme/theme';
+import { COBALT } from '../../theme/theme';
 
 /**
  * SectionPage — chrome for a standalone route that renders a single site
@@ -12,7 +12,7 @@ const SectionPage = ({ children }) => (
     <Box sx={{
       position: 'absolute', top: '8%', right: '-6%',
       width: 600, height: 600, borderRadius: '50%',
-      background: `radial-gradient(circle, ${alpha(VIOLET, 0.1)} 0%, transparent 65%)`,
+      background: `radial-gradient(circle, ${alpha(COBALT, 0.1)} 0%, transparent 65%)`,
       filter: 'blur(60px)', pointerEvents: 'none',
     }} />
     <Box sx={{

@@ -8,7 +8,6 @@ import { isNavLinkActive } from './navActive';
 /** DesktopNav — the pill nav shown at `md+`, with a sliding active-dot indicator. */
 const DesktopNav = ({ pathname, activeSection }) => {
   const theme = useTheme();
-  const isLight = theme.palette.mode === 'light';
   const primaryColor = theme.palette.primary.main;
 
   return (
@@ -25,7 +24,7 @@ const DesktopNav = ({ pathname, activeSection }) => {
           display: 'flex',
           alignItems: 'center',
           gap: 0.5,
-          background: isLight ? 'rgba(15, 23, 42, 0.03)' : 'rgba(255, 255, 255, 0.03)',
+          background: 'rgba(15, 23, 42, 0.03)',
           border: `1px solid ${theme.palette.divider}`,
           borderRadius: '12px',
           px: 0.75,
@@ -54,7 +53,7 @@ const DesktopNav = ({ pathname, activeSection }) => {
                 transition: 'all 0.22s ease',
                 '&:hover': {
                   color: 'text.primary',
-                  background: isLight ? 'rgba(15, 23, 42, 0.05)' : 'rgba(255, 255, 255, 0.06)',
+                  background: 'rgba(15, 23, 42, 0.05)',
                 },
               }}
             >
