@@ -80,7 +80,7 @@ const Footer = () => {
           <Typography
             sx={{
               fontSize: '0.76rem',
-              color: 'text.secondary',
+              color: '#334155',
               fontFamily: '"Playfair Display", serif',
               display: 'flex',
               alignItems: 'center',
@@ -89,7 +89,7 @@ const Footer = () => {
             }}
           >
             © {new Date().getFullYear()} · Designed & built with
-            <FavoriteIcon sx={{ fontSize: 11, color: '#EF4444', mx: 0.25 }} />
+            <FavoriteIcon sx={{ fontSize: 11, color: '#DC2626', mx: 0.25 }} />
             by Sahitya
           </Typography>
         </Box>

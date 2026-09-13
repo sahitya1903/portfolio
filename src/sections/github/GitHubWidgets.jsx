@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 
 /** GitHubWidgets — the remote stat-summary + top-languages cards. */
 const GitHubWidgets = ({ username }) => (
@@ -7,7 +6,7 @@ const GitHubWidgets = ({ username }) => (
     <Box
       component="img"
       loading="lazy"
-      src={`https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${username}&theme=transparent`}
+      src={`https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${username}&theme=transparent&hide_border=true&title_color=2563EB&text_color=334155&bg_color=00000000`}
       alt="GitHub Stats"
       onError={(e) => { e.currentTarget.style.display = 'none'; }}
       sx={{
@@ -22,7 +21,7 @@ const GitHubWidgets = ({ username }) => (
     <Box
       component="img"
       loading="lazy"
-      src={`https://github-readme-stats-fast.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=transparent&hide_border=true&title_color=006AFF&text_color=94A3B8&bg_color=00000000`}
+      src={`https://github-readme-stats-fast.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=transparent&hide_border=true&title_color=2563EB&text_color=334155&bg_color=00000000`}
       alt="Top Languages"
       onError={(e) => { e.currentTarget.style.display = 'none'; }}
       sx={{
