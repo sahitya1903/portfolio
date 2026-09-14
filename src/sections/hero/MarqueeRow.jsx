@@ -25,6 +25,9 @@ const MarqueeRow = ({ items, reverse = false, duration = 46 }) => {
         display: 'flex',
         width: 'max-content',
         animation: `marquee ${duration}s linear infinite${reverse ? ' reverse' : ''}`,
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        transform: 'translateZ(0)',
         '@media (prefers-reduced-motion: reduce)': { animation: 'none' },
       }}
     >
