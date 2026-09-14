@@ -74,7 +74,16 @@ const CodeCard = () => {
       animate={{ opacity: 1, x: 0, scale: 1 }}
       transition={{ duration: 0.65, delay: 0.12, ease: REVEAL_EASE }}
     >
-      <Box sx={{ animation: 'float 7s ease-in-out infinite', maxWidth: 380, ml: { md: 'auto' } }}>
+      <Box
+        sx={{
+          animation: 'float 7s ease-in-out infinite',
+          maxWidth: 380,
+          ml: { md: 'auto' },
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
+          transform: 'translateZ(0)',
+        }}
+      >
         <GlowCard
           sx={{
             p: 2.5,
